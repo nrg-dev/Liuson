@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	 <link rel="stylesheet" href="../../css/liusenCss.css">
+ 
+</link> 
+
+	</h:head>
+	<body bgcolor="#4C6D90" >
+	
+	<h:form id="limit1">
+	<table align="center" bgcolor="#fff">
+	<tr bgcolor="#fff"><td>
+	<ui:include src="../../pages/xhtml/templates/header.xhtml"></ui:include>
+	</td></tr>
+	<tr><td>
+<ui:include src="/pages/xhtml/templates/menunew.xhtml" />
+	</td></tr>
+	<tr><td>
+	<table>
+	<tr><td style="width: 300px"><strong style="color:#2C238C"> Welcome, #{loginMB.invusername}.</strong></td><td style="width: 426px" align="center"><p:clock pattern="dd-MM-yyyy HH:mm:ss" mode="server"></p:clock></td>
+	<td style="width: 308px" align="right"><h:commandButton value="Logout" action="#{loginMB.logout()}" styleClass="button"></h:commandButton>
+	</td></tr>
+	</table>
+	</td></tr>
+	<tr>
+	<td><br></br></td>
+	</tr>
+	<tr><td>
+	
+	<div align="center">
+	
+				<h:outputText styleClass="text_Header" style="font-weight:bold"
+					value="LIMIT REGISTRATION"/><br /><br />
+			
+	<!-- <h:messages showSummary="false" showDetail="true"   globalOnly="false" style="color:red"  layout="table"></h:messages> -->
+	</div>
+	<br></br><br></br>
+	<div align="center">
+	<rich:panel styleClass="class2" style="width:1000px;" headerClass="head2" bodyClass="body3">
+	 <f:facet name="header">
+            Limit Registration Form
+             <p:spacer height="10px" width="100px"></p:spacer>
+            <p:commandButton value="Help" type="button" onclick="PF('dlg3').show();"></p:commandButton>
+            </f:facet>
+            <table align="center" class="table_UI" cellpadding="10px">
+            <tr>
+            <td class="table_td"></td>
+            <td class="table_td">
+            <h:outputLabel value="Product Name " for="limProject"></h:outputLabel><span style="color:red"><h:outputText value="*"></h:outputText> </span>
+            </td>
+            <td>
+            <p:selectOneMenu id="limProject" effect="fold" styleClass="selecttext_ui" value="#{limitMB.limitDataBean.limitProjectName}">
+        <f:selectItem itemLabel="Please Choose Product" noSelectionOption="true"></f:selectItem>
+        <f:selectItems value="#{limitMB.projectList}"></f:selectItems>
+        </p:selectOneMenu><br></br>
+        <h:message for="limProject" style="color:red;font-size:11"></h:message>
+            </td>
+            <td class="table_td"> </td>
+            </tr>
+            </table>
+            <h:form>
+            <p:separator></p:separator>
+              <table align="center" class="table_UI" cellpadding="10px">
+              <tr>
+              <td class="table_td">
+              <h:outputLabel for="limRadio" value="Category "></h:outputLabel><span style="color:red"><h:outputText value="*"></h:outputText> </span>
+              </td>
+               <td >
+        <p:selectOneRadio id="limRadio" value="#{limitMB.limitDataBean.limProductCategory}" valueChangeListener="#{limitMB.categoryChange}">
+        <f:selectItem itemLabel="Raw Material" itemValue="Raw Material"></f:selectItem>
+        <f:selectItem itemLabel="Service" itemValue="Service"></f:selectItem>
+        <p:ajax event="valueChange" immediate="true" process="@this" update="@form"/>
+        </p:selectOneRadio>
+        <h:message for="limRadio" style="color:red;font-size:11"></h:message>
+        </td>
+          <td>
+        <h:outputLabel for="limProduct" value="Raw Material " rendered="#{limitMB.limitDataBean.limProductCategory == 'Raw Material'}"></h:outputLabel><span style="color:red"><h:outputText value="*" rendered="#{limitMB.limitDataBean.limProductCategory == 'Raw Material'}"></h:outputText> </span>
+        <h:outputLabel for="limService" value="Service Name " rendered="#{limitMB.limitDataBean.limProductCategory == 'Service'}"></h:outputLabel><span style="color:red"><h:outputText value="*" rendered="#{limitMB.limitDataBean.limProductCategory == 'Service'}"></h:outputText> </span>
+        
+        </td>
+        <td class="table_td">
+        <p:selectOneMenu id="limProduct" effect="fold" styleClass="selecttext_ui" value="#{limitMB.limitDataBean.limitProductName}" rendered="#{limitMB.limitDataBean.limProductCategory == 'Raw Material'}" valueChangeListener="#{limitMB.productChange}">
+        <f:selectItem itemLabel="Please Choose Raw Material" noSelectionOption="true"></f:selectItem>
+        <f:selectItems value="#{limitMB.productList}"></f:selectItems>
+         <p:ajax event="valueChange" immediate="true" process="@this" update="@form"/>
+        </p:selectOneMenu>
+        <p:selectOneMenu effect="fold" styleClass="selecttext_ui" id="limService" value="#{limitMB.limitDataBean.limitServiceName}" rendered="#{limitMB.limitDataBean.limProductCategory == 'Service'}" valueChangeListener="#{limitMB.productChange}">
+        <f:selectItem itemLabel="Please Choose Service" noSelectionOption="true"></f:selectItem>
+         <f:selectItems value="#{limitMB.productList}"></f:selectItems>
+        <p:ajax event="valueChange" immediate="true" process="@this" update="@form"/>
+        </p:selectOneMenu><br></br>
+        <h:message for="limService" style="color:red;font-size:11"></h:message>
+       
+        </td>
+              </tr>
+              <tr>
+              <td><h:outputLabel for="limittSubCate1" value="Sub Category 1" styleClass="label_ui" rendered="#{limitMB.limitDataBean.limProductCategory == 'Raw Material'}"></h:outputLabel> 
+        <h:outputText style="color:red" value="*" rendered="#{limitMB.limitDataBean.limProductCategory == 'Raw Material'}"></h:outputText>
+        <h:outputLabel for="limitSerCate1" value="Sub Category 1" styleClass="label_ui" rendered="#{limitMB.limitDataBean.limProductCategory == 'Service'}"></h:outputLabel> 
+        <h:outputText value="*" style="color:red" rendered="#{limitMB.limitDataBean.limProductCategory == 'Service'}"></h:outputText> 
+        </td>
+              <td>
+              <p:inputText disabled="true"  rendered="#{limitMB.limitDataBean.limProductCategory == 'Raw Material'}" id="limittSubCate1" value="#{limitMB.limitDataBean.limitRawCategory1}"></p:inputText>
+        	<br></br><h:message for="limittSubCate1" style="color:red;font-size:11" rendered="#{limitMB.limitDataBean.limProductCategory == 'Raw Material'}"></h:message>
+               <p:inputText disabled="true"  rendered="#{limitMB.limitDataBean.limProductCategory == 'Service'}" id="limitSerCate1" value="#{limitMB.limitDataBean.limitRawCategory1}"></p:inputText>
+        	<br></br><h:message for="limitSerCate1" style="color:red;font-size:11" rendered="#{limitMB.limitDataBean.limProductCategory == 'Service'}"></h:message>
+              
+              </td>
+                <td><h:outputLabel for="limittSubCate2" value="Sub Category 2" styleClass="label_ui" rendered="#{limitMB.limitDataBean.limProductCategory == 'Raw Material'}"></h:outputLabel> 
+        <h:outputText style="color:red" value="*" rendered="#{limitMB.limitDataBean.limProductCategory == 'Raw Material'}"></h:outputText>
+        <h:outputLabel for="limitSerCate2" value="Sub Category 2" styleClass="label_ui" rendered="#{limitMB.limitDataBean.limProductCategory == 'Service'}"></h:outputLabel> 
+        <h:outputText value="*" style="color:red" rendered="#{limitMB.limitDataBean.limProductCategory == 'Service'}"></h:outputText> 
+        </td>
+              <td>
+              <p:inputText disabled="true"  rendered="#{limitMB.limitDataBean.limProductCategory == 'Raw Material'}" id="limittSubCate2" value="#{limitMB.limitDataBean.limitRawCategoory2}"></p:inputText>
+        	<br></br><h:message for="limittSubCate1" style="color:red;font-size:11" rendered="#{limitMB.limitDataBean.limProductCategory == 'Raw Material'}"></h:message>
+               <p:inputText disabled="true"  rendered="#{limitMB.limitDataBean.limProductCategory == 'Service'}" id="limitSerCate2" value="#{limitMB.limitDataBean.limitRawCategoory2}"></p:inputText>
+        	<br></br><h:message for="limitSerCate1" style="color:red;font-size:11" rendered="#{limitMB.limitDataBean.limProductCategory == 'Service'}"></h:message>
+              
+              </td>
+              </tr>
+              <tr>
+              <td><h:outputLabel for="limitSize" styleClass="label_ui" value="Limit "></h:outputLabel><span style="color:red">*</span></td>
+              <td>
+              <p:inputText id="limitSize" styleClass="text_ui" value="#{limitMB.limitDataBean.limitLimitSize}">
+				<p:ajax event="valueChange" immediate="true" process="@this" update="@form"/>
+			</p:inputText><br />
+			<h:message for="limitSize" style="color:red;font-size:11"></h:message>
+              </td>
+              <td><h:outputLabel for="limitDesc" styleClass="label_ui" value="Description "></h:outputLabel></td>
+              <td>
+              <p:inputTextarea id="limitDesc" styleClass="textArea_ui" value="#{limitMB.limitDataBean.limitDescription}">
+              <p:ajax event="valueChange" immediate="true" process="@this" update="@form"/>
+              </p:inputTextarea>
+		<br/><h:message for="limitDesc" style="color:red;font-size:11"></h:message>
+		
+              </td>
+              </tr>
+              </table>
+            <p:separator></p:separator>
+            </h:form>
+             <table align="center" class="table_UI" cellpadding="10px">
+            	<tr align="center">
+				<td colspan="4"><h:commandButton value="Submit"
+						action="#{limitMB.submit}" styleClass="button"  >
+					</h:commandButton>
+					<h:commandButton value="Reset" action="#{limitMB.reset}" styleClass="button">
+					</h:commandButton>
+					<h:commandButton value="Cancel" action="#{limitMB.cancel}" styleClass="button"></h:commandButton>
+				</td>
+			</tr>
+		</table>
+       </rich:panel>
+		<p:spacer height="100px"></p:spacer>
+</div></td></tr><tr><td><br /></td></tr>
+<tr><td align="center"><h:outputText value="Copyright © PT. Neotural Era Graha" style="color:#2C238C"></h:outputText></td></tr>
+<tr><td><br /></td></tr>
+</table>
+ <p:dialog header="Translation" widgetVar="dlg3" showEffect="explode" hideEffect="shake" height="200" width="400" >
+	<rich:panel>
+<h:panelGrid columns="3">
+<h:outputText value="Sub Category 1"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Sub Kategori 1"></h:outputText>
+<h:outputText value="Sub Category 2"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Sub Kategori 2"></h:outputText>
+<h:outputText value="Product Name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="nama Produk"></h:outputText>
+<h:outputText value="Limit"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="batas"></h:outputText>
+<h:outputText value="Description"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="deskripsi"></h:outputText>
+</h:panelGrid>
+</rich:panel>
+</p:dialog>
+<p:dialog id="basicDialog" header="Confirmation Message" style="" visible="#{!limitMB.valid}">
+			<h:panelGrid class="label_ui" columns="2"  style="font-size:14px; width:450px;height:100px" align="left" cellspacing="5px" >
+	        <p style="font-style: 'HelveticaNeueLT Pro 55 Roman';font-size:16px;color:black;font-family:'Helvetica Neue LT Pro 55';">Limit registration is successfully completed.</p>
+	        <h:commandButton value="Ok"  class="button" action="#{limitMB.limitPageLoad}" ></h:commandButton>
+	        </h:panelGrid>
+</p:dialog>
+	</h:form>
+	</body>
+</ui:composition>

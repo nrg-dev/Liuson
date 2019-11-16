@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	 <link rel="stylesheet" href="../../css/liusenCss.css">
+ 
+</link> 
+
+	</h:head>
+	<body bgcolor="#4C6D90" >
+	
+	<h:form id="customer">
+	<table align="center" bgcolor="#fff">
+	<tr bgcolor="#fff"><td>
+	<ui:include src="../../pages/xhtml/templates/header.xhtml"></ui:include>
+	</td></tr>
+	<tr><td>
+<ui:include src="/pages/xhtml/templates/menunew.xhtml" />
+	</td></tr>
+	<tr><td>
+	<table >
+	<tr><td style="width: 300px"><strong style="color:#2C238C"> Welcome, #{loginMB.invusername}.</strong></td><td style="width: 426px" align="center"><p:clock pattern="dd-MM-yyyy HH:mm:ss" mode="server"></p:clock></td>
+	<td style="width: 308px" align="right"><h:commandButton value="Logout" action="#{loginMB.logout()}" styleClass="button"></h:commandButton>
+	</td></tr>
+	</table>
+	</td></tr>
+	<tr>
+	<td><br></br></td>
+	</tr>
+	<tr><td>
+	
+	<div align="center">
+	
+				<h:outputText styleClass="text_Header" style="font-weight:bold"
+					value="CUSTOMER EDIT"/><br /><br />
+			
+	<!-- <h:messages showSummary="false" showDetail="true"   globalOnly="false" style="color:red"  layout="table"></h:messages> -->
+	</div>
+	<br></br><br></br>
+	<div align="center">
+	<rich:panel styleClass="class2" style="width:1000px;" headerClass="head2" bodyClass="body3">
+	 <f:facet name="header" >
+            Customer Update Form
+               <p:spacer height="10px" width="100px"></p:spacer>
+            <p:commandButton value="Help" type="button" onclick="PF('dlg3').show();"></p:commandButton>
+        </f:facet>
+       
+        
+		<table align="center" class="table_UI" cellpadding="10px">
+<tr>
+    <td class="table_td"><h:outputLabel value="Customer Name " for="cus_name" styleClass="label_ui"></h:outputLabel><h:outputText value="*" style="color:red;"></h:outputText>  </td>
+    <td class="table_td"><p:inputText id="cus_name" styleClass="text_ui" value="#{customerMB.customerDataBean.custCustomerName}"></p:inputText> <br />
+    <h:message for="cus_name" style="color:red;font-size:11px"></h:message> </td>
+    <td class="table_td"> <h:outputLabel value="Date " for="cus_date" styleClass="label_ui"></h:outputLabel> <h:outputText value="*" style="color:red;"></h:outputText> </td>
+    <td class="table_td"><p:calendar effect="fold" id="cus_date"  pattern="dd-MM-yyyy" styleClass="text_ui" value="#{customerMB.customerDataBean.custDate}"></p:calendar> <br />
+     <h:message for="cus_date" style="color:red;font-size:11px"></h:message> </td> 
+    </tr>
+    
+    <tr>
+    <td class="table_td"> <h:outputLabel value="Billing Address " for="cus_saddr" styleClass="label_ui"></h:outputLabel><h:outputText value="*" style="color:red;"></h:outputText> </td>
+    <td class="table_td"> <p:inputTextarea id="cus_saddr" styleClass="textArea_ui" value="#{customerMB.customerDataBean.custShipingAddress}"></p:inputTextarea><br />
+    <h:message for="cus_saddr" style="color:red;font-size:11px"></h:message> </td>
+    <td class="table_td"> <h:outputLabel value="City " styleClass="label_ui" for="cus_city"></h:outputLabel><h:outputText value="*" style="color:red;"></h:outputText> </td>
+    <td class="table_td"> <p:inputText id="cus_city" styleClass="text_ui" value="#{customerMB.customerDataBean.custCity}"></p:inputText> <br />
+    <h:message for="cus_city" style="color:red;font-size:11px"></h:message></td>
+    </tr>
+    <tr>
+   <td class="table_td"> <h:outputLabel value="State " styleClass="label_ui" for="cus_state"></h:outputLabel><h:outputText value="*" style="color:red;"></h:outputText> </td>
+   <td class="table_td"> <p:inputText id="cus_state" styleClass="text_ui" value="#{customerMB.customerDataBean.custState}"></p:inputText><br />
+   <h:message for="cus_state" style="color:red;font-size:11px"></h:message> </td>
+   <td class="table_td"> <h:outputLabel value="Country " for="cus_country" styleClass="label_ui"></h:outputLabel><h:outputText value="*" style="color:red;"></h:outputText> </td>
+   <td class="table_td"> <p:selectOneMenu id="cus_country"  value="#{customerMB.customerDataBean.custCountry}" effect="fold" styleClass="selecttext_ui">
+   <f:selectItem itemValue="00110" itemLabel="Please Choose Country"></f:selectItem>
+   <f:selectItems value="#{vendorMB.countryList}"></f:selectItems>
+   </p:selectOneMenu><br />
+   <h:message for="cus_country" style="color:red;font-size:11px"></h:message> </td>
+ </tr>
+  <tr>
+    <td class="table_td"> <h:outputLabel value="Phone Number " styleClass="label_ui" for="cus_phno"></h:outputLabel><h:outputText value="*" style="color:red;"></h:outputText>  </td>
+    <td class="table_td"><h:outputLabel id="cus_phno" styleClass="text_ui" value="#{customerMB.customerDataBean.custPhoneNumber}"></h:outputLabel> <br />
+    <h:message for="cus_phno" style="color:red;font-size:11px"></h:message> </td>
+    <td class="table_td"> <h:outputLabel value="Email ID " styleClass="label_ui" for="cus_email"></h:outputLabel> </td>
+     <td class="table_td"><p:inputText id="cus_email" styleClass="text_ui" value="#{customerMB.customerDataBean.custEmail}"></p:inputText><br />
+      <h:message for="cus_email" style="color:red;font-size:11px"></h:message></td>
+    </tr>
+    
+    <tr>
+    <td class="table_td"> <h:outputLabel styleClass="label_ui" value="Tax Number " for="cus_taxnum"></h:outputLabel><h:outputText value="*" style="color:red;"></h:outputText>  </td>
+    <td class="table_td"><p:inputText id="cus_taxnum" styleClass="text_ui" value="#{customerMB.customerDataBean.custTaxNO}"></p:inputText> <br />
+    <h:message for="cus_taxnum" style="color:red;font-size:11px"></h:message> </td>
+    <td class="table_td"> <h:outputLabel value="Note" for="cus_note" styleClass="label_ui"></h:outputLabel> </td>
+     <td class="table_td"> <p:inputTextarea id="cus_note" styleClass="textArea_ui" value="#{customerMB.customerDataBean.custNote}"></p:inputTextarea> </td>
+    </tr>
+ 
+ <tr>
+ <td class="table_td"><h:outputLabel value="Staff ID " for="staf_id" styleClass="label_ui"></h:outputLabel><h:outputText value="*" style="color:red;"></h:outputText></td>
+ <td class="table_td"><p:selectOneMenu id="staf_id" value="#{customerMB.customerDataBean.custStaffId}" effect="fold" styleClass="selecttext_ui">
+   <f:selectItem noSelectionOption="true" itemValue="000" itemLabel="Please Choose Staff Id"></f:selectItem>
+   <f:selectItems value="#{customerMB.idlist}"></f:selectItems>
+   </p:selectOneMenu><br />
+   <h:message for="staf_id" style="color:red;font-size:11px"></h:message></td>
+ </tr>
+    
+			<tr align="center">
+				<td colspan="4"><h:commandButton value="Update"
+						action="#{customerViewMB.save}" styleClass="button"  >
+					</h:commandButton>
+					
+					
+					
+					<h:commandButton value="Cancel" action="#{customerMB.cancel}" styleClass="button"></h:commandButton>
+				</td>
+			</tr>
+			
+			<tr><td>
+				<p:dialog id="basicDialog" header="Confirmation Message" style="" visible="#{customerViewMB.valid}">
+			<h:panelGrid class="label_ui" columns="2"  style="font-size:14px; width:450px;height:100px" align="left" cellspacing="5px" >
+	        <p style="font-style: 'HelveticaNeueLT Pro 55 Roman';font-size:16px;color:black;font-family:'Helvetica Neue LT Pro 55';">Successfully Updated the Customer Detail.</p>
+	        <h:commandButton value="Ok"  class="button" action="#{customerViewMB.customerViewLoad}" ></h:commandButton>
+	        </h:panelGrid>
+</p:dialog>
+				</td></tr>
+			
+		</table></rich:panel>
+</div></td></tr><tr><td><br /></td></tr>
+<tr><td align="center"><h:outputText value="Copyright © PT. Neotural Era Graha" style="color:#2C238C"></h:outputText></td></tr>
+<tr><td><br /></td></tr>
+</table>
+ <p:dialog header="Translation" widgetVar="dlg3" showEffect="explode" hideEffect="shake" height="300" width="400" >
+		 
+<rich:panel>
+<h:panelGrid columns="3">
+<h:outputText value="Customer Name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Nama Pelanggan"></h:outputText>
+<h:outputText value="Date"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="tanggal"></h:outputText>
+<h:outputText value="Billing Address"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Billing Address"></h:outputText>
+<h:outputText value="City"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="kota"></h:outputText>
+<h:outputText value="State"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="negara"></h:outputText>
+<h:outputText value="Country"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="negara"></h:outputText>
+<h:outputText value="Phone Number"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Nomor telepon"></h:outputText>
+<h:outputText value="Email Id"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Email Id"></h:outputText>
+<h:outputText value="Tax Number"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Nomor pajak"></h:outputText>
+<h:outputText value="Note"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Catatan"></h:outputText>
+<h:outputText value="Staff Name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="staf Nama"></h:outputText>
+
+</h:panelGrid>
+</rich:panel>
+</p:dialog>
+	</h:form>
+	
+	</body>
+</ui:composition>

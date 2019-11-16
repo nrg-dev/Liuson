@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	 <link rel="stylesheet" href="../../css/liusenCss.css">
+ 
+</link> 
+
+	</h:head>
+	<body bgcolor="#4C6D90" >
+	
+	<h:form id="purchasePay">
+	<table align="center" bgcolor="#fff" >
+	<tr bgcolor="#fff"><td>
+	<ui:include src="../../pages/xhtml/templates/header.xhtml"></ui:include>
+	</td></tr>
+	<tr><td>
+<ui:include src="/pages/xhtml/templates/menunew.xhtml" />
+	</td></tr>
+	<tr><td>
+	<table>
+	<tr><td style="width: 300px"><strong style="color:#2C238C"> Welcome, #{loginMB.invusername}.</strong></td><td style="width: 426px" align="center"><p:clock pattern="dd-MM-yyyy HH:mm:ss" mode="server"></p:clock></td>
+	<td style="width: 308px" align="right"><h:commandButton value="Logout" action="#{loginMB.logout()}" styleClass="button"></h:commandButton>
+	</td></tr>
+	</table>
+	</td></tr>
+	<tr>
+	<td><br></br></td>
+	</tr>
+	<tr><td>
+	
+	<div align="center">
+	
+				<h:outputText styleClass="text_Header" style="font-weight:bold"
+					value="PURCHASE PAYMENT STATUS"/><br /><br />
+					</div>
+					<div align="center">
+					<table><tr><td>
+					<rich:panel styleClass="class2"  headerClass="head2" bodyClass="body3" style="width:400px;height:220px">
+	 <f:facet name="header">
+            Search by Date<p:spacer height="10px" width="50px"></p:spacer>
+            <p:commandButton value="Help" type="button" onclick="PF('dlg3').show();"></p:commandButton>
+        </f:facet>
+        <table class="paneltable_UI" cellpadding="7px"><tr><td class="table_td">
+        <h:outputLabel for="purchaseFrom" value="From Date " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span> </td>
+        <td class="table_td"><p:calendar id="purchaseFrom" effect="fold" pattern="dd-MM-yyyy" value="#{purchasePaymentStatusMB.purchaseOrederDataBean.purFromDate}"></p:calendar>
+        <br></br>
+        <h:message for="purchaseFrom" style="color:red;font-size:11"></h:message>
+        </td>
+        </tr>
+        <tr>
+        <td>
+        <h:outputLabel for="purchaseTo" value="To Date " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+        </td>
+       <td><p:calendar effect="fold" id="purchaseTo" pattern="dd-MM-yyyy" value="#{purchasePaymentStatusMB.purchaseOrederDataBean.purToDate}"></p:calendar> 
+       <br></br>
+        <h:message for="purchaseTo" style="color:red;font-size:11"></h:message>
+        </td>
+        </tr>
+        <tr>
+        <td class="table_td"></td><td class="table_td"><h:commandButton styleClass="button" value="Search" style="color: #CFF;" action="#{purchasePaymentStatusMB.searchDate}"></h:commandButton> </td>
+        </tr>
+        </table>
+        </rich:panel></td>
+       
+        </tr></table>
+					</div>
+					<p:spacer height="20px"></p:spacer>
+					<div align="center" style="width: 1052px">
+					<table><tr><td>
+					<br/></td></tr></table>
+					 <p:dataTable id="invoice" var="in" rows="10" rendered="#{!purchasePaymentStatusMB.flag}" value="#{purchasePaymentStatusMB.purchaseOrederDataBean.purchaseList}"
+					 paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="5,10,15">
+					<f:facet name="header">
+						List of Purchase Payment View
+						<h:commandLink>
+        				<p:graphicImage value="/images/Excel-icon.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="xls" target="invoice" fileName="purchaseOrederDataBean.purchaseList"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+     					<p:graphicImage value="/images/pdf.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="pdf" target="invoice" fileName="purchaseOrederDataBean.purchaseList"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+    					 <p:graphicImage value="/images/csv.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="csv" target="invoice" fileName="purchaseOrederDataBean.purchaseList"></p:dataExporter>
+        				</h:commandLink>
+						
+					</f:facet>
+					
+					<p:column headerText="Date" sortBy="#{in.purdate}">
+					<h:outputText value="#{in.purdate}">
+					<f:convertDateTime pattern="dd-MM-yyyy"></f:convertDateTime>
+					</h:outputText>
+					</p:column>
+					<p:column headerText="Order Number" sortBy="#{in.purOrderNo}">
+					<h:outputText value="#{in.purOrderNo}"></h:outputText>
+					</p:column>
+					<p:column headerText="Vendor Name" sortBy="#{in.purVendor}">
+					<h:outputText value="#{in.purVendor}"></h:outputText>
+					</p:column>
+					<p:column headerText="Total Amount" sortBy="#{in.purTotalPrice}">
+					<h:outputText value="#{in.purTotalPrice}">
+					 <f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+					</h:outputText>
+					</p:column>
+					<p:column headerText="OutStanding Balance" sortBy="#{in.balamount}">
+					<h:outputText value="#{in.balamount}">
+					 <f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+					</h:outputText>
+					</p:column>
+					<p:column headerText="Status" sortBy="#{in.paymentStatus}">
+					<h:outputText value="#{in.paymentStatus}" style="color:red;font-weight:bold;" rendered="#{in.paymentStatus == 'pending' }"></h:outputText>
+					<h:outputText value="#{in.paymentStatus}" style="color:green;font-weight:bold;" rendered="#{in.paymentStatus == 'paid' }"></h:outputText>
+					</p:column>
+					<p:column headerText="View" width="50">
+					<p:commandButton icon="ui-icon-search" action="#{purchasePaymentStatusMB.purcpayview}">
+					<f:setPropertyActionListener value="#{in.purOrderNo}" target="#{purchasePaymentMB.purchaseOrederDataBean.purOrderNo}"></f:setPropertyActionListener>
+					<f:setPropertyActionListener value="#{in.purTotalPrice}" target="#{purchasePaymentMB.purchaseOrederDataBean.purTotalPrice}"></f:setPropertyActionListener>
+					</p:commandButton>
+					</p:column>
+					
+					<f:facet name="footer">
+					Export Page Data Only
+					<h:commandLink>
+        				<p:graphicImage value="/images/Excel-icon.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="xls" target="invoice" fileName="purchaseOrederDataBean.purchaseList" pageOnly="true"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+     					<p:graphicImage value="/images/pdf.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="pdf" target="invoice" fileName="purchaseOrederDataBean.purchaseList" pageOnly="true"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+    					 <p:graphicImage value="/images/csv.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="csv" target="invoice" fileName="purchaseOrederDataBean.purchaseList" pageOnly="true"></p:dataExporter>
+        				</h:commandLink>
+					</f:facet>
+					</p:dataTable>
+				
+					</div>
+					<p:spacer width="1050px" height="400px"></p:spacer>
+					
+					</td>
+					</tr>
+					<tr><td align="center"><h:outputText value="Copyright © PT. Neotural Era Graha" style="color:#2C238C"></h:outputText>
+					<br /><br />
+					</td></tr>
+
+					</table>
+		<p:dialog header="Translation" widgetVar="dlg3" showEffect="explode" hideEffect="shake" height="100" width="400" >
+				<rich:panel>
+<h:panelGrid columns="3">
+<h:outputText value="Search by Date"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Cari berdasarkan Tanggal"></h:outputText>
+<h:outputText value="From Date"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Dari tanggal"></h:outputText>
+<h:outputText value="To Date"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Saat ini"></h:outputText>
+
+</h:panelGrid>
+</rich:panel>
+				</p:dialog>	
+					</h:form>
+					</body></ui:composition>

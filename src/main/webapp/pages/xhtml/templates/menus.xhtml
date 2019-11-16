@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	
+	<h:body>
+	<h:form>
+	<p:growl>
+	<p:menubar>
+	<p:submenu label="Vendor" icon="ui-icon-document">
+	<p:menuitem value="Pendaftaran Vendor" action="#{vendorMB.vendorPageLoad}" ajax="false"></p:menuitem>
+	<p:menuitem value="Lihat Data Vendor" action="#{vendorViewMB.vendorViewLoad}" ajax="false"></p:menuitem>	</p:submenu>
+	</p:menubar>
+	
+	</p:growl>
+	
+	</h:form>
+	</h:body>
+	</h:head>
+	</ui:composition>

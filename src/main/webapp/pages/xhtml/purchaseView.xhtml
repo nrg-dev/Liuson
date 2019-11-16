@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	 <link rel="stylesheet" href="../../css/liusenCss.css">
+ 
+</link> 
+
+	</h:head>
+	<body bgcolor="#4C6D90" >
+	
+	<h:form >
+	<table align="center" bgcolor="#fff" >
+	<tr bgcolor="#fff"><td>
+	<ui:include src="../../pages/xhtml/templates/header.xhtml"></ui:include>
+	</td></tr>
+	<tr><td>
+<ui:include src="/pages/xhtml/templates/menunew.xhtml" />
+	</td></tr>
+	<tr><td>
+	<table>
+	<tr><td style="width: 300px"><strong style="color:#2C238C"> Welcome, #{loginMB.invusername}.</strong></td><td style="width: 426px" align="center"><p:clock pattern="dd-MM-yyyy HH:mm:ss" mode="server"></p:clock></td>
+	<td style="width: 308px" align="right"><h:commandButton value="Logout" action="#{loginMB.logout()}" styleClass="button"></h:commandButton>
+	</td></tr>
+	</table>
+	</td></tr>
+	<tr>
+	<td><br></br></td>
+	</tr>
+	<tr><td>
+	
+	<div align="center">
+	
+				<h:outputText styleClass="text_Header" style="font-weight:bold"
+					value="PURCHASE VIEW"/><br /><br />
+					
+					</div>
+					<div align="center">
+					<table>
+					
+					<tr><td>
+					
+<p:dialog id="poDialog" widgetVar="poDialog" header="Confirmation Message" visible="#{!purchaseViewMB.myValid}" >
+			<h:panelGrid  columns="2" style="font-size:14px; width:450px;height:100px" align="left">
+			<p>
+			Purchase Order is Successfully Deleted.</p>
+	        <h:commandButton value="Ok"  class="button" action="#{purchaseViewMB.back}" ></h:commandButton>
+	         </h:panelGrid>
+</p:dialog>
+
+
+<br /></td></tr>
+<tr><td>
+					
+					<rich:panel styleClass="class2"  headerClass="head2" bodyClass="body3" style="width:400px;height:200px">
+	 <f:facet name="header">
+            Search by Date<p:spacer height="10px" width="50px"></p:spacer>
+            <p:commandButton value="Help" type="button" onclick="PF('dlg3').show();"></p:commandButton>
+        </f:facet>
+        <table class="paneltable_UI" cellpadding="7px"><tr><td class="table_td">
+        <h:outputLabel for="purViewFdate" value="From Date " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span> </td>
+        <td class="table_td"><p:calendar id="purViewFdate" pattern="dd-MM-yyyy" value="#{purchaseViewMB.purchaseOrederDataBean.purFromDate}"></p:calendar> 
+        <br></br>
+        <h:message for="purViewFdate" style="color:red;font-size:11"></h:message>
+        </td>
+        </tr>
+        <tr><td class="table_td">
+        <h:outputLabel for="purViewTdate" value="To Date " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span> </td>
+        <td class="table_td"><p:calendar id="purViewTdate" pattern="dd-MM-yyyy" value="#{purchaseViewMB.purchaseOrederDataBean.purToDate}"></p:calendar>
+        <br></br>
+        <h:message for="purViewTdate" style="color:red;font-size:11"></h:message>
+        
+        </td>
+        </tr>
+        <tr>
+        <td class="table_td"></td><td class="table_td">
+        <h:commandButton styleClass="button" value="Search" style="color: #CFF;" action="#{purchaseViewMB.viewByDate}"></h:commandButton> </td>
+        </tr>
+        </table>
+        </rich:panel></td>
+        <td>
+					<rich:panel styleClass="class2"  headerClass="head2" bodyClass="body3" style="width:400px;height:200px">
+	 <f:facet name="header">
+            Search by Category <p:spacer height="10px" width="50px"></p:spacer>
+            <p:commandButton value="Help" type="button" onclick="PF('dlg4').show();"></p:commandButton>
+        </f:facet>
+        
+        <table class="paneltable_UI" cellpadding="7px"><tr><td class="table_td">
+        <h:outputLabel for="purViewCate" value="Category Name " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span> </td>
+        <td class="table_td">
+        
+        <p:selectOneMenu id="purViewCate" styleClass="selecttext_ui" value="#{purchaseOrderMB.purchaseOrederDataBean.purCategory}"  effect="fold" >
+			<f:selectItem itemLabel="Please Choose Category Name" ></f:selectItem>
+			<f:selectItem itemLabel="Product Trading" itemValue="Product Trading"></f:selectItem>
+			<f:selectItem itemLabel="Raw Material" itemValue="Raw Material"></f:selectItem>
+			<f:selectItem itemLabel="Service" itemValue="Service"></f:selectItem>
+			</p:selectOneMenu>
+         
+        <br></br>
+        <h:message for="purViewCate" style="color:red;font-size:11"></h:message>
+        </td>
+        </tr>
+        <tr>
+        <td class="table_td"></td><td class="table_td"><h:commandButton styleClass="button" value="Search" action="#{purchaseViewMB.viewByCategory}"></h:commandButton> </td>
+        </tr>
+        </table>
+        </rich:panel></td>
+        </tr></table>
+					</div>
+					<p:spacer height="20px"></p:spacer>
+					
+					<div align="center" style="width: 1052px">
+					<h:message for="purView" style="color:red;font-size:11"></h:message>
+					<!-- <h:messages globalOnly="true"></h:messages> -->
+					<br/>
+					 <p:dataTable id="purView" var="info" rows="10" rendered="#{!purchaseViewMB.flag}" value="#{purchaseViewMB.purchaseOrederDataBean.purchaseViewList}"
+					 paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="5,10,15">
+					<f:facet name="header">
+						List of Purchase Orders
+						<h:commandLink>
+        				<p:graphicImage value="/images/Excel-icon.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="xls" target="purView" fileName="purchaseViewList"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+     					<p:graphicImage value="/images/pdf.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="pdf" target="purView" fileName="purchaseViewList"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+    					 <p:graphicImage value="/images/csv.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="csv" target="purView" fileName="purchaseViewList"></p:dataExporter>
+        				</h:commandLink>
+						 <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
+        				<p:columnToggler datasource="purView" trigger="toggler" /> 
+        				
+					</f:facet>
+					
+					<p:column headerText="Date" sortBy="#{info.purdate}">
+					<h:outputText value="#{info.purdate}"  >
+					<f:convertDateTime pattern="dd-MM-yyyy" /></h:outputText>
+					</p:column>
+					<p:column headerText="Order Number" sortBy="#{info.purOrderNo}">
+					<h:outputText value="#{info.purOrderNo}"></h:outputText>
+					</p:column>
+					<p:column headerText="Firm Name" sortBy="#{info.purVendor}">
+					<h:outputText value="#{info.purVendor}"></h:outputText>
+					</p:column>
+					<p:column headerText="Category" sortBy="#{info.purCategory}" width="170">
+					<h:outputText value="#{info.purCategory}"></h:outputText>
+					</p:column>
+					<p:column headerText="Total Amount" sortBy="#{info.purTotalPrice}">
+					<h:outputText value="#{info.purTotalPrice}">
+					 <f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+					</h:outputText>
+					</p:column>
+					<p:column headerText="Payment Status" sortBy="#{info.paymentStatus}">
+					<h:outputText value="#{info.paymentStatus}"></h:outputText>
+					</p:column>
+					<p:column headerText="Delivery Status" sortBy="#{info.deliveryStatus}">
+					<h:outputText value="#{info.deliveryStatus}"></h:outputText>
+					</p:column>
+					<p:column headerText="View" width="50">
+					<p:commandButton icon="ui-icon-search" action="#{purchaseViewMB.purchaseOrderDetailedView}">
+					<f:setPropertyActionListener value="#{info.purOrderNo}" target="#{purchaseViewMB.purchaseOrederDataBean.purOrderNo}"></f:setPropertyActionListener>
+					</p:commandButton>
+					</p:column>
+					<p:column headerText="Edit" width="50" rendered="#{!purchaseViewMB.editflag}">
+					<p:commandButton icon="ui-icon-pencil" id="poedit"  action="#{purchaseViewMB.purchaseOrderEdit}" update="@form">
+					<f:setPropertyActionListener value="#{info.purOrderNo}" target="#{purchaseViewMB.purchaseOrederDataBean.purOrderNo}"></f:setPropertyActionListener>
+					</p:commandButton>
+					</p:column>
+					<p:column headerText="Delete" width="50" rendered="#{!purchaseViewMB.deleteflag}"> 
+					<p:commandButton icon="ui-icon-close" oncomplete="PF('poDialog').show()"  action="#{purchaseViewMB.purchaseOrderDelete}"  update="@form">
+					<f:setPropertyActionListener value="#{info.purOrderNo}" target="#{purchaseViewMB.purchaseOrederDataBean.purOrderNo}"></f:setPropertyActionListener>
+					</p:commandButton></p:column>
+					<f:facet name="footer">
+					Export Page Data Only
+					<h:commandLink>
+        				<p:graphicImage value="/images/Excel-icon.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="xls" target="purView" fileName="purchaseViewList" pageOnly="true"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+     					<p:graphicImage value="/images/pdf.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="pdf" target="purView" fileName="purchaseViewList" pageOnly="true"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+    					 <p:graphicImage value="/images/csv.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="csv" target="purView" fileName="purchaseViewList" pageOnly="true"></p:dataExporter>
+        				</h:commandLink>
+					</f:facet>
+					</p:dataTable>
+				
+					</div>
+					
+					
+					
+					<p:spacer width="1050px" height="50px"></p:spacer>
+					
+					</td>
+					</tr>
+					<tr><td align="center"><h:outputText value="Copyright © PT. Neotural Era Graha" style="color:#2C238C"></h:outputText>
+					<br /><br />
+					</td></tr>
+
+					</table>
+					
+					<p:dialog header="Translation" widgetVar="dlg3" showEffect="explode" hideEffect="shake" height="100" width="400" >
+<rich:panel>
+<h:panelGrid columns="3">
+<h:outputText value="Search by date"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Cari berdasarkan tanggal"></h:outputText>
+<h:outputText value="From date"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Dari tanggal"></h:outputText>
+<h:outputText value="To date"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Saat ini"></h:outputText>
+
+
+</h:panelGrid>	
+</rich:panel>	
+</p:dialog>
+	<p:dialog header="Translation" widgetVar="dlg4" showEffect="explode" hideEffect="shake" height="100" width="400" >
+<rich:panel>
+<h:panelGrid columns="3">
+<h:outputText value="Search by Category"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Cari berdasarkan kategori"></h:outputText>
+<h:outputText value="Category Name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Nama Kategori"></h:outputText>
+
+
+</h:panelGrid>	
+</rich:panel>	
+</p:dialog>
+					</h:form>
+					</body></ui:composition>

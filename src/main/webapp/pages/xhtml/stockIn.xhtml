@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	 <link rel="stylesheet" href="../../css/liusenCss.css">
+ 
+</link> 
+
+	</h:head>
+	<body bgcolor="#4C6D90" >
+	
+	<h:form id="stockIN">
+	<table align="center" bgcolor="#fff">
+	<tr bgcolor="#fff"><td>
+	<ui:include src="../../pages/xhtml/templates/header.xhtml"></ui:include>
+	</td></tr>
+	<tr><td>
+<ui:include src="/pages/xhtml/templates/menunew.xhtml" />
+	</td></tr>
+	<tr><td>
+	<table >
+	<tr><td style="width: 300px"><strong style="color:#2C238C"> Welcome, #{loginMB.invusername}.</strong></td><td style="width: 426px" align="center"><p:clock pattern="dd-MM-yyyy HH:mm:ss" mode="server"></p:clock></td>
+	<td style="width: 308px" align="right"><h:commandButton value="Logout" action="#{loginMB.logout()}" styleClass="button"></h:commandButton>
+	</td></tr>
+	</table>
+	</td></tr>
+	<tr>
+	<td><br></br></td>
+	</tr>
+	<tr><td>
+	
+	<div align="center">
+	
+				<h:outputText styleClass="text_Header" style="font-weight:bold"
+					value="STOCK IN"/><br /><br />
+			
+	<!-- <h:messages showSummary="false" showDetail="true"   globalOnly="false" style="color:red"  layout="table"></h:messages> -->
+	</div>
+	<br></br><br></br>
+	<div align="center">
+	<rich:panel styleClass="class2" style="width:1000px;" headerClass="head2" bodyClass="body3">
+	 <f:facet name="header" >
+            Stock In Form
+        <p:spacer height="10px" width="100px"></p:spacer>
+            <p:commandButton value="Help" type="button" onclick="PF('dlg3').show();"></p:commandButton>
+        </f:facet>
+       <p:dialog header="Translation" widgetVar="dlg3" showEffect="explode" hideEffect="shake" height="300" width="400" >
+		 <rich:panel>
+<h:panelGrid columns="3">
+<h:outputText value="Stock In Form"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Saham Dalam Bentuk"></h:outputText>
+<h:outputText value="Order Number"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Jumlah Order"></h:outputText>
+<h:outputText value="Order Date"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Tanggal Pemesanan"></h:outputText>
+<h:outputText value="Firm Name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Nama Perusahaan"></h:outputText>
+<h:outputText value="Vendor Phone Number"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Nomor Telepon Penjual"></h:outputText>
+<h:outputText value="Estimate Delivery Date"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Perkiraan Pengiriman Tanggal"></h:outputText>
+<h:outputText value="Delivered Date"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Disampaikan Tanggal"></h:outputText>
+<h:outputText value="Delay Reason"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Alasan Penundaan"></h:outputText>
+</h:panelGrid>
+</rich:panel>
+</p:dialog>
+<rich:panel>
+<table align="center">
+	<tr>
+	<td>
+	<h:outputLabel value="Order Number " for="stOrderNumber" styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+	</td><td>
+	<p:selectOneMenu id="stOrderNumber" value="#{stockInMB.stockDataBean.stcokOrderNumber1}" effect="fold" styleClass="selecttext_ui" >
+	<f:selectItem itemLabel="Please Choose Order Number" noSelectionOption="true"></f:selectItem>
+	<f:selectItems value="#{stockInMB.orderNoList}"></f:selectItems>
+	</p:selectOneMenu><br></br>
+	<h:message for="stOrderNumber" style="color:red;font-size:11px"></h:message>
+	
+	</td>
+	</tr>
+	<tr>
+	<td colspan="2" align="center">
+	<h:commandButton styleClass="button" value="Enter" action="#{stockInMB.orderSubmit}"></h:commandButton>
+	
+	</td>
+	</tr>
+	</table></rich:panel>
+	<p:spacer height="300px" rendered="#{!stockInMB.spacerflag}"></p:spacer>
+<rich:panel rendered="#{!stockInMB.flag}">
+		<table align="center" class="table_UI" cellpadding="10px">
+	<tr>
+    <td class="table_td"><h:outputLabel value="Order Number " for="stOrder" styleClass="label_ui"></h:outputLabel><h:outputText value="*" style="color:red;"></h:outputText>  </td>
+    <td class="table_td"><p:inputText id="stOrder" styleClass="text_ui" value="#{stockInMB.stockDataBean.stcokOrderNumber}" disabled="true"></p:inputText> <br />
+    <h:message for="stOrder" style="color:red;font-size:11px"></h:message> </td>
+    <td class="table_td"> <h:outputLabel value="Order Date " for="stOrderDate" styleClass="label_ui">
+    </h:outputLabel> <h:outputText value="*" style="color:red;"></h:outputText> </td>
+    <td class="table_td"><p:inputText  id="stOrderDate"   styleClass="text_ui" value="#{stockInMB.stockDataBean.stockOrderDate}" disabled="true">
+      <f:convertDateTime pattern="dd-MM-yyyy"></f:convertDateTime>
+    </p:inputText> <br />
+     <h:message for="stOrderDate" style="color:red;font-size:11px"></h:message> </td> 
+    </tr>
+    
+    <tr>
+    <td class="table_td"> <h:outputLabel value="Firm Name " for="stFirmName" styleClass="label_ui"></h:outputLabel><h:outputText value="*" style="color:red;"></h:outputText> </td>
+    <td class="table_td"> <p:inputText id="stFirmName" styleClass="text_ui"  value="#{stockInMB.stockDataBean.stockFirmName}" disabled="true"></p:inputText><br />
+    <h:message for="stFirmName" style="color:red;font-size:11px"></h:message> </td>
+    <td class="table_td"> <h:outputLabel value="Vendor Phone Number " styleClass="label_ui" for="stPhoneNo"></h:outputLabel><h:outputText value="*" style="color:red;"></h:outputText> </td>
+    <td class="table_td"> <p:inputText id="stPhoneNo" styleClass="text_ui" value="#{stockInMB.stockDataBean.stockVendorPhoneNo}" disabled="true"></p:inputText> <br />
+    <h:message for="stPhoneNo" style="color:red;font-size:11px"></h:message></td>
+    </tr>
+    <tr>
+   <td class="table_td"> <h:outputLabel value="Estimate Delivery Date " styleClass="label_ui" for="stEstDate"></h:outputLabel><h:outputText value="*" style="color:red;"></h:outputText> </td>
+   <td class="table_td"> <p:inputText id="stEstDate" styleClass="text_ui" value="#{stockInMB.stockDataBean.stockEstDate}" disabled="true">
+   <f:convertDateTime pattern="dd-MM-yyyy"></f:convertDateTime>
+   </p:inputText><br />
+   <h:message for="stEstDate" style="color:red;font-size:11px"></h:message> </td>
+   <td class="table_td"> <h:outputLabel value="Delivered Date " for="stDelDate" styleClass="label_ui"></h:outputLabel><h:outputText value="*" style="color:red;"></h:outputText> </td>
+   <td class="table_td"> <p:calendar id="stDelDate" pattern="dd-MM-yyyy" effect="fold" value="#{stockInMB.stockDataBean.stockDeliveryDate}"></p:calendar> <br />
+   <h:message for="stDelDate" style="color:red;font-size:11px"></h:message> </td>
+ </tr>
+  <tr>
+    <td class="table_td"> <h:outputLabel value="Delay Reason " styleClass="label_ui" for="stDelay"></h:outputLabel>  </td>
+    <td class="table_td"><p:inputTextarea id="stDelay" styleClass="textArea_ui" value="#{stockInMB.stockDataBean.stockDelayReason}" ></p:inputTextarea> <br />
+    <h:message for="stDelay" style="color:red;font-size:11px"></h:message> </td>
+    </tr>
+    	<tr align="center">
+				<td colspan="4"><h:commandButton value="Submit"
+						action="#{stockInMB.submit}" styleClass="button"  >
+					</h:commandButton>
+					
+					
+					<h:commandButton value="Reset"  styleClass="button" action="#{stockInMB.reset}">
+					</h:commandButton>
+					<h:commandButton value="Cancel"  styleClass="button" action="#{stockInMB.cancel}"></h:commandButton>
+				</td>
+			</tr>
+		</table></rich:panel></rich:panel>
+</div></td></tr><tr><td><br /></td></tr>
+<tr><td align="center"><h:outputText value="Copyright © PT. Neotural Era Graha" style="color:#2C238C"></h:outputText></td></tr>
+<tr><td><br /></td></tr>
+</table>
+<p:dialog id="basicDialog" header="Confirmation Message" style="" visible="#{!stockInMB.flag1}">
+			<h:panelGrid class="label_ui" columns="2"  style="font-size:14px; width:450px;height:100px" align="left" cellspacing="5px" >
+	        <p style="font-style: 'HelveticaNeueLT Pro 55 Roman';font-size:16px;color:black;font-family:'Helvetica Neue LT Pro 55';">Stock Added successfully .</p>
+	        <h:commandButton value="Ok"  class="button" action="#{stockInMB.stockLoad}" ></h:commandButton>
+	        </h:panelGrid>
+</p:dialog>
+	</h:form>
+	
+	</body>
+</ui:composition>

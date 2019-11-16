@@ -1,0 +1,112 @@
+<h:dataTable id="multicars" var="car" value="#{tableBean.Model}" rows="5"
+    selection="#{tableBean.selectedCars}" style="width:90%; margin-top:30px" styleClass="review-table"
+    headerClass="review-table-header" rowClasses="review-table-odd-row,review-table-even-row" >
+    <h:column>
+    <f:facet name="header">
+    <h:outputText value="Select All" />
+    </f:facet>
+    <h:selectBooleanCheckbox id="checkbox"  value="#{car.selected}"/>
+    </h:column>
+    <h:column >
+    <f:facet name="header">
+    <h:outputText value=" Location"/>
+    </f:facet>
+    <!-- <a href="JavaScript:doMenu('subdiv');" id="xsubdiv">[+]</a> -->
+    <h:outputText value=" #{car.Location}"/>
+    </h:column>
+    <h:column>
+    <f:facet name="header" >
+    <h:outputText value="Date"/>
+    </f:facet>
+    <h:outputText value=" #{car.year}"></h:outputText>
+    </h:column>
+    <h:column>
+    <f:facet name="header">
+    <h:outputText value="Code"/>
+    </f:facet>
+    <h:outputText value="#{car.Code}"></h:outputText>
+    </h:column>
+    <h:column>
+    <f:facet name="header">
+    <h:outputText value="Days"/>
+    </f:facet>
+    <h:inputText id="search" value="#{car.color}" style="width:80%"></h:inputText>
+    </h:column>
+    <div id="subdiv" > 
+         // Child data table inserted after the row  
+    <h:dataTable id="subtable" value="#{tableBean.Model}" var="car1" rows="2" selection="#{tableBean.selectedCars}"
+    style="width:90%; margin-top:30px" styleClass="review-table"
+    headerClass="review-table-header" rowClasses="review-table-odd-row,review-table-even-row" >
+    <h:column>
+    <f:facet name="header">
+    <h:outputText value="Location"> </h:outputText>
+    </f:facet>
+    <h:outputText value=" #{car.Location}"/>
+    </h:column>
+    <h:column>
+    <f:facet name="header">
+    <h:outputText value="ProductID"> </h:outputText>
+    </f:facet>
+    <h:outputText value=" #{car.year}"/>
+    </h:column>
+    <h:column>
+    <f:facet name="header">
+    <h:outputText value="Description"> </h:outputText>
+    </f:facet>
+    <h:outputText value=" #{car.year}"/>
+    </h:column>
+    </h:dataTable>
+     </div>   
+</h:dataTable>
+
+
+
+ <h:dataTable id="parenttable"   value="#{order.orderList}" var="o"
+            styleClass="order-table"
+            headerClass="order-table-header"
+            rowClasses="order-table-odd-row,order-table-even-row">
+            <h:column id="col1">
+                    <f:facet name="header">SelectAll</f:facet>
+                    <h:commandButton id="button1"  value="Edit" action="#{o.outcome}" actionListener="#{o.printIt}"></h:commandButton>
+                    <!-- <h:selectBooleanCheckbox id="checked" binding="#{o.checked}" ></h:selectBooleanCheckbox> -->  
+            </h:column>
+            <h:column id="col2">
+                    <!-- column header -->
+                    <f:facet name="header">Order No</f:facet>
+                    <!-- row record -->
+                    #{o.orderNo}
+            </h:column>
+            <h:column id="col3">
+                    <f:facet name="header">Product Name</f:facet>
+                    #{o.productName}
+            </h:column>
+            <h:column id="col4">
+                    <f:facet name="header">Quantity</f:facet>
+                    #{o.qty}
+            </h:column>
+            <!--child datatable-->
+        <h:dataTable id="childtable"   value="#{order.orderList}" var="o"
+                styleClass="order-table"
+                headerClass="order-table-header"
+                rowClasses="order-table-odd-row,order-table-even-row">
+            <h:column id="cola">
+                    <f:facet name="header">SelectAll</f:facet>
+                    <h:commandButton id="button1"  value="Edit" action="#{o.outcome}" actionListener="#{o.printIt}"></h:commandButton>
+                    <!-- <h:selectBooleanCheckbox id="checked" binding="#{o.checked}" ></h:selectBooleanCheckbox> -->  
+            </h:column>
+            <h:column id="colb">
+                    <!-- column header -->
+                    <f:facet name="header">Order No</f:facet>
+                    <!-- row record -->
+                    #{o.orderNo}
+            </h:column>
+            <h:column id="colc">
+                    <f:facet name="header">Product Name</f:facet>
+                    #{o.productName}
+            </h:column>
+            <h:column id="cold">
+                    <f:facet name="header">Quantity</f:facet>
+                    #{o.qty}
+            </h:column>
+        </h:dataTable>
+    </h:dataTable>

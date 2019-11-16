@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	 <link rel="stylesheet" href="../../css/liusenCss.css">
+ 
+</link> 
+
+	</h:head>
+	<body bgcolor="#4C6D90" >
+	
+	<h:form id="limit1">
+	<table align="center" bgcolor="#fff">
+	<tr bgcolor="#fff"><td>
+	<ui:include src="../../pages/xhtml/templates/header.xhtml"></ui:include>
+	</td></tr>
+	<tr><td>
+<ui:include src="/pages/xhtml/templates/menunew.xhtml" />
+	</td></tr>
+	<tr><td>
+	<table>
+	<tr><td style="width: 300px"><strong style="color:#2C238C"> Welcome, #{loginMB.invusername}.</strong></td><td style="width: 426px" align="center"><p:clock pattern="dd-MM-yyyy HH:mm:ss" mode="server"></p:clock></td>
+	<td style="width: 308px" align="right"><h:commandButton value="Logout" action="#{loginMB.logout()}" styleClass="button"></h:commandButton>
+	</td></tr>
+	</table>
+	</td></tr>
+	<tr>
+	<td><br></br></td>
+	</tr>
+	<tr><td>
+	
+	<div align="center">
+	
+				<h:outputText styleClass="text_Header" style="font-weight:bold"
+					value="Purchase Payment"/><br /><br />
+			
+	<!-- <h:messages showSummary="false" showDetail="true"   globalOnly="false" style="color:red"  layout="table"></h:messages> -->
+	</div>
+	<br></br><br></br>
+	<div align="center">
+	<rich:panel styleClass="class2" style="width:1000px;" headerClass="head2" bodyClass="body3">
+	 <f:facet name="header">
+            Purchase Payment Form
+             <p:spacer height="10px" width="100px"></p:spacer>
+           
+        </f:facet>
+        
+<h:form>
+		<table align="center" class="table_UI" cellpadding="10px">
+	
+			<tr>
+			<td>
+			<h:outputLabel  value="Date " styleClass="label_ui"></h:outputLabel>			
+			</td>
+			<td>
+			<h:outputLabel value="#{purchasePaymentMB.purchaseOrederDataBean.purdate}" styleClass="label_ui">
+			<f:convertDateTime pattern="dd-MM-yyyy"></f:convertDateTime>
+			</h:outputLabel>
+			<br></br>
+			</td>
+			<td>
+			<h:outputLabel value="Order Number"  styleClass="label_ui"></h:outputLabel>
+			</td>
+			<td>
+			<h:outputLabel value="#{purchasePaymentMB.purchaseOrederDataBean.purOrderNo}"  styleClass="selecttext_ui">
+			
+            	</h:outputLabel>
+			
+			<br />
+			</td>
+			</tr>
+			<tr>
+			<td>
+			<h:outputLabel value="Vendor Name"  styleClass="label_ui"></h:outputLabel>
+			</td>
+			<td>
+			
+			<h:outputLabel value="#{purchasePaymentMB.purchaseOrederDataBean.purVendor}"  effect="fold" styleClass="selecttext_ui">
+			</h:outputLabel>
+			<br></br>
+			</td>
+			<td>
+			<h:outputLabel value="Total Amount"  styleClass="label_ui"></h:outputLabel>
+			</td>
+			<td>
+			<h:outputLabel value="#{purchasePaymentMB.purchaseOrederDataBean.purTotalPrice}" styleClass="text_ui">
+		   <f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+			</h:outputLabel>
+			
+			<br></br>
+			</td>
+			</tr>
+			<tr>
+			<td>
+			<h:outputLabel value="Paid Amount"  styleClass="label_ui"></h:outputLabel>
+			</td>
+			<td>
+			<h:outputLabel styleClass="text_ui" value="#{purchasePaymentMB.purchaseOrederDataBean.paidamount}" >
+           <f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+			</h:outputLabel>
+			
+			<br />
+			
+			</td>
+			<td>
+			<h:outputLabel value="Balance Amount"  styleClass="label_ui"></h:outputLabel>
+			</td>
+			<td>
+			<h:outputLabel styleClass="textArea_ui" value="#{purchasePaymentMB.purchaseOrederDataBean.balamount}">
+           <f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+			</h:outputLabel>
+			
+			<br />
+			</td>
+			</tr>
+			<tr>
+			<td>
+			<h:outputLabel for="amount" value="Receiving Amount"  styleClass="label_ui" ></h:outputLabel>
+			<h:outputText value="*" style="color:red" ></h:outputText>
+			</td>
+			<td>
+			<p:inputText id="amount" styleClass="text_ui" value="#{purchasePaymentMB.purchaseOrederDataBean.purprice}" >
+			 <f:ajax render="@form" execute="@form"></f:ajax>
+	        </p:inputText><br/>
+			<h:message for="amount" style="color:red;font-size:11" ></h:message>
+			</td>
+			<td>
+			<h:outputLabel for="type"  styleClass="label_ui" value="Payment Mode" ></h:outputLabel>
+			<h:outputText value="*" style="color:red"></h:outputText>
+			
+			</td>
+			<td>
+			<h:panelGroup>
+			<p:selectOneMenu id="type" value="#{purchasePaymentMB.purchaseOrederDataBean.paymenttype}" styleClass="text_ui" rendered="#{purchasePaymentMB.valid1 != '0'}" valueChangeListener="#{purchasePaymentMB.paymentType}" onchange="submit()">
+        <f:selectItem itemValue="select" itemLabel="Please Choose Payment Mode"></f:selectItem>
+        <f:selectItem itemLabel="Cash" itemValue="Cash"></f:selectItem>
+        <f:selectItem itemLabel="Card" itemValue="Card"></f:selectItem>
+        <f:selectItem itemLabel="Cheque" itemValue="Cheque"></f:selectItem>
+        <f:selectItem itemLabel="Transfer" itemValue="Transfer"></f:selectItem>
+         <f:ajax render="@form" execute="@form"></f:ajax>
+         </p:selectOneMenu>
+         <h:outputLabel value="#{purchasePaymentMB.purchaseOrederDataBean.paymenttype}" styleClass="label_ui" rendered="#{purchasePaymentMB.valid1 == '0'}"></h:outputLabel>
+			</h:panelGroup>
+			<br></br>
+			<h:message for="type" style="color:red;font-size:11" ></h:message>
+			</td>
+			</tr>
+			<tr>
+			<td>
+			<h:outputLabel for="tran_cardB" value="Bank Name "  styleClass="label_ui" rendered="#{purchasePaymentMB.card == '1'}" ></h:outputLabel>
+			<h:outputText value="*" style="color:red" rendered="#{purchasePaymentMB.card == '1'}" ></h:outputText>
+			</td>
+			<td>
+			<p:inputText id="tran_cardB" styleClass="text_ui" value="#{purchasePaymentMB.purchaseOrederDataBean.bankname}"   rendered="#{purchasePaymentMB.card == '1'}" >
+	         <f:ajax render="@form" execute="@form"></f:ajax>
+			</p:inputText><br/>
+			<h:message for="tran_cardB" style="color:red;font-size:11" rendered="#{purchasePaymentMB.card == '1'}" ></h:message>
+			</td>
+			<td>
+			<h:outputLabel for="trans_cardN"  styleClass="label_ui" value="Account Number " rendered="#{purchasePaymentMB.card == '1'}" ></h:outputLabel>
+			<h:outputText value="*" style="color:red" rendered="#{purchasePaymentMB.card == '1'}" ></h:outputText>
+			
+			</td>
+			<td>
+			<p:inputText id="trans_cardN" styleClass="text_ui" value="#{purchasePaymentMB.purchaseOrederDataBean.accno}"   rendered="#{purchasePaymentMB.card == '1'}" >
+	         <f:ajax render="@form" execute="@form"></f:ajax>			
+			</p:inputText><br></br>
+			<h:message for="trans_cardN" style="color:red;font-size:11" rendered="#{purchasePaymentMB.card == '1'}" ></h:message>
+			</td>
+			</tr>
+			
+			<tr>
+			<td>
+			<h:outputLabel for="tran_ChequeB"  styleClass="label_ui" value="Bank Name " rendered="#{purchasePaymentMB.cheque == '1'}" ></h:outputLabel>
+			<h:outputText value="*" style="color:red" rendered="#{purchasePaymentMB.cheque == '1'}"></h:outputText>
+			</td>
+			<td>
+			<p:inputText id="tran_ChequeB"  styleClass="text_ui"  value="#{purchasePaymentMB.purchaseOrederDataBean.bankname}" rendered="#{purchasePaymentMB.cheque == '1'}">
+	         <f:ajax render="@form" execute="@form"></f:ajax>			
+			</p:inputText><br></br>
+			<h:message for="tran_ChequeB" style="color:red;font-size:11" rendered="#{purchasePaymentMB.cheque == '1'}"></h:message>
+			</td>
+			<td>
+			<h:outputLabel for="tran_ChequeN"  styleClass="label_ui" value="Cheque Number " rendered="#{purchasePaymentMB.cheque == '1'}"></h:outputLabel>
+			<h:outputText value="*" style="color:red" rendered="#{purchasePaymentMB.cheque == '1'}"></h:outputText>
+			</td>
+			<td>
+			<p:inputText id="tran_ChequeN" styleClass="text_ui" value="#{purchasePaymentMB.purchaseOrederDataBean.chequeno}" rendered="#{purchasePaymentMB.cheque == '1'}">
+	         <f:ajax render="@form" execute="@form"></f:ajax>			
+			</p:inputText><br></br>
+			<h:message for="tran_ChequeN" style="color:red;font-size:11" rendered="#{purchasePaymentMB.cheque == '1'}"></h:message>
+			</td>
+			</tr>
+			<tr>
+			<td>
+			<h:outputLabel  styleClass="label_ui" for="tran_ChequeDate" value="Cheque Date" rendered="#{purchasePaymentMB.cheque == '1'}"></h:outputLabel>
+			<h:outputText value="*" style="color:red" rendered="#{purchasePaymentMB.cheque == '1'}"></h:outputText>
+			
+			</td>
+			<td>
+			<p:calendar id="tran_ChequeDate" value="#{purchasePaymentMB.purchaseOrederDataBean.chequedate}" rendered="#{purchasePaymentMB.cheque == '1'}" pattern="dd-MM-yyyy">
+			 <f:ajax render="@form" execute="@form" event="dateSelect"></f:ajax></p:calendar>
+			<br></br>
+			<h:message for="tran_ChequeDate" style="color:red;font-size:11" rendered="#{purchasePaymentMB.cheque == '1'}" ></h:message>
+			</td>
+			</tr>
+			
+		</table>
+		</h:form>
+		
+			<tr align="center">
+				<td colspan="4"><h:commandButton value="Pay"
+						action="#{purchasePaymentMB.pay}" styleClass="button"  >
+					</h:commandButton>					
+					<h:commandButton value="Cancel" action="home.xhtml?faces-redirect=true" styleClass="button"></h:commandButton>
+				</td>
+			</tr>
+		
+		</rich:panel>
+		
+<tr><td>
+			<p:dialog id="basicDialog" header="Confirmation Message" style="" visible="#{purchasePaymentMB.valid}">
+			<h:panelGrid class="label_ui" columns="2"  style="font-size:14px; width:450px;height:100px" align="left" cellspacing="8px" >
+	        <p style="font-style: 'HelveticaNeueLT Pro 55 Roman';font-size:16px;color:black;font-family:'Helvetica Neue LT Pro 55';">This Payment is Successfully Saved</p>
+	        <h:commandButton value="Ok"  class="button" action="#{purchasePaymentMB.purchasePayPageLoad}" ></h:commandButton>
+	        </h:panelGrid>
+</p:dialog>
+			</td></tr>
+		<p:spacer height="100px"></p:spacer>
+</div></td></tr><tr><td><br /></td></tr>
+<tr><td align="center"><h:outputText value="Copyright © PT. Neotural Era Graha" style="color:#2C238C"></h:outputText></td></tr>
+<tr><td><br /></td></tr>
+</table>
+ 
+
+	</h:form>
+	</body>
+</ui:composition>

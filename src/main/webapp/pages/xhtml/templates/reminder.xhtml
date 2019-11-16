@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:rich="http://richfaces.org/rich">
+    
+    
+    
+    <body>
+        <ui:composition>
+         <table style="height: 50px;width: 1050px;background-color:#D93B32;color: white; font-size: large; " align="left"> 
+		<tr>
+	<td style="font-family: Calibri;color:#DDE6E1;font-size: 24;font-weight:bold">
+	Reminders
+	<br></br>  
+	</td><td align="center" rowspan="4"><h:graphicImage  value="/images/4.png"/></td>
+</tr>
+<tr><td colspan="2"  style="font-size:20px"><a href="productNotSales.xhtml?faces-redirect=true"  style="font-family: Calibri;font-size:18px;color:#DDE6E1">You have &nbsp;&nbsp;<h:outputLabel value="#{loginMB.productNotSale}"  style="color:#DDE6E1;font-weight:bold"></h:outputLabel>&nbsp;&nbsp; non sellable product for 3 months.  </a></td></tr>
+<tr><td colspan="2"  style="font-size:20px"><a href="purchasePaymentDue.xhtml?faces-redirect=true"   style="font-family: Calibri;font-size:18px;color:#DDE6E1">You have &nbsp;&nbsp;<h:outputLabel value="#{loginMB.paymentDue}"  style="color:#DDE6E1;font-weight:bold"></h:outputLabel>&nbsp;&nbsp; purchase going to cross the due date for payment.  </a></td></tr>
+
+
+
+<tr><td colspan="2"  style="font-size:20px"><a href="salesPaymentDue.xhtml?faces-redirect=true"   style="font-family: Calibri;font-size:18px;color:#DDE6E1">You have &nbsp;&nbsp;<h:outputLabel value="#{loginMB.salesPaymentDue}"  style="color:#DDE6E1;font-weight:bold"></h:outputLabel>&nbsp;&nbsp; sales going to cross the due date for payment.  </a></td></tr>
+
+<tr><td colspan="2" style="font-size:20px">
+<a href="rempurhcaseOrderPaymentsStatus.xhtml?faces-redirect=true" style="font-family: Calibri;font-size:18px;color:#DDE6E1">You have &nbsp;&nbsp;<h:outputLabel value="#{loginMB.purchaseStatus}" style="color:#DDE6E1;font-weight:bold"></h:outputLabel>&nbsp;&nbsp; pending purchase payments. </a></td></tr>
+<tr><td colspan="2" style="font-size:20px"><a href="salesPaymentPending.xhtml?faces-redirect=true" style="font-size:18px; font-family: Calibri; color:#DDE6E1">You have &nbsp;&nbsp;<h:outputLabel value="#{loginMB.salespayStatus}" style="color:#DDE6E1;font-weight:bold"></h:outputLabel>&nbsp;&nbsp;  pending sales payment. </a></td></tr>
+<tr><td colspan="2"  style="font-size:20px"><a href="rempurhcaseDeliveryStatus.xhtml?faces-redirect=true" action="#{purchaseDeliveryStatusMB.remPurchaseDeliver()}" style="font-family: Calibri;font-size:18px;color:#DDE6E1">You have&nbsp; &nbsp;<h:outputLabel value="#{loginMB.purchaseorderStatus}" style="color:#DDE6E1;font-weight:bold"></h:outputLabel> &nbsp;&nbsp;purchase order waiting for delivery. </a></td></tr>
+<tr><td colspan="2"  style="font-size:20px"><a href="remsalesdelivery.xhtml?faces-redirect=true" style="font-family: Calibri;font-size:18px;color:#DDE6E1">You have &nbsp;&nbsp;<h:outputLabel value="#{loginMB.salesorderStatus}" style="color:#DDE6E1;font-weight:bold"></h:outputLabel> &nbsp;&nbsp;sales order waiting for delivery. </a></td></tr>
+<tr><td colspan="2"  style="font-size:20px"><a href="purchaseOrderApprovalStatus.xhtml?faces-redirect=true"   style="font-family: Calibri;font-size:18px;color:#DDE6E1">You have &nbsp;&nbsp;<h:outputLabel value="#{loginMB.purchaseapprovalstatus}"  style="color:#DDE6E1;font-weight:bold"></h:outputLabel>&nbsp;&nbsp; purchase order waiting for approval.  </a></td></tr>
+
+<tr><td></td></tr>            
+            </table>
+        </ui:composition>	
+    </body>
+</html>

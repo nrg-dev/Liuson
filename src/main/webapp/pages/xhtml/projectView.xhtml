@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	 <link rel="stylesheet" href="../../css/liusenCss.css">
+ 
+</link> 
+
+	</h:head>
+	<body bgcolor="#4C6D90" >
+	
+	<h:form id="projectView">
+	<table align="center" bgcolor="#fff" >
+	<tr bgcolor="#fff"><td>
+	<ui:include src="../../pages/xhtml/templates/header.xhtml"></ui:include>
+	</td></tr>
+	<tr><td>
+<ui:include src="/pages/xhtml/templates/menunew.xhtml" />
+	</td></tr>
+	<tr><td>
+	<table>
+	<tr><td style="width: 300px"><strong style="color:#2C238C"> Welcome, #{loginMB.invusername}.</strong></td><td style="width: 426px" align="center"><p:clock pattern="dd-MM-yyyy HH:mm:ss" mode="server"></p:clock></td>
+	<td style="width: 308px" align="right"><h:commandButton value="Logout" action="#{loginMB.logout()}" styleClass="button"></h:commandButton>
+	</td></tr>
+	</table>
+	</td></tr>
+	<tr>
+	<td><br></br></td>
+	</tr>
+	<tr><td>
+	
+	<div align="center">
+	
+				<h:outputText styleClass="text_Header" style="font-weight:bold"
+					value="PROJECT VIEW"/><br /><br />
+					</div>
+					<div align="center">
+					<table><tr><td>
+					<rich:panel styleClass="class2"  headerClass="head2" bodyClass="body3" style="width:400px;height:150px;overflow:hidden;">
+	 <f:facet name="header">
+            Search by Project Name<p:spacer height="10px" width="50px"></p:spacer>
+            <p:commandButton value="Help" type="button" onclick="PF('dlg3').show();"></p:commandButton>
+        </f:facet>
+        <table class="paneltable_UI" cellpadding="7px"><tr><td class="table_td">
+        <h:outputLabel for="projViewName" value="Project Name " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span> </td>
+        <td class="table_td"><p:selectOneMenu id="projViewName" styleClass="text_ui" value="#{projectViewMB.projectDataBean.projProjectName}">
+        <f:selectItem itemLabel="Please choose Project Name" noSelectionOption="true"></f:selectItem>
+      	<f:selectItems value="#{projectViewMB.projectNameList}"></f:selectItems>
+        </p:selectOneMenu> 
+        <br></br>
+        <h:message for="projViewName" style="color:red;font-size:11"></h:message>
+        </td>
+        </tr>
+        <tr>
+        <td class="table_td"></td><td class="table_td"><h:commandButton styleClass="button" value="Search" style="color: #CFF;" action="#{projectViewMB.searchProjectName}"></h:commandButton> </td>
+        </tr>
+        </table>
+        </rich:panel></td>
+        <td>
+					<rich:panel styleClass="class2"  headerClass="head2" bodyClass="body3" style="width:400px;height:150px">
+	 <f:facet name="header">
+            Search by Client Name<p:spacer height="10px" width="50px"></p:spacer>
+            <p:commandButton value="Help" type="button" onclick="PF('dlg4').show();"></p:commandButton>
+        </f:facet>
+        <table class="paneltable_UI" cellpadding="7px"><tr><td class="table_td">
+        <h:outputLabel for="projViewClient" value="Client Name " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span> </td>
+        <td class="table_td"><p:inputText id="projViewClient" styleClass="text_ui" value="#{projectViewMB.projectDataBean.projClientName}"></p:inputText> 
+        <br></br>
+        <h:message for="projViewClient" style="color:red;font-size:11"></h:message>
+        </td>
+        </tr>
+        <tr>
+        <td class="table_td"></td><td class="table_td"><h:commandButton styleClass="button" value="Search" action="#{projectViewMB.searchClient}"></h:commandButton> </td>
+        </tr>
+        </table>
+        </rich:panel></td>
+        </tr></table>
+					</div>
+					<p:spacer height="20px"></p:spacer>
+					<div align="center" style="width: 1052px">
+					 <p:dataTable id="projView" var="ven" rows="10" rendered="#{!projectViewMB.flag}" value="#{projectViewMB.projectViewList}"
+					 paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="5,10,15">
+					<f:facet name="header">
+						List of Project View
+						<h:commandLink>
+        				<p:graphicImage value="/images/Excel-icon.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="xls" target="projView" fileName="projectViewList"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+     					<p:graphicImage value="/images/pdf.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="pdf" target="projView" fileName="projectViewList"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+    					 <p:graphicImage value="/images/csv.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="csv" target="projView" fileName="projectViewList"></p:dataExporter>
+        				</h:commandLink>
+						 <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
+        				<p:columnToggler datasource="projView" trigger="toggler" /> 
+        				
+					</f:facet>
+					
+					<p:column headerText="Project Name" sortBy="#{ven.projProjectName}">
+					<h:outputText value="#{ven.projProjectName}"></h:outputText>
+					</p:column>
+					<p:column headerText="Client Name" sortBy="#{ven.projClientName}">
+					<h:outputText value="#{ven.projClientName}"></h:outputText>
+					</p:column>
+					<p:column headerText="Project Manager" sortBy="#{ven.projProjectManager}">
+					<h:outputText value="#{ven.projProjectManager}"></h:outputText>
+					</p:column>
+					<p:column headerText="Marketing Manager" sortBy="#{ven.projMarketing}">
+					<h:outputText value="#{ven.projMarketing}"></h:outputText>
+					</p:column>
+					<p:column headerText="Admin Project" sortBy="#{ven.projAdminProject}">
+					<h:outputText value="#{ven.projAdminProject}"></h:outputText>
+					</p:column>
+					<p:column headerText="Project Value" sortBy="#{ven.projProjectValue}">
+					<h:outputText value="#{ven.projProjectValue}"></h:outputText>
+					</p:column>
+					<p:column headerText="View" width="50">
+					<p:commandButton  update=":projectView:projectDetail" oncomplete="PF('projectDialog').show()" icon="ui-icon-search" action="#{projectViewMB.projectViewByName}">
+					<f:setPropertyActionListener value="#{ven.projProjectName}" target="#{projectViewMB.projectDataBean.projProjectName}"></f:setPropertyActionListener>
+					</p:commandButton>
+					</p:column>
+					<p:column headerText="Edit" width="50" rendered="#{!projectViewMB.editflag}">
+					<p:commandButton icon="ui-icon-pencil" action="#{projectViewMB.projectEdit}" >
+					<f:setPropertyActionListener value="#{ven.projProjectName}" target="#{projectViewMB.projectDataBean.projProjectName}"></f:setPropertyActionListener>
+					</p:commandButton>
+					</p:column>
+					<p:column headerText="Delete" width="50" rendered="#{!projectViewMB.deleteflag}">
+					<p:commandButton icon="ui-icon-close" action="#{projectViewMB.delete}" oncomplete="PF('projectDeleteDialog').show()">
+					<f:setPropertyActionListener value="#{ven.projProjectName}" target="#{projectViewMB.projectDataBean.projProjectName}"></f:setPropertyActionListener>
+					</p:commandButton></p:column>
+					<f:facet name="footer">
+					Export Page Data Only
+					<h:commandLink>
+        				<p:graphicImage value="/images/Excel-icon.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="xls" target="projView" fileName="projectViewList" pageOnly="true"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+     					<p:graphicImage value="/images/pdf.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="pdf" target="projView" fileName="projectViewList" pageOnly="true"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+    					 <p:graphicImage value="/images/csv.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="csv" target="projView" fileName="projectViewList" pageOnly="true"></p:dataExporter>
+        				</h:commandLink>
+					</f:facet>
+					</p:dataTable>
+				
+					</div>
+					<p:spacer width="1050px" height="400px" rendered="#{projectViewMB.flag}"></p:spacer>
+					
+					</td>
+					</tr>
+					<tr><td align="center"><h:outputText value="Copyright © PT. Neotural Era Graha" style="color:#2C238C"></h:outputText>
+					<br /><br />
+					</td></tr>
+
+					</table>
+					<p:dialog id="basicDialog1" header="Confirmation Message"    widgetVar="projectDeleteDialog" visible="#{!projectViewMB.myvalid}">
+			<h:panelGrid class="label_ui" columns="2"  style="font-size:14px; width:450px;height:100px" align="left" cellspacing="5px" >
+	        <p style="font-style: 'HelveticaNeueLT Pro 55 Roman';font-size:16px;color:black;font-family:'Helvetica Neue LT Pro 55';">Successfully deleted the Project details.</p>
+	        <h:commandButton value="Ok"  class="button" action="#{projectViewMB.projectViewLoad}"  ></h:commandButton>
+	        </h:panelGrid>
+</p:dialog>
+					<p:dialog header="Project Info" widgetVar="projectDialog" modal="true" showEffect="drop" hideEffect="clip" resizable="false">
+        	<p:outputPanel id="projectDetail" style="text-align:center;">
+            <p:panelGrid  columns="7" columnClasses="label,value">
+                <f:facet name="header">
+                    <p:graphicImage value="/images/LiusenLogo.png" height="50" width="50"/> 
+                </f:facet>
+ 
+                <h:outputText value="Date" />
+                <h:outputText value=":"></h:outputText>
+                <h:outputText value="#{projectViewMB.projectDataBean.projDate}">
+                <f:convertDateTime pattern="dd-MM-yyyy"></f:convertDateTime>
+                </h:outputText>
+ 				<h:outputText></h:outputText>
+                <h:outputText value="Start Date " />
+                  <h:outputText value=":"></h:outputText>
+                <h:outputText  value="#{projectViewMB.projectDataBean.projDate1}">
+                  <f:convertDateTime pattern="dd-MM-yyyy"></f:convertDateTime>
+                </h:outputText>
+ 
+                <h:outputText value="Finish Date " />
+                 <h:outputText value=":"></h:outputText>
+                <h:outputText value="#{projectViewMB.projectDataBean.projDate2}">
+                  <f:convertDateTime pattern="dd-MM-yyyy"></f:convertDateTime>
+                </h:outputText>
+ 				<h:outputText></h:outputText>
+                <h:outputText value="Project Name" />
+                 <h:outputText value=":"></h:outputText>
+                <h:outputText  value="#{projectViewMB.projectDataBean.projProjectName}"/>
+                
+                 <h:outputText value="Client Name" />
+                <h:outputText value=":"></h:outputText>
+                <h:outputText value="#{projectViewMB.projectDataBean.projClientName}"></h:outputText>
+ 				<h:outputText></h:outputText>
+                <h:outputText value="Contact Number" />
+                  <h:outputText value=":"></h:outputText>
+                <h:outputText  value="#{projectViewMB.projectDataBean.projContactNO}"/>
+ 
+                <h:outputText value="Address" />
+                 <h:outputText value=":"></h:outputText>
+                <h:outputText value="#{projectViewMB.projectDataBean.projAddress}"/>
+ 				<h:outputText></h:outputText>
+                <h:outputText value="Location" />
+                 <h:outputText value=":"></h:outputText>
+                <h:outputText  value="#{projectViewMB.projectDataBean.projLocation}"/>
+                
+                 <h:outputText value="Project Manager" />
+                <h:outputText value=":"></h:outputText>
+                <h:outputText value="#{projectViewMB.projectDataBean.projProjectManager}"></h:outputText>
+ 				<h:outputText></h:outputText>
+ 				    <h:outputText value="Marketing Manager" />
+                 <h:outputText value=":"></h:outputText>
+                <h:outputText  value="#{projectViewMB.projectDataBean.projMarketing}"/>
+                 <h:outputText value="Admin Project" />
+                 <h:outputText value=":"></h:outputText>
+                <h:outputText value="#{projectViewMB.projectDataBean.projAdminProject}"/>
+                <h:outputText></h:outputText>
+                <h:outputText value="Project Value" />
+                  <h:outputText value=":"></h:outputText>
+                <h:outputText  value="#{projectViewMB.projectDataBean.projProjectValue}"/>
+ 
+                <h:outputText value="Description" />
+                <h:outputText value=":"></h:outputText>
+                <h:outputText value="#{projectViewMB.projectDataBean.projDescription}"></h:outputText>
+ 				<h:outputText></h:outputText>
+ 				<h:outputText value="Project Image" />
+                  <h:outputText value=":"></h:outputText>
+                <a4j:mediaOutput style="width:100px;height:100px;" element="img"
+   					cacheable="false" session="true" createContent="#{projectViewMB.paint2}"
+     				mimeType="image/png" />
+                
+            </p:panelGrid>
+        </p:outputPanel>
+       <center><p:commandButton type="button" icon="ui-icon-print"> <p:printer target="projectDetail"></p:printer> </p:commandButton></center> 
+    </p:dialog>
+			<p:dialog header="Translation" widgetVar="dlg3" showEffect="explode" hideEffect="shake" height="100" width="400" >
+				<rich:panel>
+         <h:panelGrid columns="3">
+         <h:outputText value="Search By Project Name"></h:outputText>
+         <h:outputText value=":"></h:outputText>
+         <h:outputText value="Cari Berdasarkan Nama Proyek"></h:outputText>
+         <h:outputText value="Project Name"></h:outputText>
+         <h:outputText value=":"></h:outputText>
+         <h:outputText value="Nama Proyek"></h:outputText>
+         </h:panelGrid>
+         </rich:panel>
+				</p:dialog>	
+				<p:dialog header="Translation" widgetVar="dlg4" showEffect="explode" hideEffect="shake" height="100" width="400" >
+				<rich:panel>
+         <h:panelGrid columns="3">
+         <h:outputText value="Search By Client Name"></h:outputText>
+         <h:outputText value=":"></h:outputText>
+         <h:outputText value="Cari Berdasarkan Nama Klien"></h:outputText>
+         <h:outputText value="Client Name"></h:outputText>
+         <h:outputText value=":"></h:outputText>
+         <h:outputText value="Nama Klien"></h:outputText>
+         </h:panelGrid>
+         </rich:panel>
+				</p:dialog>	
+					</h:form>
+					</body></ui:composition>

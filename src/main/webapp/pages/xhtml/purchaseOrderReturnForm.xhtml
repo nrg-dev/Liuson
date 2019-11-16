@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	 <link rel="stylesheet" href="../../css/liusenCss.css">
+ 
+</link> 
+
+	</h:head>
+	<body bgcolor="#4C6D90" >
+	
+	<h:form id="limit1">
+	<table align="center" bgcolor="#fff">
+	<tr bgcolor="#fff"><td>
+	<ui:include src="../../pages/xhtml/templates/header.xhtml"></ui:include><br />
+	</td></tr>
+	<tr><td>
+<ui:include src="/pages/xhtml/templates/menunew.xhtml" />
+	</td></tr>
+	<tr><td>
+	<table>
+	<tr><td style="width: 300px"><strong style="color:#2C238C"> Welcome, #{loginMB.invusername} - #{loginMB.rollname}.</strong></td><td style="width: 426px" align="center"><p:clock pattern="dd-MM-yyyy HH:mm:ss" mode="server"></p:clock></td>
+	<td style="width: 308px" align="right"><h:commandButton value="Logout" action="#{loginMB.logout()}" styleClass="button"></h:commandButton>
+	</td></tr>
+	</table>
+	</td></tr>
+	<tr >
+	<td>
+	   <p:dialog id="dlg" header="Confirmation Message" visible="#{purchaseReturnMB.flag1}" widgetVar="dlg" modal="true" dynamic="true" style="height:150px;">
+    <tr> <td align="center"> <p:outputLabel styleClass="label_ui" style="font-size:16px;font-family:Times New Roman;">Successfully Return the Order Product</p:outputLabel> </td></tr>
+    <tr> <td align="center"> <p:commandButton value="OK" action="#{purchaseReturnMB.purchaseReturnVLoad}" oncomplete="dlg.hide();"/> </td></tr>
+       </p:dialog>
+       </td>
+	</tr>
+	<tr><td>
+	
+	<div align="center">
+	
+				<h:outputText styleClass="text_Header" style="font-weight:bold"
+					value="Purchase Return Form"/><br /><br />
+			
+	<!-- <h:messages showSummary="false" showDetail="true"   globalOnly="false" style="color:red"  layout="table"></h:messages> -->
+	</div>
+	<br></br><br></br>
+	<div align="center" >
+	
+	<rich:panel styleClass="class2" style="width:920px;"  rendered="#{purchaseReturnMB.flag}"  headerClass="head2" bodyClass="body3">
+	<f:facet name="header">
+            Purchase Return Form
+             <p:spacer height="10px" width="100px"></p:spacer>
+           
+        </f:facet>
+		<table align="center" class="table_UI" cellpadding="10px">
+			<tr>
+			<td class="table_td">
+			<h:outputLabel value="Date" styleClass="label_ui"></h:outputLabel>
+			</td>
+			<td class="table_td">
+			<h:outputLabel value="#{purchaseReturnMB.purchaseOrederDataBean.purdate}" styleClass="label_ui">
+			<f:convertDateTime pattern="dd-MM-yyyy"> </f:convertDateTime>
+			</h:outputLabel>
+			<br />
+			</td>
+			<td class="table_td">
+			<h:outputLabel value="Order Number " styleClass="label_ui"></h:outputLabel>
+			</td>
+			<td class="table_td">
+			<h:outputLabel value="#{purchaseReturnMB.purchaseOrederDataBean.purOrderNo}" styleClass="label_ui" >
+			</h:outputLabel><br />
+			</td>
+			
+			</tr>
+			
+			<tr>
+			
+			<td class="table_td">
+			<h:outputLabel value="Employee Name " styleClass="label_ui"></h:outputLabel>
+			</td>
+			<td class="table_td">
+			<h:outputLabel value="#{purchaseReturnMB.purchaseOrederDataBean.purStaffName}" styleClass="label_ui">
+			</h:outputLabel>
+			<br />
+			</td>
+			<td class="table_td">
+			<h:outputLabel value="Vendor Name" styleClass="label_ui"></h:outputLabel>
+			</td>
+			<td class="table_td">
+			<h:outputLabel value="#{purchaseReturnMB.purchaseOrederDataBean.purVendor}" styleClass="label_ui">
+			</h:outputLabel><br/>
+			</td>
+			
+			</tr>		
+			
+			<tr>
+			
+			<td class="table_td">
+			<h:outputLabel value="Total Amount" styleClass="label_ui"></h:outputLabel>
+			</td>
+			<td class="table_td">
+			<h:outputLabel value="#{purchaseReturnMB.purchaseOrederDataBean.purTotalPrice}" styleClass="label_ui">
+			 <f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+			</h:outputLabel>
+			<br />
+			</td>
+			
+			</tr>		
+		</table>		
+		<br></br>
+		
+		<p:spacer height="20px"></p:spacer>
+				<div align="center" style="width: 880px;">
+				<h:outputText value="#{purchaseReturnMB.mes}" style="color:red;"></h:outputText>
+					 <p:dataTable id="salView1" var="sal" rows="10" value="#{purchaseReturnMB.purchaseOrederDataBean.purchaseViewList}"
+					 paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="5,10,15">
+					<f:facet name="header">
+						List of Purchase Order Return
+						<h:commandLink>
+        				<p:graphicImage value="/images/Excel-icon.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="xls" target="salView1" fileName="purchaseOrederDataBean.purchaseViewList"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+     					<p:graphicImage value="/images/pdf.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="pdf" target="salView1" fileName="purchaseOrederDataBean.purchaseViewList"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+    					 <p:graphicImage value="/images/csv.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="csv" target="salView1" fileName="purchaseOrederDataBean.purchaseViewList"></p:dataExporter>
+        				</h:commandLink>
+						
+					</f:facet>
+					
+					<p:column headerText="No" sortBy="#{sal.purserialno}">
+					<h:outputText value="#{sal.purserialno}"></h:outputText>
+					</p:column>
+					<p:column headerText="Product Name" sortBy="#{sal.purProductName}">
+					<h:outputText value="#{sal.purProductName}"></h:outputText>
+					</p:column>
+					<p:column headerText="Unit Price" sortBy="#{sal.purprice}">
+					<h:outputText value="#{sal.purprice}">
+					 <f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+					</h:outputText>
+					</p:column>
+					<p:column headerText="Quantity" sortBy="#{sal.purQuantity}">
+					<h:outputText value="#{sal.purQuantity}"></h:outputText>
+					</p:column>
+					
+					<p:column >
+					<p:selectBooleanCheckbox id="check2" value="#{sal.tick}" valueChangeListener="#{purchaseReturnMB.check}" >
+					<f:selectItem itemValue="1" itemLabel=" " />
+					<f:attribute value="#{sal.purserialno}" name="no"></f:attribute>
+					<f:attribute value="#{sal.purProductName}" name="product"></f:attribute>
+					<f:attribute value="#{sal.purQuantity}" name="quan"></f:attribute>
+					<f:attribute value="#{sal.purprice}" name="price"></f:attribute>
+					<f:ajax render="@form" execute="check2"></f:ajax>
+   					</p:selectBooleanCheckbox>
+					</p:column>				
+					<p:column headerText="Normal Return" >
+					<p:inputText  id="check" value="#{sal.returnqauntity}" style="width:80px;" rendered="#{sal.text}" valueChangeListener="#{purchaseReturnMB.quantityCheck}">
+					<f:attribute value="#{sal.purProductName}" name="product"></f:attribute>
+					<f:attribute value="#{sal.dr}" name="dr"></f:attribute>
+					<f:ajax render="@form" execute="check"></f:ajax>
+					</p:inputText>
+					</p:column>
+					<p:column headerText="Damage Return" >
+					<p:inputText id="check1" value="#{sal.dr}" style="width:80px;" rendered="#{sal.text}" valueChangeListener="#{purchaseReturnMB.quantityCheck1}" >
+					<f:attribute value="#{sal.purProductName}" name="product"></f:attribute>
+					<f:attribute value="#{sal.returnqauntity}" name="nr"></f:attribute>
+					<f:ajax render="@form" execute="check1"></f:ajax>
+					</p:inputText>
+					</p:column>
+					</p:dataTable><table align="center" style="margin-left:+400px;">
+				<tr align="center"><td align="center">
+				<br/>
+				<h:commandButton value="Return" action="#{purchaseReturnMB.returnSubmit}" styleClass="button"></h:commandButton>
+				<h:commandButton value="Cancel" action="home.xhtml?faces-redirect=true" styleClass="button"></h:commandButton>
+				</td></tr>
+				</table>
+					</div>		
+				
+				<br></br><br></br>
+					</rich:panel>
+</div></td></tr>
+<tr><td align="center"><h:outputText value="Copyright © PT. Neotural Era Graha" style="color:#2C238C"></h:outputText></td></tr>
+<tr><td><br /></td></tr>
+</table>
+
+	</h:form>
+	</body>
+</ui:composition>

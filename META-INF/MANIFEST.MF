@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: liusen
+Bundle-SymbolicName: liusen
+Bundle-Version: 1.0.0.qualifier
+Export-Package: com.nrg.liusen.bo,
+ com.nrg.liusen.controler,
+ com.nrg.liusen.dao,
+ com.nrg.liusen.domain,
+ com.nrg.liusen.exception,
+ com.nrg.liusen.managedBean,
+ com.nrg.liusen.service,
+ com.nrg.liusen.shared,
+ com.nrg.liusen.util,
+ org.richfaces.event,
+ org.richfaces.model

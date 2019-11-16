@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	 <link rel="stylesheet" href="../../css/liusenCss.css">
+ 
+</link> 
+
+	</h:head>
+	<body bgcolor="#4C6D90" >
+	
+	<h:form id="purchasePay">
+	<table align="center" bgcolor="#fff" >
+	<tr bgcolor="#fff"><td>
+	<ui:include src="../../pages/xhtml/templates/header.xhtml"></ui:include>
+	</td></tr>
+	<tr><td>
+<ui:include src="/pages/xhtml/templates/menunew.xhtml" />
+	</td></tr>
+	<tr><td>
+	<table>
+	<tr><td style="width: 300px"><strong style="color:#2C238C"> Welcome, #{loginMB.invusername}.</strong></td><td style="width: 426px" align="center"><p:clock pattern="dd-MM-yyyy HH:mm:ss" mode="server"></p:clock></td>
+	<td style="width: 308px" align="right"><h:commandButton value="Logout" action="#{loginMB.logout()}" styleClass="button"></h:commandButton>
+	</td></tr>
+	</table>
+	</td></tr>
+	<tr>
+	<td><br></br></td>
+	</tr>
+	<tr><td>
+	
+	<div align="center">
+	
+				<h:outputText styleClass="text_Header" style="font-weight:bold"
+					value="PURCHASE REPORT"/><br /><br />
+					</div>
+					<div align="center">
+					<table><tr><td>
+					<rich:panel styleClass="class2"  headerClass="head2" bodyClass="body3" style="width:400px;height:220px">
+	 <f:facet name="header">
+            Search by Date
+            
+         <p:spacer height="10px" width="100px"></p:spacer>
+            <p:commandButton value="Help" type="button" onclick="PF('dlg3').show();"></p:commandButton>
+        </f:facet>
+        <p:dialog header="Translation" widgetVar="dlg3" showEffect="explode" hideEffect="shake" height="300" width="500" >
+		  <h:outputText value="This dialog has nice effects." />
+</p:dialog>
+        <table class="paneltable_UI" cellpadding="7px"><tr><td class="table_td">
+        <h:outputLabel for="pReportFrom" value="From Date " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span> </td>
+        <td class="table_td"><p:calendar id="pReportFrom" effect="fold" pattern="dd-MM-yyyy" value="#{purchaseReportMB.purchaseOrederDataBean.purFromDate}"></p:calendar>
+        <br></br>
+        <h:message for="pReportFrom" style="color:red;font-size:11"></h:message>
+        </td>
+        </tr>
+        <tr>
+        <td>
+        <h:outputLabel for="pReportTo" value="To Date " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+        </td>
+       <td><p:calendar effect="fold" id="pReportTo" pattern="dd-MM-yyyy" value="#{purchaseReportMB.purchaseOrederDataBean.purToDate}"></p:calendar> 
+       <br></br>
+        <h:message for="pReportTo" style="color:red;font-size:11"></h:message>
+        </td>
+        </tr>
+        <tr>
+        <td class="table_td"></td><td class="table_td"><h:commandButton styleClass="button" value="Search" action="#{purchaseReportMB.searchDate}"></h:commandButton> </td>
+        </tr>
+        </table>
+        </rich:panel></td>
+       
+        </tr></table>
+					</div>
+						<p:spacer height="20px"></p:spacer>
+					<div align="center" style="width: 1052px;">
+						<p:spacer height="20px"></p:spacer>
+					
+					 <p:dataTable id="purchase" var="pur" rows="12" rendered="#{!purchaseReportMB.flag}" value="#{purchaseReportMB.purchaseOrederDataBean.purchaseList}"
+					 paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="5,10,15">
+										<f:facet name="header">
+										List Of Purchase List
+					<h:commandLink>
+        		    <p:graphicImage value="/images/Excel-icon.png" height="20" width="20"></p:graphicImage>
+        		     <p:dataExporter type="xls" target="purchase" fileName="purchaseList"></p:dataExporter>
+        		    
+        		   </h:commandLink>
+        		      <h:commandLink>
+     					<p:graphicImage value="/images/pdf.png" height="20" width="20"></p:graphicImage>
+     					 <p:dataExporter type="pdf" target="purchase" fileName="purchaseList"></p:dataExporter>
+     					
+        				</h:commandLink>
+        				<h:commandLink>
+    					 <p:graphicImage value="/images/csv.png" height="20" width="20"></p:graphicImage>
+    					<p:dataExporter type="csv" target="purchase" fileName="purchaseList"></p:dataExporter>
+    					 
+        				</h:commandLink>
+        				<p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
+        		    <p:columnToggler datasource="purchase" trigger="toggler" />       
+										</f:facet>
+										
+				   <p:column headerText="PurchaseDate" sortBy="#{pur.purdate}">
+					<h:outputText value="#{pur.purdate}">
+		          <f:convertDateTime pattern="dd-MM-yyyy"></f:convertDateTime>
+					
+					</h:outputText>
+					</p:column>
+				
+				<p:column headerText="PurchaseNo" sortBy="#{pur.purOrderNo}">
+					<h:outputText value="#{pur.purOrderNo}">
+					
+					</h:outputText>
+					</p:column>
+				
+				<p:column headerText="VendorName" sortBy="#{pur.purVendor}">
+					<h:outputText value="#{pur.purVendor}"  ></h:outputText>
+					</p:column>
+					
+					<p:column headerText="TotalPrice" sortBy="#{pur.purTotalPrice}">
+					<h:outputText value="#{pur.purTotalPrice}">
+					<f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+					</h:outputText>
+					</p:column>
+				
+				
+				
+				 <f:facet name="footer">
+                    <h:outputText value="Total amount from  " style="font-style: normal;font-size:18px;color:white; font-weight: bold;font-family:'Helvetica Neue LT Pro 55';"/>
+ 				<h:outputText value="#{purchaseReportMB.purchaseOrederDataBean.purFromDate}"     style="font-style: normal;font-size:18px;color:white; font-weight: bold;font-family:'Helvetica Neue LT Pro 55';">
+   	             <f:convertDateTime pattern="dd-MM-yyyy"></f:convertDateTime>
+ 
+ 				</h:outputText>	  
+ 				 <h:outputText value="  To   " style="font-style: normal;font-size:18px;color:white; font-weight: bold;font-family:'Helvetica Neue LT Pro 55';"/>
+  	  		    <h:outputText value="#{purchaseReportMB.purchaseOrederDataBean.purToDate}"    style="font-style: normal;font-size:18px;color:white; font-weight: bold;font-family:'Helvetica Neue LT Pro 55';">
+               <f:convertDateTime pattern="dd-MM-yyyy"></f:convertDateTime>
+  	     		 </h:outputText>
+  
+ 
+  <h:outputText value="  is   " style="font-style: normal;font-size:18px;color:white; font-weight: bold;font-family:'Helvetica Neue LT Pro 55';"/>
+	  
+	            	<h:outputText value="#{purchaseReportMB.purchaseOrederDataBean.purprice}"  style="font-style: normal;font-size:18px;color:red; font-weight: bold;font-family:'Helvetica Neue LT Pro 55';">
+	            	<f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+	            	</h:outputText>
+
+					
+                    </f:facet>
+                    </p:dataTable>
+                
+                    </div>
+				      
+				
+				
+					
+		
+		<p:spacer width="1050px" height="400px"></p:spacer>
+				
+					</td></tr>
+					<tr><td align="center"><h:outputText value="Copyright © PT. Neotural Era Graha" style="color:#2C238C"></h:outputText>
+					<br /><br />
+					</td></tr>
+
+					</table>
+					<p:dialog header="Translation" widgetVar="dlg3" showEffect="explode" hideEffect="shake" height="100" width="400" >
+<rich:panel>
+<h:panelGrid columns="3">
+<h:outputText value="Search by date"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Cari berdasarkan tanggal"></h:outputText>
+<h:outputText value="From date"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Dari tanggal"></h:outputText>
+<h:outputText value="To date"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Saat ini"></h:outputText>
+
+
+</h:panelGrid>	
+</rich:panel>	
+</p:dialog>
+					</h:form>
+					</body></ui:composition>

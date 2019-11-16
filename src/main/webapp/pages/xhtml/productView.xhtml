@@ -1,0 +1,288 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	 <link rel="stylesheet" href="../../css/liusenCss.css">
+ 
+</link> 
+
+	</h:head>
+	<body bgcolor="#4C6D90" >
+	
+	<h:form id="productView">
+	<table align="center" bgcolor="#fff" >
+	<tr bgcolor="#fff"><td>
+	<ui:include src="../../pages/xhtml/templates/header.xhtml"></ui:include>
+	</td></tr>
+	<tr><td>
+<ui:include src="/pages/xhtml/templates/menunew.xhtml" />
+	</td></tr>
+	<tr><td>
+	<table>
+	<tr><td style="width: 300px"><strong style="color:#2C238C"> Welcome, #{loginMB.invusername}.</strong></td><td style="width: 426px" align="center"><p:clock pattern="dd-MM-yyyy HH:mm:ss" mode="server"></p:clock></td>
+	<td style="width: 308px" align="right"><h:commandButton value="Logout" action="#{loginMB.logout()}" styleClass="button"></h:commandButton>
+	</td></tr>
+	</table>
+	</td></tr>
+	<tr>
+	<td><br></br></td>
+	</tr>
+	<tr><td>
+	
+	<div align="center">
+	
+				<h:outputText styleClass="text_Header" style="font-weight:bold"
+					value="PRODUCT VIEW"/><br /><br />
+					</div>
+					<div align="center">
+					<table><tr><td>
+					<rich:panel styleClass="class2"  headerClass="head2" bodyClass="body3" style="width:400px;height:150px">
+	 <f:facet name="header">
+            Search by Product Name <p:spacer height="10px" width="50px"></p:spacer>
+            <p:commandButton value="Help" type="button" onclick="PF('dlg3').show();"></p:commandButton>
+        </f:facet>
+        <table class="paneltable_UI" cellpadding="7px"><tr><td class="table_td">
+        <h:outputLabel for="prodViewProductName" value="Product Name " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span> </td>
+        <td class="table_td"><p:inputText id="prodViewProductName" styleClass="text_ui" value="#{productViewMB.productDataBean.prodProductName1}"></p:inputText> 
+        <br></br>
+        <h:message for="prodViewProductName" style="color:red;font-size:11"></h:message>
+        </td>
+        </tr>
+        <tr>
+        <td class="table_td"></td><td class="table_td"><h:commandButton styleClass="button" value="Search" style="color: #CFF;" action="#{productViewMB.searchProductName}"></h:commandButton> </td>
+        </tr>
+        </table>
+        </rich:panel></td>
+        <td>
+					<rich:panel styleClass="class2"  headerClass="head2" bodyClass="body3" style="width:400px;height:150px">
+	 <f:facet name="header">
+            Search by Category <p:spacer height="10px" width="50px"></p:spacer>
+            <p:commandButton value="Help" type="button" onclick="PF('dlg4').show();"></p:commandButton>
+        </f:facet>
+        <table class="paneltable_UI" cellpadding="7px"><tr><td class="table_td">
+        <h:outputLabel for="proViewCategoryName" value="Category Name " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span> </td>
+        <td class="table_td"><p:selectOneMenu id="proViewCategoryName" effect="fold" styleClass="selecttext_ui" value="#{productViewMB.productDataBean.prodCategory1}">
+         <f:selectItem itemLabel="Please Choose Category" itemValue="00"></f:selectItem>
+        <f:selectItem itemLabel="Product Trading" itemValue="Product Trading"></f:selectItem>
+        <f:selectItem itemLabel="Raw Material" itemValue="Raw Material"></f:selectItem>
+        <f:selectItem itemLabel="Project" itemValue="Project"></f:selectItem>
+        <f:selectItem itemLabel="Service" itemValue="Service"></f:selectItem>
+        </p:selectOneMenu> 
+        <br></br>
+        <h:message for="proViewCategoryName" style="color:red;font-size:11"></h:message>
+        </td>
+        </tr>
+        <tr>
+        <td class="table_td"></td><td class="table_td"><h:commandButton styleClass="button" value="Search" action="#{productViewMB.searchCategory}"></h:commandButton> </td>
+        </tr>
+        </table>
+        </rich:panel></td>
+        </tr></table>
+					</div>
+					<p:spacer height="20px"></p:spacer>
+					
+					<div align="center" style="width: 1052px">
+					<h:outputText value="#{productViewMB.validstock}" style="color:red;"></h:outputText>
+					<p:dataTable id="prodView" var="pro" rows="10" rendered="#{!productViewMB.flag}" value="#{productViewMB.productViewList}" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="5,10,15">
+					<f:facet name="header">
+						List of Product View
+						<h:commandLink>
+        				<p:graphicImage value="/images/Excel-icon.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="xls" fileName="productViewList" target="prodView" ></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+     					<p:graphicImage value="/images/pdf.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="pdf" fileName="productViewList" target="prodView" ></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+    					 <p:graphicImage value="/images/csv.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="csv" target="prodView" fileName="productViewList"></p:dataExporter>
+        				</h:commandLink>
+						 <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
+        				<p:columnToggler datasource="prodView" trigger="toggler" /> 
+        				
+					</f:facet>
+					
+					<p:column headerText="Product Name" sortBy="#{pro.prodProductName}">
+					<h:outputText value="#{pro.prodProductName}"></h:outputText>
+					</p:column>
+					<p:column headerText="Product Code" sortBy="#{pro.prodProductCode}">
+					<h:outputText value="#{pro.prodProductCode}"></h:outputText>
+					</p:column>
+					<p:column headerText="Category" sortBy="#{pro.prodCategory}">
+					<h:outputText value="#{pro.prodCategory}"></h:outputText>
+					</p:column>
+					<p:column headerText="Actual Price" sortBy="#{pro.prodActualPrice}">
+					<h:outputText value="#{pro.prodActualPrice}">
+					 <f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+					</h:outputText>
+					</p:column>
+					<p:column headerText="Market Price" sortBy="#{pro.prodMarketPrice}">
+					<h:outputText value="#{pro.prodMarketPrice}">
+					 <f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+					</h:outputText>
+					</p:column>
+					<p:column headerText="Brand" sortBy="#{pro.prodBrand}">
+					<h:outputText value="#{pro.prodBrand}"></h:outputText>
+					</p:column>
+					
+					<p:column headerText="Opening Stock" width="80px"  >
+					<p:inputText style="width:80px;" value="#{pro.openingStock}" rendered="#{pro.prodCategory != 'Project'}">					
+					</p:inputText>
+					<p:inputText style="width:80px;" value="project" rendered="#{pro.prodCategory == 'Project'}" disabled="true">					
+					</p:inputText>
+					<h:commandButton value="Add" action="#{productViewMB.openingStock}" style="background-color:#3C8FC7;color:white;" rendered="#{pro.prodCategory != 'Project'}">
+					<f:setPropertyActionListener value="#{pro.prodProductName}" target="#{productViewMB.productDataBean.prodProductName}"></f:setPropertyActionListener>
+					<f:setPropertyActionListener value="#{pro.prodCategory}" target="#{productViewMB.productDataBean.prodCategory}"></f:setPropertyActionListener>
+					<f:setPropertyActionListener value="#{pro.prodProductCode}" target="#{productViewMB.productDataBean.prodProductCode}"></f:setPropertyActionListener>
+					<f:setPropertyActionListener value="#{pro.openingStock}" target="#{productViewMB.productDataBean.openingStock}"></f:setPropertyActionListener>
+					</h:commandButton>
+					<h:commandButton value="Add" rendered="#{pro.prodCategory == 'Project'}" disabled="true" style="background-color:#3C8FC7;color:white;">
+					</h:commandButton>
+					</p:column>
+					
+					<p:column headerText="View" width="50">
+					<p:commandButton update=":productView:productDetail" oncomplete="PF('productDialog').show()" icon="ui-icon-search" action="#{productViewMB.viewByProductName}">
+					<f:setPropertyActionListener value="#{pro.prodProductName}" target="#{productViewMB.productDataBean.prodProductName}"></f:setPropertyActionListener>
+					<f:setPropertyActionListener value="#{pro.prodCategory}" target="#{productViewMB.productDataBean.prodCategory}"></f:setPropertyActionListener>
+					</p:commandButton>
+					</p:column>
+					<p:column headerText="Edit" width="50" rendered="#{!productViewMB.editflag}">
+					<p:commandButton icon="ui-icon-pencil" action="#{productViewMB.productEdit}" >
+					<f:setPropertyActionListener value="#{pro.prodProductName}" target="#{productViewMB.productDataBean.prodProductName}"></f:setPropertyActionListener>
+					<f:setPropertyActionListener value="#{pro.prodCategory}" target="#{productViewMB.productDataBean.prodCategory}"></f:setPropertyActionListener>
+					</p:commandButton>
+					</p:column>
+					<p:column headerText="Delete" width="50" rendered="#{!productViewMB.deleteflag}">
+					<p:commandButton icon="ui-icon-close" action="#{productViewMB.delete}" oncomplete="PF('productDeleteDialog').show()">
+					<f:setPropertyActionListener value="#{pro.prodProductName}" target="#{productViewMB.productDataBean.prodProductName}"></f:setPropertyActionListener>
+					<f:setPropertyActionListener value="#{pro.prodCategory}" target="#{productViewMB.productDataBean.prodCategory}"></f:setPropertyActionListener>
+					</p:commandButton></p:column>
+					<f:facet name="footer">
+					Export Page Data Only
+					<h:commandLink>
+        				<p:graphicImage value="/images/Excel-icon.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="xls" target="prodView" fileName="productViewList" pageOnly="true"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+     					<p:graphicImage value="/images/pdf.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="pdf" fileName="productViewList" target="prodView" pageOnly="true"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+    					 <p:graphicImage value="/images/csv.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="csv" fileName="productViewList" target="prodView"  pageOnly="true"></p:dataExporter>
+        				</h:commandLink>
+					</f:facet>
+					</p:dataTable>
+					</div>
+					<p:spacer width="1050px" height="400px" rendered="#{productViewMB.flag}"></p:spacer>
+					
+					</td>
+					</tr>
+					<tr><td align="center"><h:outputText value="Copyright © PT. Neotural Era Graha" style="color:#2C238C"></h:outputText>
+					<br /><br />
+					</td></tr>
+
+					</table>
+					<p:dialog header="Translation" widgetVar="dlg4" showEffect="explode" hideEffect="shake" height="100" width="400" >
+<rich:panel>
+<h:panelGrid columns="3">
+<h:outputText value="Search by Category"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Cari berdasarkan Kategori"></h:outputText>
+<h:outputText value="Category Name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Nama kategori"></h:outputText>
+</h:panelGrid>
+</rich:panel>
+</p:dialog>
+					<p:dialog header="Translation" widgetVar="dlg3" showEffect="explode" hideEffect="shake" height="100" width="400" >
+<rich:panel>
+<h:panelGrid columns="3">
+<h:outputText value="Search by Product Name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Cari berdasarkan Nama Produk"></h:outputText>
+<h:outputText value="Product Name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="nama Produk"></h:outputText>
+</h:panelGrid>
+</rich:panel>
+</p:dialog>
+
+ <p:dialog header="Product Info" widgetVar="productDialog" modal="true" showEffect="drop" hideEffect="clip" resizable="false">
+        	<p:outputPanel id="productDetail" style="text-align:center;">
+            <p:panelGrid  columns="6" columnClasses="label,value">
+                <f:facet name="header">
+                    <p:graphicImage value="/images/LiusenLogo.png" height="50" width="50"/> 
+                </f:facet>
+                <h:outputText value="Product Name"></h:outputText>
+                <h:outputText value=":"></h:outputText>
+                <h:outputText value="#{productViewMB.productDataBean.prodProductName}"></h:outputText>
+                <h:outputText value="Product Code"></h:outputText>
+                <h:outputText value=":"></h:outputText>
+                 <h:outputText value="#{productViewMB.productDataBean.prodProductCode}"></h:outputText>
+                <h:outputText value="Brand"></h:outputText>
+                <h:outputText value=":"></h:outputText>
+                 <h:outputText value="#{productViewMB.productDataBean.prodBrand}"></h:outputText>
+                <h:outputText value="Size"></h:outputText>
+                <h:outputText value=":"></h:outputText>
+                 <h:outputText value="#{productViewMB.productDataBean.prodSize}"></h:outputText>
+                <h:outputText value="Type"></h:outputText>
+                <h:outputText value=":"></h:outputText>
+                 <h:outputText value="#{productViewMB.productDataBean.prodColor}"></h:outputText>
+                <h:outputText value="Unit"></h:outputText>
+                <h:outputText value=":"></h:outputText>
+                 <h:outputText value="#{productViewMB.productDataBean.prodUnit}"></h:outputText>
+                 <h:outputText value="Actual Price"></h:outputText>
+                <h:outputText value=":"></h:outputText>
+                 <h:outputText value="#{productViewMB.productDataBean.prodActualPrice}">
+                  <f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+                 </h:outputText>
+                <h:outputText value="Market Price"></h:outputText>
+                <h:outputText value=":"></h:outputText>
+                 <h:outputText value="#{productViewMB.productDataBean.prodMarketPrice}">
+                  <f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+                 </h:outputText>
+                  <h:outputText value="Category"></h:outputText>
+                 <h:outputText value=":"></h:outputText>
+                 <h:outputText value="#{productViewMB.productDataBean.prodCategory}"></h:outputText>
+                 <h:outputText value="Vendor" rendered="#{productViewMB.productDataBean.prodCategory == 'Raw Material' or productViewMB.productDataBean.prodCategory == 'Product Trading' or productViewMB.productDataBean.prodCategory == 'Service'}"></h:outputText>
+                 <h:outputText value=":" rendered="#{productViewMB.productDataBean.prodCategory == 'Raw Material' or productViewMB.productDataBean.prodCategory == 'Product Trading' or productViewMB.productDataBean.prodCategory == 'Service'}"></h:outputText>
+                 <h:outputText value="#{productViewMB.productDataBean.prodVendor}" rendered="#{productViewMB.productDataBean.prodCategory == 'Raw Material' or productViewMB.productDataBean.prodCategory == 'Product Trading' or productViewMB.productDataBean.prodCategory == 'Service'}"></h:outputText>
+                 <h:outputText value="Sub Category 1" rendered="#{productViewMB.productDataBean.prodCategory == 'Raw Material' or productViewMB.productDataBean.prodCategory == 'Service'}"></h:outputText>
+                 <h:outputText value=":" rendered="#{productViewMB.productDataBean.prodCategory == 'Raw Material' or productViewMB.productDataBean.prodCategory == 'Service'}"></h:outputText>
+                 <h:outputText value="#{productViewMB.productDataBean.proRawCategory}" rendered="#{productViewMB.productDataBean.prodCategory == 'Raw Material' or productViewMB.productDataBean.prodCategory == 'Service'}"></h:outputText>   
+                 <h:outputText value="Sub Category 2" rendered="#{productViewMB.productDataBean.prodCategory == 'Raw Material' or productViewMB.productDataBean.prodCategory == 'Service'}"></h:outputText>
+                 <h:outputText value=":" rendered="#{productViewMB.productDataBean.prodCategory == 'Raw Material' or productViewMB.productDataBean.prodCategory == 'Service'}"></h:outputText>
+                 <h:outputText value="#{productViewMB.productDataBean.proRawCategory1}" rendered="#{productViewMB.productDataBean.prodCategory == 'Raw Material' or productViewMB.productDataBean.prodCategory == 'Service'}"></h:outputText> 
+                <h:outputText value="Description"></h:outputText>
+                <h:outputText value=":"></h:outputText>
+                 <h:outputText value="#{productViewMB.productDataBean.prodDescription}"></h:outputText>
+               
+                </p:panelGrid>
+                </p:outputPanel>
+                <center>
+               <p:commandButton  type="button" icon="ui-icon-print"> <p:printer target="productDetail"></p:printer> </p:commandButton>
+                </center>
+                </p:dialog>
+<p:dialog id="basicDialog1" header="Confirmation Message" style=""   widgetVar="productDeleteDialog" visible="#{!productViewMB.myValid}">
+			<h:panelGrid class="label_ui" columns="2"  style="font-size:14px; width:450px;height:100px" align="left" cellspacing="5px" >
+	        <p style="font-style: 'HelveticaNeueLT Pro 55 Roman';font-size:16px;color:black;font-family:'Helvetica Neue LT Pro 55';">Successfully deleted the Product details.</p>
+	        <h:commandButton value="Ok"  class="button" action="#{productViewMB.productViewLoad}" ></h:commandButton>
+	        </h:panelGrid>
+</p:dialog>
+
+<p:dialog id="vv" header="Confirmation Message" visible="#{productViewMB.stockbox}">
+			<h:panelGrid class="label_ui" columns="2"  style="font-size:14px; width:450px;height:100px" align="left" cellspacing="5px" >
+	        <p style="font-style: 'HelveticaNeueLT Pro 55 Roman';font-size:16px;color:black;font-family:'Helvetica Neue LT Pro 55';">Successfully Added the Opening Stock.</p>
+	        <h:commandButton value="Ok"  class="button" action="#{productViewMB.productViewLoad}" ></h:commandButton>
+	        </h:panelGrid>
+</p:dialog>
+					</h:form>
+					</body></ui:composition>

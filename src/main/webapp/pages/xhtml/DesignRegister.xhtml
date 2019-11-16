@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	 <link rel="stylesheet" href="../../css/liusenCss.css">
+ 
+</link> 
+
+	</h:head>
+	<body bgcolor="#4C6D90" >
+	
+	<h:form id="customer">
+	<table align="center" bgcolor="#fff">
+	<tr bgcolor="#fff"><td>
+	<ui:include src="../../pages/xhtml/templates/header.xhtml"></ui:include>
+	</td></tr>
+	<tr><td>
+<ui:include src="/pages/xhtml/templates/menunew.xhtml" />
+	</td></tr>
+	<tr><td>
+	<table >
+	<tr><td style="width: 300px"><strong style="color:#2C238C"> Welcome, #{loginMB.invusername}.</strong></td><td style="width: 426px" align="center"><p:clock pattern="dd-MM-yyyy HH:mm:ss" mode="server"></p:clock></td>
+	<td style="width: 308px" align="right"><h:commandButton value="Logout" action="#{loginMB.logout()}" styleClass="button"></h:commandButton>
+	</td></tr>
+	</table>
+	</td></tr>
+	<tr>
+	<td><br></br></td>
+	</tr>
+	<tr><td>
+	
+	<div align="center">
+	
+				<h:outputText styleClass="text_Header" style="font-weight:bold"
+					value="Product Design"/><br /><br />
+			
+			<h:outputText style="color:red;font-size:14px" value="#{productViewMB.validate}"/>
+	<!-- <h:messages showSummary="false" showDetail="true"   globalOnly="false" style="color:red"  layout="table"></h:messages> -->
+	</div>
+	<br></br><br></br>
+	<div align="center">
+	<rich:panel styleClass="class2" style="width:1000px;" headerClass="head2" bodyClass="body3">
+	 <f:facet name="header" >
+            Product Design Form
+               <p:spacer height="10px" width="100px"></p:spacer>
+            <p:commandButton value="Help" type="button" onclick="PF('dlg3').show();"></p:commandButton>
+        </f:facet>
+       
+        
+		<table align="center" class="table_UI" cellpadding="10px">
+<tr>
+    <td class="table_td"><h:outputLabel value="Product Name " for="prod_name" styleClass="label_ui"></h:outputLabel><h:outputText value="*" style="color:red;"></h:outputText>  </td>
+    <td class="table_td">
+    <p:selectOneMenu id="prod_name"  value="#{productViewMB.productDataBean.prodProductName}" effect="fold" styleClass="selecttext_ui">
+   <f:selectItem itemValue="" itemLabel="Please Choose Product"></f:selectItem>
+   <f:selectItems value="#{productViewMB.productList}"></f:selectItems>
+   </p:selectOneMenu><br />
+   <h:message for="prod_name" style="color:red;font-size:11px"></h:message> </td>
+   
+    </tr>
+    <tr>
+     <td class="table_td"> <h:outputLabel value="Date " for="date" styleClass="label_ui"></h:outputLabel> <h:outputText value="*" style="color:red;"></h:outputText> </td>
+    <td class="table_td"><p:calendar effect="fold" id="date"  pattern="dd-MM-yyyy" styleClass="text_ui" value="#{productViewMB.productDataBean.date}"></p:calendar> <br />
+     <h:message for="date" style="color:red;font-size:11px"></h:message> </td> 
+    </tr>
+    
+    <tr>
+   <td class="table_td"> <h:outputLabel value="Description " styleClass="label_ui" for="proDesc"></h:outputLabel></td>
+   <td class="table_td"><h:inputTextarea id="proDesc"
+						value="#{productViewMB.productDataBean.prodDescription}" styleClass="textArea_ui"></h:inputTextarea> <br></br>
+					<h:message for="proDesc" style="color:red;font-size:11"></h:message> </td>
+   
+ </tr>
+ 
+ <tr>
+ <td class="table_td">
+ <h:outputLabel value="Upload Photo " styleClass="label_ui" for="upload"></h:outputLabel><h:outputText value="*" style="color:red;"></h:outputText>
+ </td>
+ <td class="table_td">
+ <h:form>
+ <h:panelGrid class="label_ui" border="0"  cellspacing="0"   columns="2"  style="font-size:14px; width:600px;" align="left" cellpadding="0">
+ <rich:fileUpload style="max-width:240px;max-height:70px ;" fileUploadListener="#{productViewMB.listener}" id="upload" acceptedTypes="jpg, gif, png, bmp"
+                ontyperejected="alert('Only JPG, GIF, PNG and BMP files are accepted');" maxFilesQuantity="1">
+                <a4j:ajax event="uploadcomplete" execute="@none" render="@form" />
+            </rich:fileUpload>
+            
+            
+            <h:panelGroup id="info" layout="block">
+                <h:outputText value="#{productViewMB.uploadValidate}" style="color:red;font-size:14px;" />
+                    <h:outputText value="No files currently uploaded" rendered="#{productRegisterFormMB.size==0}" />
+                    <rich:dataGrid columns="1" value="#{productViewMB.files}" var="file" rowKeyVar="row">
+                        
+                            <h:panelGrid columns="2">
+                                <a4j:mediaOutput element="img" mimeType="image/jpeg" createContent="#{productViewMB.paint1}"
+                                    value="#{row}" style="width:100px; height:100px;" cacheable="false">
+                            
+                                </a4j:mediaOutput>
+                                
+                            </h:panelGrid>
+                        
+                    </rich:dataGrid>
+                <a4j:commandButton action="#{productViewMB.clearUploadData}" render="info, upload" value="Clear Uploaded Data"
+                    rendered="#{productViewMB.size>0}" />
+            </h:panelGroup>
+ </h:panelGrid>
+ 
+ </h:form>
+
+					<h:message for="upload" style="color:red;font-size:11"></h:message> 
+ </td>
+ </tr>
+
+ 
+    
+			<tr align="center">
+				<td colspan="4"><h:commandButton value="Submit"
+						action="#{productViewMB.designRegSubmit}" styleClass="button"  >
+					</h:commandButton>
+					
+					<h:commandButton value="Cancel" action="#{customerMB.cancel}" styleClass="button"></h:commandButton>
+				</td>
+			</tr>
+			<tr><td>
+				<p:dialog id="basicDialog" header="Confirmation Message" style="" visible="#{!productViewMB.valid}">
+			<h:panelGrid class="label_ui" columns="2"  style="font-size:14px; width:450px;height:100px" align="left" cellspacing="5px" >
+	        <p style="font-style: 'HelveticaNeueLT Pro 55 Roman';font-size:16px;color:black;font-family:'Helvetica Neue LT Pro 55';">Design registration is successfully completed.</p>
+	        <h:commandButton value="Ok"  class="button" action="#{productViewMB.designReg}" ></h:commandButton>
+	        </h:panelGrid>
+</p:dialog>
+				</td></tr>
+			
+		</table></rich:panel>
+</div></td></tr><tr><td><br /></td></tr>
+<tr><td align="center"><h:outputText value="Copyright © PT. Neotural Era Graha" style="color:#2C238C"></h:outputText></td></tr>
+<tr><td><br /></td></tr>
+</table>
+ <p:dialog header="Translation" widgetVar="dlg3" showEffect="explode" hideEffect="shake" height="300" width="400" >
+		 
+<rich:panel>
+<h:panelGrid columns="3">
+<h:outputText value="Customer Name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Nama Pelanggan"></h:outputText>
+<h:outputText value="Date"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="tanggal"></h:outputText>
+<h:outputText value="Shipping Address"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Alamat Pengiriman"></h:outputText>
+<h:outputText value="City"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="kota"></h:outputText>
+<h:outputText value="State"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="negara"></h:outputText>
+<h:outputText value="Country"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="negara"></h:outputText>
+<h:outputText value="Phone Number"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Nomor telepon"></h:outputText>
+<h:outputText value="Email Id"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Email Id"></h:outputText>
+<h:outputText value="Tax Number"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Nomor pajak"></h:outputText>
+<h:outputText value="Note"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Catatan"></h:outputText>
+<h:outputText value="Staff Name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="staf Nama"></h:outputText>
+
+</h:panelGrid>
+</rich:panel>
+</p:dialog>
+	</h:form>
+	
+	</body>
+</ui:composition>

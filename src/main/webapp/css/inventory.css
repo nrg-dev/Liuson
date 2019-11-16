@@ -1,0 +1,125 @@
+.label_ui
+{
+font-size:16px;width: 200px;color:black;font-family:'Helvetica Neue LT Pro 55'; font-weight: bold;  ;
+}
+.text_ui
+{
+height: 30px; width: 200px; font-size:16px;font-family:'Helvetica Neue LT Pro 55';
+}
+.back_ground
+{
+background-color-url:/images/inventory-login.jpg;
+ background-color:#E0FFFF;
+ 
+}
+.appl_background
+{
+	 background-color:#E0FFFF;
+}
+
+.form_background
+{
+	 background-color:#FFFFFF;
+	  
+}
+
+.fixed {
+    position: absolute;
+    top: 450px;
+    right: 450px;
+    color:blue;
+}
+
+.button_tabl
+{
+	height: 18px; width: 20px; font-size:14px;font-family:'Helvetica Neue LT Pro 55'; color:#04368C; background-color:#E6EBF5;font-family:cursive; 
+}
+.button_table
+{
+	height: 18px; width: 100px; font-size:14px;font-family:'Helvetica Neue LT Pro 55'; color:#04368C; background-color:#E6EBF5;font-family:cursive; 
+}
+.button_ta
+{
+	height: 18px; width: 50px; font-size:14px;font-family:'Helvetica Neue LT Pro 55'; color:#04368C; background-color:#E6EBF5;font-family:cursive; 
+}
+.button_table1
+{
+	height: 18px; width: 30px; font-size:14px;font-family:'Helvetica Neue LT Pro 55'; color:#04368C; background-color:#E6EBF5;font-family:cursive; 
+}
+
+.button
+{
+	height: 30px; width: 100px; font-size:14px;font-family:'Helvetica Neue LT Pro 55'; color:#04368C; background-color:#E6EBF5;font-family:cursive; 
+}
+.buttonSub
+{
+	height: 20px; width: 70px; font-size:14px;font-family:'Helvetica Neue LT Pro 55'; color:#04368C; background-color:#E6EBF5;font-family:cursive; 
+}
+
+.button_ui
+{
+height: 25px; width: 100px; font-family:'Helvetica Neue LT Pro 55';
+align:left;
+}
+
+
+.h1
+{
+	font-size:20px;color:#F51313;font-family:'Helvetica Neue LT Pro 55'
+}
+.header{
+	font-size:15px;color:#FFFFFF;font-family:'Helvetica Neue LT Pro 55'
+}
+.label2
+{
+font-size:16px;width: 300px;color:#3B22DA;font-family:'Comic Sans MS'; 
+}
+
+.filter1
+{
+color:yellow;	
+}
+.filter2
+{
+color:orange;	
+}
+.filter1
+{
+	color:green;
+font-size:16px;	
+font-weight:bold;
+font-family:'Helvetica Neue LT Pro 55'
+}
+.filter2
+{
+	color:red;
+font-size:16px;	
+font-weight:bold;
+font-family:'Helvetica Neue LT Pro 55'
+}
+.filter3
+{
+color:#FFBF00;
+font-size:16px;	
+font-weight:bold;
+font-family:'Helvetica Neue LT Pro 55'
+}
+.allSides 
+{ 
+	width:650px;height:150px;background-color:#f3f2f2; box-shadow: 0 0 10px rgba(0,0,0,0.6); -moz-box-shadow: 0 0 10px rgba(0,0,0,0.6); -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.6); -o-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+ }
+ #logo
+{
+	background-color:#6c99cb;
+	min-height:10px;
+	text-decoration:none;
+	color: #ffffff;
+	width: 350px;
+	padding-top:35px;
+	
+}
+
+.alignmentjustify {
+ text-align : justify;
+ 
+}

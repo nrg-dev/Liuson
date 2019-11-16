@@ -1,0 +1,627 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+
+	<h:head>
+		<style>
+.ven:hover {
+	background-color: white;
+	color: white;
+}
+
+#sub:hover {
+	background-color: #174e77;
+}
+.rf-ddm-itm-sel
+{
+
+}
+*.rf-ddm-unsel{
+	border-right: 1px solid #fff;
+
+}
+
+.rf-ddm-sel:hover{
+		background-image: none;background:none;
+		border-right: 1px solid #fff;border-bottom:none;border-left:none;border-top:none;
+		color: #fff !important;
+	}
+	.rf-ddm-lbl-dec label{
+		curser:pointer !important;
+	}
+	
+	.rf-ddm-pos > .rf-ddm-lst{
+	display:block;
+	left: 0px ;
+    top: 11px !important;
+    border: 2px solid #2A228A;
+    background-color:#EAEAEA;
+    min-width: 350px;
+    position: absolute;
+    z-index: 1;
+    outline: none !important;
+   color:  #fff !important; 
+}
+	.rf-ddm-lst-bg{
+	display:block;
+	left: 0px ;
+    top: 11px !important;
+	border: none;
+    border-color: none;
+    background-repeat: no-repeat;
+    background-position: none;
+    background-image:none;
+   
+}
+.rf-ddm-itm-sel{
+	border-color: none;
+    background-repeat: no-repeat;
+    background-position: none;
+    background-image:none;
+
+}
+
+	.rf-ddm-itm {
+		color: #fff;
+	}
+	
+	.rf-ddm-pos > .rf-ddm-lst > .rf-ddm-lst-bg > .rf-ddm-itm-unsel {
+		color: #fff !important;width:225px;
+	}
+	.rf-ddm-pos > .rf-ddm-lst > .rf-ddm-lst-bg > .rf-ddm-itm-unsel:hover {
+		color: #fff !important;
+	}
+	 .rf-ddm-itm-lbl:hover {
+		color:#fff  !important;
+	}
+	
+	.rf-ddm-pos > .rf-ddm-lst > .rf-ddm-lst-bg > .rf-ddm-itm-sel:hover {
+		 background: #2A228A; color:#fff  !important;background-image:none;
+	}
+	.rf-ddm-pos > .rf-ddm-lst > .rf-ddm-lst-bg > .rf-ddm-itm-sel:hover > .rf-ddm-itm-lbl {
+		color:#fff  !important;border: none;
+	}
+	.rf-ddm-pos > .rf-ddm-lst:hover{
+	color:#fff  !important;
+	}
+	
+	.rf-ddm-pos > .rf-ddm-lst > .rf-ddm-lst-bg > .rf-ddm-nd{
+		right: 3px !important;
+	}
+	*.rf-ddm-sublst{
+		top:-10px !important; background: #EAEAEA; color:#fff  !important;background-image:none;
+		border: 2px solid #2A228A; left: 17px !important;
+	}
+
+	*.rf-ddm-sublst .rf-ddm-lst-bg .rf-ddm-itm:hover{
+	background: #2A228A !important;
+	}
+	*.rf-ddm-sublst .rf-ddm-lst-bg .rf-ddm-itm:hover .rf-ddm-itm-lbl{
+	color: #fff !important;border: none;
+	}
+	
+	</style>
+
+	</h:head>
+
+	<h:body>
+
+
+		<h:form>
+
+			<div style="height: 30px; width: 1040px; ">
+				<table
+					style="width: 1050px; background-color:  #2A228A; height:35px; color: #fff;">
+					<tr>
+						<td><rich:dropDownMenu mode="ajax" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Project Manager'}">
+								<f:facet name="label">
+									<h:panelGroup rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Project Manager'}">
+										<!-- <h:graphicImage value="/images/icons/copy.gif" styleClass="pic" alt="copy" />
+ -->
+										<h:outputLabel value="Accounts"
+											style="font-size:18px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+											width="100"></h:outputLabel>
+
+									</h:panelGroup>
+								</f:facet>
+								<rich:menuGroup label="Payroll" styleClass="submenu11" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Project Manager'}"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';">
+									<rich:menuItem rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Finance Manager'}"
+										style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+										label="Employee Registration "
+										action="#{employeeMB.employeePageLoad}"></rich:menuItem>
+									<rich:menuItem label="Payroll Form" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Finance Manager'}"
+										style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+										action="#{payrollMB.payrollLoad}"></rich:menuItem>
+									<rich:menuItem label="Employee View" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Project Manager' or loginMB.rollname == 'Finance Manager'}"
+										style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+										action="#{employeeViewMB.employeeViewLoad}"></rich:menuItem>
+									<rich:menuItem label="Payroll View" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Project Manager'}"
+										style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+										action="#{payrollViewMB.payrollViewLoad}"></rich:menuItem>
+								</rich:menuGroup>
+								
+								
+								
+								
+								<rich:menuGroup label="Transaction" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Project Manager' or loginMB.rollname == 'Finance Manager'}"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';">
+
+									<rich:menuItem label="Transaction Form" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Finance Manager'}"
+										style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+										action="#{transactionMB.TransLoad}"></rich:menuItem>
+									<rich:menuItem label="Transaction View" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Project Manager' or loginMB.rollname == 'Finance Manager'}"
+										style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+										action="#{transactionViewMB.TransactionViewLoad}"></rich:menuItem>
+
+								</rich:menuGroup>
+								<rich:menuItem label="Accounts Receivable Assets" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Project Manager'}"
+									title="Accounts Receivable Assets"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{accountsReceivableAssetsMB.Accountsviewload}" />
+
+								<rich:menuItem label="Accounts Payable Liabilites" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Project Manager'}"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="accountPayableLiabilites.xhtml?faces-redirect=true">
+								</rich:menuItem>
+								
+								<rich:menuItem label="Cash Book" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Project Manager'}"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{cashBookMB.redirectCashBook()}">
+								</rich:menuItem>
+
+								<rich:menuItem label="Payroll Liability" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Project Manager'}"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{payrollMB.payrollliabilityLoad()}">
+								</rich:menuItem>
+
+								<rich:menuItem label="Profit &amp; Loss" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Project Manager'}"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{profitLossMB.profitPageLoad}">
+								</rich:menuItem>
+					<!-- <rich:menuGroup label="Komisi" style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" >
+					<rich:menuItem label="Komisi tampilan" style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="#{commissionFormMB.commissionMenuCall()}"></rich:menuItem>
+					</rich:menuGroup> -->
+							</rich:dropDownMenu></td>
+
+
+						<td><rich:dropDownMenu mode="ajax"  rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager'}">
+								<f:facet name="label">
+									<h:panelGroup rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager'}">
+
+										<h:outputLabel value="Vendor"
+											style="font-size:18px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+											width="100"></h:outputLabel>
+
+									</h:panelGroup>
+								</f:facet>
+								<rich:menuItem label="Vendor Registration" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager'}"
+									style="background-color: ;font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{vendorMB.vendorPageLoad}" styleClass="loading" >
+
+								</rich:menuItem>
+
+
+
+								<rich:menuItem label="Vendor View" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager'}"
+									style="background-color: ;font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{vendorViewMB.vendorViewLoad}">
+								</rich:menuItem>
+
+
+							</rich:dropDownMenu></td>
+						<td><rich:dropDownMenu mode="ajax" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Marketing Staff'  or loginMB.rollname == 'Designer' or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Chief Designer' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager'}">
+								<f:facet name="label">
+									<h:panelGroup rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Designer'  or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager' or loginMB.rollname == 'Chief Designer'}">
+										<!-- <h:graphicImage value="/images/icons/copy.gif" styleClass="pic" alt="copy" />
+ -->
+										<h:outputLabel value="Product"
+											style="font-size:18px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+											width="100"></h:outputLabel>
+
+									</h:panelGroup>
+								</f:facet>
+								<!-- <rich:menuItem label="Pendaftaran Kategori"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="categoryRegistrationForm.xhtml?faces-redirect=true">
+								</rich:menuItem> -->
+
+								<rich:menuItem label="Product Registration" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager'}"
+									title="Product Registration"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{productMB.productPageLoad}" />
+
+								<rich:menuItem label="Product View" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Designer'  or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Chief Designer' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager'}"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{productViewMB.productViewLoad}">
+								</rich:menuItem>
+								<rich:menuItem label="Limit Registration" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager'}"
+									title="Limit Registration"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{limitMB.limitPageLoad}" />
+
+								<rich:menuItem label="Limit View" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Chief Designer' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager'}"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{limitViewMB.limitViewLoad}">
+								</rich:menuItem>
+
+							</rich:dropDownMenu></td>
+							
+						<td><rich:dropDownMenu mode="ajax" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Designer'  or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Chief Designer' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager'}">
+						<f:facet name="label">
+						<h:panelGroup rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Designer'  or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Chief Designer' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager'}">
+						<h:outputLabel value="Project" style="font-size:18px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+																	width="100"></h:outputLabel>
+						</h:panelGroup>
+						</f:facet>
+						<rich:menuItem label="Project Registration" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Designer'  or loginMB.rollname == 'Chief Designer' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager'}"
+															style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+															action="#{projectMB.projectPageLoad}">
+														</rich:menuItem>
+														<rich:menuItem label="Project View" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Designer'  or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Chief Designer' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager'}"
+															style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+															action="#{projectViewMB.projectViewLoad}">
+														</rich:menuItem>
+						</rich:dropDownMenu> </td>
+						<td><rich:dropDownMenu mode="ajax" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Designer'  or loginMB.rollname == 'Chief Designer' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Marketing Staff'  or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Project Manager'}">
+								<f:facet name="label">
+									<h:panelGroup rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Designer'  or loginMB.rollname == 'Chief Designer' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Marketing Manager'or loginMB.rollname == 'Project Manager'}">
+										<h:outputLabel value="Customer"
+											style="font-size:18px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+											width="100"></h:outputLabel>
+
+									</h:panelGroup>
+								</f:facet>
+								<rich:menuItem label="Customer Registration" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Project Manager'}"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{customerMB.customerPageLoad}">
+								</rich:menuItem>
+
+
+
+
+								<rich:menuItem label="Customer View" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Site Engineer'
+								 or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Designer'  or loginMB.rollname == 'Chief Designer' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Project Manager'}"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{customerViewMB.customerViewLoad}">
+								</rich:menuItem>
+
+
+
+
+
+
+							</rich:dropDownMenu></td>
+
+
+						<td> 
+							<!-- Order --> <rich:dropDownMenu mode="ajax" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Chief Designer' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager'}">
+								<f:facet name="label">
+									<h:panelGroup rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Chief Designer' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager'}">
+										<h:outputLabel value="Purchase"
+											style="font-size:18px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+											width="100"></h:outputLabel>
+
+									</h:panelGroup>
+								</f:facet>
+								<!-- <rich:menuItem label="Purchase Order "
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{purchaseOrderFromMB.redirect}">
+								</rich:menuItem> -->
+								<rich:menuItem label="Purchase Order" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager'}"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{purchaseOrderMB.purchasePageLoad}">
+								</rich:menuItem>
+								<rich:menuItem label="Purchase Payment Status" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager'}"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{purchasePaymentStatusMB.purchasePaymentViewLoad}" />
+
+
+								<rich:menuItem label="Purchase View" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Chief Designer' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager'}"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{purchaseViewMB.purchaseViewLoad}" />
+
+
+								<!-- <rich:menuItem label="Make Delivery"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{purchaseDeliveryStatusMB.redirect}" /> -->
+
+
+								<rich:menuItem label="Purchase Order Close" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager'}"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{purchaseOrderCloseMB.purchaseCloseLoad}" />
+								<rich:menuItem label="Purchase Return" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager'}"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{purchaseReturnMB.purchaseReturnVLoad}" />
+
+								 <rich:menuItem label="Purchase Return View" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager'}"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{purchaseReturnMB.purchaseReturnViewLoad}" />
+							</rich:dropDownMenu>
+						</td>
+						<td>
+							<!-- Sales  --> <rich:dropDownMenu mode="ajax" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Chief Designer' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Project Manager'}">
+								<f:facet name="label">
+									<h:panelGroup rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Chief Designer' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Project Manager'}">
+										<h:outputLabel value="Sales"
+											style="font-size:18px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+											width="100"></h:outputLabel>
+
+									</h:panelGroup>
+								</f:facet>
+
+								<!-- <rich:menuItem label="Quick Sale"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{quickSaleMB.quickSalescall()}">
+								</rich:menuItem>
+
+								<rich:menuItem label="Quick Sale View"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="quickSaleView.xhtml?faces-redirect=true">
+								</rich:menuItem>
+								
+								
+								<rich:menuItem label="Quick Sales Return" style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="#{salesReturnFormMB.salesReturn3()}" />
+                
+                <rich:menuItem label="Quick Sales Return View" style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="#{salesReturnViewMB.redirect1()}" /> -->
+
+
+								<rich:menuItem label="Sales Order" rendered="#{loginMB.rollname == 'Super Admin'  or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Marketing Manager'}"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{salesMB.salesPageLoad()}" />
+									
+									<!-- <rich:menuItem label="Sales Order 1"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{salesOrderFormMB.saledirect()}" />
+ -->									
+								<rich:menuItem label="Sales View" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Chief Designer' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Project Manager'}"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{salesViewMB.saleViewLoad}">
+								</rich:menuItem>
+								<!-- <rich:menuItem label="Sales order cancel" style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="#{salesOrdercancelFormMB.direct6()}" /> -->
+
+								<rich:menuItem label="Sales Return" rendered="#{loginMB.rollname == 'Super Admin'  or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager'}"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{salesReturnMB.salesReturnVLoad}" />
+
+								 <rich:menuItem label="Sales Return View" rendered="#{loginMB.rollname == 'Super Admin'  or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager'}" style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="#{salesReturnViewMB.salesReturnViewVLoad}"/>
+								<rich:menuItem label=" Sales Payment Status" rendered="#{loginMB.rollname == 'Super Admin'  or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager'}"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{salesPaymentStatusMB.salesPayLoad}" />
+
+							</rich:dropDownMenu>
+						</td>
+
+
+						<!-- <td><rich:dropDownMenu mode="ajax">
+								<f:facet name="label">
+									<h:panelGroup>
+										<h:outputLabel value="Approval"
+											style="font-size:18px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+											width="100"></h:outputLabel>
+
+									</h:panelGroup>
+								</f:facet>
+								<rich:menuItem label="Upload Approval"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="purchaseApproval.xhtml?faces-redirect=true">
+								</rich:menuItem>
+
+
+
+
+								<rich:menuItem label="Approval View"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="approvalpage.xhtml?faces-redirect=true">
+								</rich:menuItem>
+
+
+
+
+
+
+							</rich:dropDownMenu>
+							<rich:dropDownMenu mode="ajax">
+                <f:facet name="label">
+                    <h:panelGroup>
+                    <h:outputLabel value="Penjualan Langsung" style="font-size:18px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" width="100"></h:outputLabel>
+                       
+                    </h:panelGroup>
+                </f:facet>
+                
+                <rich:menuItem label="Penjualan Langsung"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{quickSaleMB.quickSalescall()}">
+								</rich:menuItem>
+
+								<rich:menuItem label="Rincian Penjualan Langsung"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{quickSaleViewMB.menucall()}">
+								</rich:menuItem>
+                
+             <rich:menuItem label="Pengembalian Penjualan Langsung" style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="#{salesReturnFormMB.salesReturn3()}" />
+                
+                
+            </rich:dropDownMenu>
+							</td> -->
+
+
+
+
+						<td>
+							<!-- Invoice --> <rich:dropDownMenu mode="ajax" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Project Manager'}">
+								<f:facet name="label">
+									<h:panelGroup rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Project Manager'}">
+										<h:outputLabel value="Invoice"
+											style="font-size:18px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+											width="100"></h:outputLabel>
+
+									</h:panelGroup>
+								</f:facet>
+								<rich:menuItem label="Purchase Invoice" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Project Manager'}"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{purchaseInvoiceMB.purchaseINPageLoad}">
+								</rich:menuItem>
+
+
+								<rich:menuItem label="Sales Invoice" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Project Manager'}"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{salesInvoiceMB.salesInvoiceLoad}" />
+
+
+							</rich:dropDownMenu>
+
+						</td>
+						<td>
+							<!-- Payments --> <rich:dropDownMenu mode="ajax" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff'  or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Project Manager'}">
+								<f:facet name="label">
+									<h:panelGroup rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Project Manager'}">
+										<h:outputLabel value="Payment"
+											style="font-size:18px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+											width="100"></h:outputLabel>
+
+									</h:panelGroup>
+								</f:facet>
+								<rich:menuItem label="Sales Payment" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Project Manager'}"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{salesPaymentMB.salesPayPageLoad}">
+								</rich:menuItem>
+
+								<rich:menuItem label="Purchase Payment" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Project Manager'}"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{purchasePaymentMB.purchasePayPageLoad}" />
+
+							</rich:dropDownMenu>
+						</td>
+						<td>
+							<!-- Stock --> <rich:dropDownMenu mode="ajax" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Designer'  or loginMB.rollname == 'Chief Designer' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Project Manager' or loginMB.rollname == 'Finance Manager'}">
+								<f:facet name="label">
+									<h:panelGroup rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Designer'  or loginMB.rollname == 'Chief Designer' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Project Manager' or loginMB.rollname == 'Finance Manager'}">
+										<h:outputLabel value="Stocks"
+											style="font-size:18px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+											width="100"></h:outputLabel>
+
+									</h:panelGroup>
+								</f:facet>
+								<rich:menuItem label="Stock In View" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Designer'  or loginMB.rollname == 'Chief Designer' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Project Manager' or loginMB.rollname == 'Finance Manager'}"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{stockInViewMB.stockViewLoad}">
+								</rich:menuItem>
+
+
+								<rich:menuItem label="Stock In" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager'}"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{stockInMB.stockLoad}" />
+
+
+								<rich:menuItem label="Stock Out View" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Designer'  or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Chief Designer' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager'}"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{stockOutViewMB.stockOutPageLoad}" />
+
+
+								<!-- <rich:menuItem label="Stock FIFO"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="stockFifoForm.xhtml?faces-redirect=true" />
+
+
+								<rich:menuItem label="Stock LIFO"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="stockLifoForm.xhtml?faces-redirect=true" /> -->
+
+
+								<rich:menuItem label="Stock Damage" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager'}"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{stockDamageMB.stockDamagePageLoad}" />
+									
+									<rich:menuItem label="Stockout Manual" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager'}"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{stockOutManualMB.LoadPage}" />
+									<rich:menuItem label="Stockout Manual View" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager'}"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{stockOutManualMB.loadstokoutview}" />
+
+							<!-- <rich:menuItem label="Bar code" title="Generating Barcode"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{productViewMB.successbarcode}" /> -->
+							
+							</rich:dropDownMenu>
+						</td>
+
+						
+
+						<td>
+							<!-- Reports --> <rich:dropDownMenu mode="ajax" style="border-right: none;" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Designer'  or loginMB.rollname == 'Chief Designer' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Project Manager'}">
+								<f:facet name="label">
+									<h:panelGroup rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Chief Designer' or loginMB.rollname == 'Designer'  or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Project Manager'}">
+										<h:outputLabel value="Report"
+											style="font-size:18px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+											width="100"></h:outputLabel>
+
+									</h:panelGroup>
+								</f:facet>
+								<!-- <rich:menuItem label="Faktur Laporan"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{reportMB.reportinvoiceDirect()}">
+								</rich:menuItem> -->
+
+
+
+
+								<rich:menuItem label="Purchase Report" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Designer'  or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Chief Designer' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager'}"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{purchaseReportMB.purReportLoad}">
+								</rich:menuItem>
+
+
+								<rich:menuItem label="Sales Report" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Inventory Staff' or loginMB.rollname == 'Site Engineer' or loginMB.rollname == 'Admin Project' or loginMB.rollname == 'Accounting Staff' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'Designer'  or loginMB.rollname == 'Chief Designer' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Director' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Project Manager'}"
+									style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';"
+									action="#{salesReportMB.salesReportLoad}">
+								</rich:menuItem>
+
+
+
+							</rich:dropDownMenu>
+
+						</td>
+
+
+					</tr>
+				</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				<!-- Invoice -->
+
+
+
+
+
+
+
+			</div>
+		</h:form>
+
+		<br />
+
+	</h:body>
+
+</ui:composition>

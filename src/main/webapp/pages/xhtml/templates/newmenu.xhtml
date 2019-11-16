@@ -1,0 +1,552 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+
+	<h:head>
+
+
+<link rel="stylesheet" href="../../../menus/menu.css" />
+
+<script type="text/javascript" src="../../../menus/bootstrap.min.css"></script>
+<script type="text/javascript" src="../../../menus/jquery-1.9.1.min.js" ></script>
+<script type="text/javascript" src="../../../menus/menu.js" ></script>
+
+ 
+</h:head>
+
+<h:body>
+
+
+<div class="main-container container-fluid" >
+
+
+<div class="row inner-container" >
+
+
+<div class="menu-about">
+
+<ul class="block-menu">
+	
+	<li><a href="/demos" class="three-d">
+		Akutansi
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Akutansi</span>
+			<span class="back">Akutansi</span>
+		</span>
+	</a>
+	
+	<ul class="sub-menu">
+	
+		<li><a href="/" class="three-d">
+		Penggajian
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Penggajian</span>
+			<span class="back">Penggajian</span>
+		</span>
+	</a>
+	
+	<ul class="sub-menu sub-menu1">
+		<li><a href="/" class="three-d">
+		Pendaftaran Karyawan
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Pendaftaran Karyawan</span>
+			<span class="back">Pendaftaran Karyawan</span>
+		</span>
+	</a></li>
+	<li><a href="/" class="three-d">
+		Formulir Gaji
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Formulir Gaji</span>
+			<span class="back">Formulir Gaji</span>
+		</span>
+	</a></li>
+	<li><a href="/" class="three-d">
+		Lihat Data Karyawan
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Lihat Data Karyawan</span>
+			<span class="back">Lihat Data Karyawan</span>
+		</span>
+	</a></li>
+		<li><a href="/" class="three-d">
+		Lihat Data Penggajian
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Lihat Data Penggajian</span>
+			<span class="back">Lihat Data Penggajian</span>
+		</span>
+	</a></li>
+		
+		</ul>
+		
+	</li>
+	<li><a href="/" class="three-d">
+		Transaksi
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Transaksi</span>
+			<span class="back">Transaksi</span>
+		</span>
+	</a>
+	<ul class="sub-menu sub-menu1">
+	<li><a href="/" class="three-d">
+	Formulir Transaksi
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Formulir Transaksi</span>
+			<span class="back">Formulir Transaksi</span>
+		</span>
+	</a>
+	</li>
+	<li>
+	<a href="/" class="three-d">
+	Lihat Data Transaksi
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Lihat Data Transaksi</span>
+			<span class="back">Lihat Data Transaksi</span>
+		</span>
+	</a>
+	</li>
+	</ul>
+	</li>
+	<li><a href="/" class="three-d">
+		Aktiva Piutang Akan Diterima
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Aktiva Piutang Akan Diterima</span>
+			<span class="back">Aktiva Piutang Akan Diterima</span>
+		</span>
+	</a></li>
+
+	<li><a href="/" class="three-d">
+		Kewajiban Pituang Akan Dibayar
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Kewajiban Pituang Akan Dibayar</span>
+			<span class="back">Kewajiban Pituang Akan Dibayar</span>
+		</span>
+	</a></li>
+	<li><a href="/" class="three-d">
+		Cash Book
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Cash Book</span>
+			<span class="back">Cash Book</span>
+		</span>
+	</a></li>
+	<li><a href="/" class="three-d">
+		Kewajiban Penggajian
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Kewajiban Penggajian</span>
+			<span class="back">Kewajiban Penggajian</span>
+		</span>
+	</a></li>
+	<li><a href="/" class="three-d">
+		Laporan Laba Dan Rugi
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Laporan Laba Dan Rugi</span>
+			<span class="back">Laporan Laba Dan Rugi</span>
+		</span>
+	</a></li>
+	<li><a href="/" class="three-d">
+		Komisi
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Komisi</span>
+			<span class="back">Komisi</span>
+		</span>
+	</a>
+	<ul class="sub-menu sub-menu1">
+	<li><a href="/" class="three-d">
+		Komisi tampilan
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Komisi tampilan</span>
+			<span class="back">Komisi tampilan</span>
+		</span>
+	</a></li>
+	</ul>
+	</li>
+	</ul>
+	
+	
+	</li>
+	
+	<li><a href="/demos" class="three-d">
+		Vendor
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Vendor</span>
+			<span class="back">Vendor</span>
+		</span>
+	</a>
+	
+	<ul class="sub-menu">
+	
+		<li><a href="/" class="three-d">
+		Pendaftaran Vendor
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Pendaftaran Vendor</span>
+			<span class="back">Pendaftaran Vendor</span>
+		</span>
+	</a></li>
+	<li><a href="/" class="three-d">
+		Lihat Data Vendor
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Lihat Data Vendor</span>
+			<span class="back">Lihat Data Vendor</span>
+		</span>
+	</a></li>
+	</ul>
+	
+	</li>
+	<li><a href="/demos" class="three-d">
+		Produk
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Produk</span>
+			<span class="back">Produk</span>
+		</span>
+	</a>
+	<ul class="sub-menu">
+	<li><a href="/" class="three-d">
+	Pendaftaran Kategori
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Pendaftaran Kategori</span>
+			<span class="back">Pendaftaran Kategori</span>
+		</span>
+	</a>
+	</li>
+	<li><a href="/" class="three-d">
+	Pendaftaran Produk
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Pendaftaran Produk</span>
+			<span class="back">Pendaftaran Produk</span>
+		</span>
+	</a>
+	</li>
+	<li><a href="/" class="three-d">
+	Lihat Data Produk
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Lihat Data Produk</span>
+			<span class="back">Lihat Data Produk</span>
+		</span>
+	</a>
+	</li>
+	</ul>
+	</li>
+	<li class="sub3"><a href="/demos" class="three-d">
+		Pelanggan
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Pelanggan</span>
+			<span class="back">Pelanggan</span>
+		</span>
+	</a>
+	
+	<ul class="sub-menu sub-menu3">
+	
+		<li><a href="/" class="three-d">
+		Pendaftaran Pelanggan
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Pendaftaran Pelanggan</span>
+			<span class="back">Pendaftaran Pelanggan</span>
+		</span>
+	</a></li>
+	<li><a href="/" class="three-d">
+		Lihat Data Pelanggan
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Lihat Data Pelanggan</span>
+			<span class="back">Lihat Data Pelanggan</span>
+		</span>
+	</a></li>
+	
+	</ul>
+	
+	</li>
+	
+	<li><a href="/demos" class="three-d">
+		Pembelian
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Pembelian</span>
+			<span class="back">Pembelian</span>
+		</span>
+	</a>
+	<ul class="sub-menu sub-menu3">
+	<li><a href="/" class="three-d">
+	Order Pembelian
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Order Pembelian</span>
+			<span class="back">Order Pembelian</span>
+		</span>
+	</a>
+	</li>
+	<li><a href="/" class="three-d">
+	Status Pembayaran Pembelian
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Status Pembayaran Pembelian</span>
+			<span class="back">Status Pembayaran Pembelian</span>
+		</span>
+	</a>
+	</li>
+	<li><a href="/" class="three-d">
+	Lihat Data Pembelian
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Lihat Data Pembelian</span>
+			<span class="back">Lihat Data Pembelian</span>
+		</span>
+	</a>
+	</li>
+	<li><a href="/" class="three-d">
+	Pembelian Yang Sudah Selesai
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Pembelian Yang Sudah Selesai</span>
+			<span class="back">Pembelian Yang Sudah Selesai</span>
+		</span>
+	</a>
+	</li>
+	</ul>
+	</li>
+	<li><a href="/demos" class="three-d">
+		Penjualan
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Penjualan</span>
+			<span class="back">Penjualan</span>
+		</span>
+	</a>
+	<ul class="sub-menu sub-menu3">
+	<li><a href="/" class="three-d">
+	Order Penjualan
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Order Penjualan</span>
+			<span class="back">Order Penjualan</span>
+		</span>
+	</a>
+	</li>
+	<li><a href="/" class="three-d">
+	Rincian Penjualan
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Rincian Penjualan</span>
+			<span class="back">Rincian Penjualan</span>
+		</span>
+	</a>
+	</li>
+	<li><a href="/" class="three-d">
+	Pengiriman Barang
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Pengiriman Barang</span>
+			<span class="back">Pengiriman Barang</span>
+		</span>
+	</a>
+	</li>
+	<li><a href="/" class="three-d">
+	Pengembalian Penjualan
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Pengembalian Penjualan</span>
+			<span class="back">Pengembalian Penjualan</span>
+		</span>
+	</a>
+	</li>
+	<li><a href="/" class="three-d">
+	Rincian Pengembalian Penjualan
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Rincian Pengembalian Penjualan</span>
+			<span class="back">Rincian Pengembalian Penjualan</span>
+		</span>
+	</a>
+	</li>
+	<li><a href="/" class="three-d">
+	Status pembayaran penjualan
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Status pembayaran penjualan</span>
+			<span class="back">Status pembayaran penjualan</span>
+		</span>
+	</a>
+	</li>
+	</ul>
+	</li>
+	<li><a href="/demos" class="three-d">
+		Penjualan Langsung
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Penjualan Langsung</span>
+			<span class="back">Penjualan Langsung</span>
+		</span>
+	</a>
+	<ul class="sub-menu sub-menu3">
+	<li><a href="/" class="three-d">
+	Penjualan Langsung
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Penjualan Langsung</span>
+			<span class="back">Penjualan Langsung</span>
+		</span>
+	</a>
+	</li>
+	<li><a href="/" class="three-d">
+	Rincian Penjualan Langsung
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Rincian Penjualan Langsung</span>
+			<span class="back">Rincian Penjualan Langsung</span>
+		</span>
+	</a>
+	</li>
+	<li><a href="/" class="three-d">
+	Pengembalian Penjualan Langsung
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Pengembalian Penjualan Langsung</span>
+			<span class="back">Pengembalian Penjualan Langsung</span>
+		</span>
+	</a>
+	</li>
+	<li><a href="/" class="three-d">
+	Rincian Pengembalian Penjualan Langsung
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Rincian Pengembalian Penjualan Langsung</span>
+			<span class="back">Rincian Pengembalian Penjualan Langsung</span>
+		</span>
+	</a>
+	</li>
+	</ul>
+	</li>
+	
+	<li><a href="/demos" class="three-d">
+		Invoice
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Invoice</span>
+			<span class="back">Invoice</span>
+		</span>
+	</a>
+	
+	<ul class="sub-menu">
+	
+		<li><a href="/" class="three-d">
+		Invoice Pembelian
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Invoice Pembelian</span>
+			<span class="back">Invoice Pembelian</span>
+		</span>
+	</a></li>
+	<li><a href="/" class="three-d">
+		Invoice Penjualan
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Invoice Penjualan</span>
+			<span class="back">Invoice Penjualan</span>
+		</span>
+	</a></li>
+	</ul>
+	
+	</li>
+	
+	<li><a href="/demos" class="three-d">
+		Pembayaran
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Invoice</span>
+			<span class="back">Invoice</span>
+		</span>
+	</a>
+	
+	<ul class="sub-menu">
+	
+		<li><a href="/" class="three-d">
+		Penerimaan
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Penerimaan</span>
+			<span class="back">Penerimaan</span>
+		</span>
+	</a></li>
+	<li><a href="/" class="three-d">
+		Pembayaran
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Pembayaran</span>
+			<span class="back">Pembayaran</span>
+		</span>
+	</a></li>
+	</ul>
+	
+	</li>
+	
+	<li><a href="/demos" class="three-d">
+		Stocks
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Stocks</span>
+			<span class="back">Stocks</span>
+		</span>
+	</a>
+	
+	<ul class="sub-menu">
+	
+		<li><a href="/" class="three-d">
+		Lihat Stock
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Lihat Stock</span>
+			<span class="back">Lihat Stock</span>
+		</span>
+	</a></li>
+	<li><a href="/" class="three-d">
+		Stock Masuk
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Stock Masuk</span>
+			<span class="back">Stock Masuk</span>
+		</span>
+	</a></li>
+	<li><a href="/" class="three-d">
+		Stock Keluar
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Stock Keluar</span>
+			<span class="back">Stock Keluar</span>
+		</span>
+	</a></li>
+	<li><a href="/" class="three-d">
+		Stock Rusak
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Stock Rusak</span>
+			<span class="back">Stock Rusak</span>
+		</span>
+	</a></li>
+	<li><a href="/" class="three-d">
+		Bar code
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Bar code</span>
+			<span class="back">Bar code</span>
+		</span>
+	</a></li>
+	</ul>
+	
+	</li>
+	<li><a href="/demos" class="three-d">
+		Laporan
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Laporan</span>
+			<span class="back">Laporan</span>
+		</span>
+	</a>
+	
+	<ul class="sub-menu">
+	
+		<li><a href="/" class="three-d">
+		Faktur Laporan
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Faktur Laporan</span>
+			<span class="back">Faktur Laporan</span>
+		</span>
+	</a></li>
+	<li><a href="/" class="three-d">
+		Laporan Pembelian
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Laporan Pembelian</span>
+			<span class="back">Laporan Pembelian</span>
+		</span>
+	</a></li>
+	<li><a href="/" class="three-d">
+		Laporan Penjualan
+		<span aria-hidden="true" class="three-d-box">
+			<span class="front">Laporan Penjualan</span>
+			<span class="back">Laporan Penjualan</span>
+		</span>
+	</a></li>
+
+	</ul>
+	
+	</li>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+	</h:body>
+
+</ui:composition>

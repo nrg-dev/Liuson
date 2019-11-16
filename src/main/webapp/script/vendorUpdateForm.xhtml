@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition 
+xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core" 
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+    xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich">
+<h:head>
+<title> Inventory | vendorUpdate  </title>
+<link rel="stylesheet" href="../../css/inventory.css">
+</link>
+
+
+
+</h:head>
+<h:body class="appl_background">
+<h:form>
+<table align="center" border="0" class="back_ground">
+<tr>
+<td>
+<h:graphicImage value="/images/home_header_5.jpg" ></h:graphicImage>
+<br /><br />
+</td>
+</tr>
+<tr>
+<td align="center"> 
+<ui:include src="/pages/xhtml/templates/menu.xhtml" />
+</td>
+</tr>
+<tr>
+</tr>
+<tr>
+</tr>
+<tr>
+<td align="left" >
+<table border="0"   bgcolor="">
+
+<tr>
+                    <td align="left" >
+                     <rich:panel style="font-size:14px; width:600px" header="Search"  >  
+	        <h:panelGrid  columns="9"  style="font-size:14px; width:600px;height: 143px;" align="center">  
+	           &nbsp;<h:outputText  />&nbsp;<h:outputText  />&nbsp;<h:outputText  />
+	            <h:outputLabel value="Company Name" class="label_ui" />
+	             &nbsp;
+	            <h:inputText class="text_ui"  value="#{vendorUpdateFormMB.firmName}"   required="false" label="name"/> 
+	            <h:outputText  />
+	            <h:outputText  /><h:outputText  /><h:outputText  /><h:outputText  /><h:outputText  />
+	            <h:outputText value="Phone Number"  class="label_ui" /> 
+	           &nbsp;
+	            <h:inputText class="text_ui" id="num"  value="#{vendorUpdateFormMB.vendorPhoneNumber}"/>
+				
+ <h:outputText  /><h:outputText  /><h:outputText  /><h:outputText  /><h:outputText  /><h:outputText  />
+	          
+	           &nbsp;
+	            <h:outputText value="" />
+	            <h:commandButton class="button"  value="FIND"  action="#{vendorUpdateFormMB.vendorUpdat()}">
+	           <!-- <a4j:ajax execute="num" render="dataTable"/> -->
+	            </h:commandButton> 
+	            
+	            
+	            
+	        </h:panelGrid>  	    </rich:panel>
+                    </td>
+                  </tr>
+                  <tr><td height="30px"></td></tr>
+                    <tr>
+                    <td>
+                    
+                     <rich:dataTable   var="info"  columnsWidth="250px,250px,250px,245px" value="#{vendorUpdateFormMB.xx}">  
+         	
+ 
+   
+  
+	        <h:column headerText="Name">
+	         <f:facet name="header"> <span style="font-style: normal;font-size:14px;padding-top:10px;">  Product Name   </span>      </f:facet>
+	         
+	            <h:outputText value="#{info.firmName}"  class="label_ui"/>  
+	        </h:column>  
+  
+	        <h:column >  
+	            
+	            <f:facet name="header"> <span style="font-style: normal;font-size:14px;padding-top:10px;">  Registration Number   </span>      </f:facet>
+	        
+	            <h:outputText value="#{info.vendorPhoneNumber}"  class="label_ui"/>  
+	        </h:column>  
+  
+	   		<h:column   headerText="Address"> 
+	   		 <f:facet name="header"> <span style="font-style: normal;font-size:14px;padding-top:10px;">  Person Incharge   </span>      </f:facet>
+	        
+	            <h:outputText class="label_ui" value="#{info.peresonIncharge}" />  
+	        </h:column>  
+  
+	   		<h:column >
+	   		 <f:facet name="header"> <span style="font-style: normal;font-size:14px;padding-top:10px;">  Click me   </span>      </f:facet>
+	         
+	            
+				 <div align="center"> <h:commandButton class="button_table"   value="Update" action="#{vendorUpdateFormMB.update()}">
+				   </h:commandButton><a></a></div>	      
+ </h:column>  
+  
+          
+ </rich:dataTable> 
+ 
+            
+    </td></tr>
+    <tr>
+    <td height="220"></td></tr>
+</table> 
+</td>
+</tr>
+</table>
+
+</h:form>
+</h:body>
+</ui:composition>

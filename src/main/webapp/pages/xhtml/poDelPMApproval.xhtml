@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	 <link rel="stylesheet" href="../../css/liusenCss.css"></link>
+	</h:head>
+	<body bgcolor="#4C6D90" onload="#{purchaseOrderApprovalMB.poDetailsForDelPMApproval()}" >
+	
+	<h:form id="limit1">
+	<table align="center" bgcolor="#fff">
+	<tr bgcolor="#fff"><td>
+	<ui:include src="../../pages/xhtml/templates/header.xhtml"></ui:include>
+	</td></tr>
+	<tr><td>
+<ui:include src="/pages/xhtml/templates/menunew.xhtml" />
+	</td></tr>
+	<tr><td>
+	<table>
+	<tr><td style="width: 300px"><strong style="color:#2C238C"> Welcome, #{loginMB.invusername}.</strong></td><td style="width: 426px" align="center"><p:clock pattern="dd-MM-yyyy HH:mm:ss" mode="server"></p:clock></td>
+	<td style="width: 308px" align="right"><h:commandButton value="Logout" action="#{loginMB.logout()}" styleClass="button"></h:commandButton>
+	</td></tr>
+	</table>
+	</td></tr>
+	<tr>
+	<td><br></br></td>
+	</tr>
+	<tr><td>
+
+
+
+<br /></td></tr>
+	
+	<tr><td>
+	
+	<div align="center">
+	
+				<h:outputText styleClass="text_Header" style="font-weight:bold"
+					value="PURCHASE ORDER WAITING FOR DELIVERY APPROVAL(PM)"/><br /><br />
+			
+	<!-- <h:messages showSummary="false" showDetail="true"   globalOnly="false" style="color:red"  layout="table"></h:messages> -->
+	</div>
+	<br></br><br></br>
+	<div align="center">
+	<rich:panel styleClass="class2"  headerClass="head2" bodyClass="body3">
+	 <f:facet name="header">
+            Purchase Order 
+         <p:spacer height="10px" width="100px"></p:spacer>
+            <p:commandButton value="Help" type="button" onclick="PF('dlg3').show();"></p:commandButton>
+        </f:facet>
+       
+		
+		
+		<table align="center" class="table_UI" cellpadding="10px" >
+			<tr><td>
+			<p:dialog id="basicDialog" header="Confirmation Message"  visible="#{!purchaseOrderApprovalMB.myValid}">
+			<h:panelGrid class="label_ui" columns="2"  style="font-size:14px; width:450px;height:100px" align="left" cellspacing="5px" >
+	        <p style="font-style: 'HelveticaNeueLT Pro 55 Roman';font-size:16px;color:black;font-family:'Helvetica Neue LT Pro 55';">Process is successfully completed.</p>
+	        <h:commandButton value="Ok"  class="button" action="#{purchaseOrderApprovalMB.poDetailsForGMApproval()}" ></h:commandButton>
+	        </h:panelGrid></p:dialog>
+			</td></tr>
+			<tr>
+			<td>
+			
+			<div align="center" style="width: 1052px">
+			<h:message for="purView" style="color:red;font-size:11px"></h:message>
+					 <p:dataTable id="purView" var="info" value="#{purchaseOrderApprovalMB.purchaseOrederDataBean.purchaseViewList}"  rows="10"
+					  paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="5,10,15">
+					<f:facet name="header">
+						Purchase Order List 
+						<h:commandLink>
+        				<p:graphicImage value="/images/Excel-icon.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="xls" target="purView" fileName="purchaseList"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+     					<p:graphicImage value="/images/pdf.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="pdf" target="purView" fileName="purchaseList"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+    					 <p:graphicImage value="/images/csv.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="csv" target="purView" fileName="purchaseList"></p:dataExporter>
+        				</h:commandLink>
+						
+        				
+					</f:facet>
+					<p:column headerText="No" style="width:20px;"> 
+					<h:outputText value="#{info.purserialno}"></h:outputText>
+					</p:column>
+					<p:column headerText="Date" style="width:100px;">
+					<h:outputText value="#{info.purdate}">
+					<f:convertDateTime pattern="dd-MM-yyyy" /></h:outputText>
+			
+					</p:column>
+					<p:column headerText="Purchase Order Number" >
+					<h:outputText value="#{info.purOrderNo}"></h:outputText>
+					</p:column>
+					<p:column headerText="Total Amount" >
+					
+					<h:outputText value="#{info.purCrossTotal}">
+					<f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+					</h:outputText>
+					</p:column>
+					<p:column headerText="Status" style="width:300px;" >
+					
+				<p:selectOneRadio id="radioButtonField" valueChangeListener="#{purchaseOrderApprovalMB.approvalType}" value="#{info.appType}" >
+				<f:selectItem itemLabel="Approve" itemValue="Approve">
+				<f:attribute name="radioButtonField" value="Approve" />
+				</f:selectItem>
+				<f:selectItem itemLabel="Reject" itemValue="Reject">
+				<f:attribute name="radioButtonField" value="Reject" />
+				</f:selectItem>
+				<f:attribute value="#{info.purOrderNo}" name="orderNo"></f:attribute>
+				<f:attribute value="#{info.purserialno}" name="serial"></f:attribute>
+				<f:attribute value="#{info.purCrossTotal}" name="tot"></f:attribute>
+				<f:attribute value="#{info.purdate}" name="date"></f:attribute>
+				<p:ajax process="@this" update="@this" event="valueChange" immediate="true"></p:ajax>
+				</p:selectOneRadio>
+					</p:column>
+					<p:column headerText="Reason" style="width:200px;">
+					<p:inputTextarea valueChangeListener="#{purchaseOrderApprovalMB.Reason}"  value="#{info.reason}" style="width: 100%;height: 40px; overflow:auto;" autoResize="false">
+					
+					<f:attribute value="#{info.purOrderNo}" name="orderNo"></f:attribute>
+					<f:attribute value="#{info.purserialno}" name="serial"></f:attribute>
+					<f:attribute value="#{info.purCrossTotal}" name="tot"></f:attribute>
+					<f:attribute value="#{info.purdate}" name="date"></f:attribute>
+					<f:attribute value="#{info.appType}" name="apptype"></f:attribute>
+					<p:ajax process="@this" update="@this" event="valueChange" immediate="true"></p:ajax>
+					</p:inputTextarea>
+					
+					</p:column>
+					<p:column headerText="View" width="30">
+					<p:commandButton icon="ui-icon-search" action="#{purchaseOrderApprovalMB.purchaseOrderDetailedView}">
+					<f:setPropertyActionListener value="#{info.purOrderNo}" target="#{purchaseOrderApprovalMB.purchaseOrederDataBean.purOrderNo}"></f:setPropertyActionListener>
+					<f:setPropertyActionListener value="PMDELAPPROVAL" target="#{purchaseOrderApprovalMB.purchaseOrederDataBean.purProjType}"></f:setPropertyActionListener>
+					</p:commandButton>
+					</p:column>
+					<p:column headerText="Action" style="width:50px;">
+					<h:commandButton id="poApprove" image="/images/action.png" action="#{purchaseOrderApprovalMB.poDelPMApproval}"  >
+	            <f:setPropertyActionListener value="#{info.purOrderNo}" target="#{purchaseOrderApprovalMB.purchaseOrederDataBean.purOrderNo}"></f:setPropertyActionListener>
+	            <f:setPropertyActionListener value="#{info.appType}" target="#{purchaseOrderApprovalMB.purchaseOrederDataBean.appType}"></f:setPropertyActionListener>
+	            <f:setPropertyActionListener value="#{info.reason}" target="#{purchaseOrderApprovalMB.purchaseOrederDataBean.reason}"></f:setPropertyActionListener>
+	            <f:ajax render="@form" execute="poApprove"></f:ajax>
+	           			
+	           </h:commandButton>
+					</p:column>
+					</p:dataTable>
+				
+					</div>
+			
+			
+			
+			
+			</td>
+			
+			</tr>
+			
+			</table>
+			
+			
+	
+			<h:commandButton value="Back"
+						action="home.xhtml?faces-redirect=true" styleClass="button"  >
+					</h:commandButton>
+					
+					
+				<br></br><br></br>
+		</rich:panel>
+		
+</div></td></tr>
+<tr><td align="center"><h:outputText value="Copyright © PT. Neotural Era Graha" style="color:#2C238C"></h:outputText></td></tr>
+<tr><td><br /></td></tr>
+</table>
+ <p:dialog header="Translation" widgetVar="dlg3" showEffect="explode" hideEffect="shake" height="300" width="500" >
+		
+<rich:panel>
+<h:panelGrid columns="3">
+<h:outputText value="Date"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="tanggal"></h:outputText>
+<h:outputText value="Estimated Delivery Date"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Perkiraan Pengiriman Tanggal"></h:outputText>
+<h:outputText value="Category"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="kategori"></h:outputText>
+<h:outputText value="Vendor Name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Nama pedagang"></h:outputText>
+<h:outputText value="Employee Name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="nama karyawan"></h:outputText>
+<h:outputText value="Product Name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="nama Produk"></h:outputText>
+<h:outputText value="Price"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="harga"></h:outputText>
+<h:outputText value="Quantity"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="kuantitas"></h:outputText>
+<h:outputText value="Net Amount"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Jumlah bersih"></h:outputText>
+<h:outputText value="Cross Total"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Jumlah lintas"></h:outputText>
+<h:outputText value="Discount Type"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="diskon Jenis"></h:outputText>
+<h:outputText value="Discount Amount"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Jumlah diskon"></h:outputText>
+<h:outputText value="Total Amount"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Jumlah total"></h:outputText>
+</h:panelGrid>
+</rich:panel>
+</p:dialog>
+	</h:form>
+	</body>
+</ui:composition>

@@ -1,0 +1,306 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	 <link rel="stylesheet" href="../../css/liusenCss.css">
+ 
+</link> 
+
+	</h:head>
+	<body bgcolor="#4C6D90" >
+	
+	<h:form id="projectView">
+	<table align="center" bgcolor="#fff" >
+	<tr bgcolor="#fff"><td>
+	<ui:include src="../../pages/xhtml/templates/header.xhtml"></ui:include>
+	</td></tr>
+	<tr><td>
+<ui:include src="/pages/xhtml/templates/menunew.xhtml" />
+	</td></tr>
+	<tr><td>
+	<table>
+	<tr><td style="width: 300px"><strong style="color:#2C238C"> Welcome, #{loginMB.invusername}.</strong></td><td style="width: 426px" align="center"><p:clock pattern="dd-MM-yyyy HH:mm:ss" mode="server"></p:clock></td>
+	<td style="width: 308px" align="right"><h:commandButton value="Logout" action="#{loginMB.logout()}" styleClass="button"></h:commandButton>
+	</td></tr>
+	</table>
+	</td></tr>
+	<tr>
+	<td><br></br></td>
+	</tr>
+	<tr><td>
+	
+	<div align="center">
+	
+				<h:outputText styleClass="text_Header" style="font-weight:bold"
+					value="EMPLOYEE VIEW"/><br /><br />
+					</div>
+					<div align="center">
+					<table><tr><td>
+					<rich:panel styleClass="class2"  headerClass="head2" bodyClass="body3" style="width:400px;height:150px;overflow:hidden;">
+	 <f:facet name="header">
+            Search by Employee Name
+                        <p:commandButton value="Help" type="button" onclick="PF('dlg3').show();"></p:commandButton>
+            
+        </f:facet>
+        <table class="paneltable_UI" cellpadding="7px"><tr><td class="table_td">
+        <h:outputLabel for="empViewName" value="Employee Name " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span> </td>
+        <td class="table_td"><p:inputText id="empViewName" styleClass="text_ui" value="#{employeeViewMB.employeeDataBean.empEmployeeName}"></p:inputText> 
+        <br></br>
+        <h:message for="empViewName" style="color:red;font-size:11"></h:message>
+        </td>
+        </tr>
+        <tr>
+        <td class="table_td"></td><td class="table_td"><h:commandButton styleClass="button" value="Search" style="color: #CFF;" action="#{employeeViewMB.searchEmployeeName}"></h:commandButton> </td>
+        </tr>
+        </table>
+        </rich:panel></td>
+        <td>
+					<rich:panel styleClass="class2"  headerClass="head2" bodyClass="body3" style="width:400px;height:150px">
+	 <f:facet name="header">
+            Search by Employee ID
+                        <p:commandButton value="Help" type="button" onclick="PF('dlg4').show();"></p:commandButton>
+            
+        </f:facet>
+        <table class="paneltable_UI" cellpadding="7px"><tr><td class="table_td">
+        <h:outputLabel for="empViewID" value="Employee ID " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span> </td>
+        <td class="table_td"><p:selectOneMenu id="empViewID" styleClass="text_ui" value="#{employeeViewMB.employeeDataBean.empEmployeeId}">\
+        <f:selectItem itemLabel="Please Choose EmployeeID"/>
+        <f:selectItems value="#{employeeViewMB.empIDList}"></f:selectItems>
+        
+        </p:selectOneMenu> 
+        <br></br>
+        <h:message for="empViewID" style="color:red;font-size:11"></h:message>
+        </td>
+        </tr>
+        <tr>
+        <td class="table_td"></td><td class="table_td"><h:commandButton styleClass="button" value="Search" action="#{employeeViewMB.searchEmployeeId}"></h:commandButton> </td>
+        </tr>
+        </table>
+        </rich:panel></td>
+        </tr></table>
+					</div>
+					<p:spacer height="20px"></p:spacer>
+					<div align="center" style="width: 1052px">
+				
+					
+		<p:spacer height="20px"></p:spacer>
+				
+					 <p:dataTable id="empview" var="emp" rows="12" rendered="#{!employeeViewMB.flag}" value="#{employeeViewMB.empviewlist}"
+					 paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="5,10,15">
+					
+					<f:facet name="header">
+					list of employee list
+					<h:commandLink>
+        		    <p:graphicImage value="/images/Excel-icon.png" height="20" width="20"></p:graphicImage>
+        		     <p:dataExporter type="xls" target="empview" fileName="empviewlist"></p:dataExporter>
+        		    
+        		   </h:commandLink>
+        		   <h:commandLink>
+     					<p:graphicImage value="/images/pdf.png" height="20" width="20"></p:graphicImage>
+     					 <p:dataExporter type="pdf" target="empview" fileName="empviewlist"></p:dataExporter>
+     					
+        				</h:commandLink>
+        				<h:commandLink>
+    					 <p:graphicImage value="/images/csv.png" height="20" width="20"></p:graphicImage>
+    					<p:dataExporter type="csv" target="empview" fileName="empviewlist"></p:dataExporter>
+    					 
+        				</h:commandLink>
+     				<p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
+        		    <p:columnToggler datasource="empview" trigger="toggler" />         			
+				  </f:facet>
+					
+					
+					
+					<p:column headerText="Date" sortBy="#{emp.empEntryDate}">
+					<h:outputText value="#{emp.empEntryDate}">
+				    <f:convertDateTime pattern="dd-MM-yyyy"></f:convertDateTime>
+					</h:outputText>
+				
+					</p:column>
+				
+					<p:column headerText="Employee Name" sortBy="#{emp.empEmployeeName}">
+					<h:outputText value="#{emp.empEmployeeName}"></h:outputText>
+					</p:column>
+				
+				
+					<p:column headerText="Employee ID" sortBy="#{emp.empEmployeeId}">
+					<h:outputText value="#{emp.empEmployeeId}"></h:outputText>
+					</p:column>
+					
+					<p:column headerText="Designation" sortBy="#{emp.empDesignation}">
+					<h:outputText value="#{emp.empDesignation}"></h:outputText>
+					</p:column>
+					
+					<p:column headerText="Phone Number" sortBy="#{emp.empPhoneNo}">
+					<h:outputText value="#{emp.empPhoneNo}"></h:outputText>
+					</p:column>
+				
+				    <p:column headerText="View" width="70" >
+					<p:commandButton update=":projectView:employeeDetail" oncomplete="PF('employeedialog').show()" icon="ui-icon-search" action="#{employeeViewMB.empview}">
+					<f:setPropertyActionListener value="#{emp.empEmployeeId}" target="#{employeeViewMB.employeeDataBean.empEmployeeId}"></f:setPropertyActionListener>
+					</p:commandButton>
+					</p:column>
+					 <p:column headerText="Edit" width="50" rendered="#{!employeeViewMB.editflag}">
+					<p:commandButton rendered="#{!employeeViewMB.editflag}" icon="ui-icon-pencil" action="#{employeeViewMB.empedit}" >
+					<f:setPropertyActionListener value="#{emp.empEmployeeId}" target="#{employeeViewMB.employeeDataBean.empEmployeeId}"></f:setPropertyActionListener>
+					</p:commandButton>
+					</p:column>
+					
+					<p:column headerText="Delete" width="50" rendered="#{!employeeViewMB.delflag}"> 
+					<p:commandButton rendered="#{!employeeViewMB.delflag}" icon="ui-icon-close" oncomplete="PF('employeedelete dialog').show()"  action="#{employeeViewMB.delete}" >
+					<f:setPropertyActionListener value="#{emp.empEmployeeId}" target="#{employeeViewMB.employeeDataBean.empEmployeeId}"></f:setPropertyActionListener>
+					</p:commandButton></p:column>
+					
+					
+					<f:facet name="footer">
+					Export Page Data Only
+					<h:commandLink>
+        				<p:graphicImage value="/images/Excel-icon.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="xls" target="empview" fileName="empviewlist" pageOnly="true"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+     					<p:graphicImage value="/images/pdf.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="pdf" target="empview" fileName="empviewlist" pageOnly="true"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+    					 <p:graphicImage value="/images/csv.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="csv" target="empview" fileName="empviewlist" pageOnly="true"></p:dataExporter>
+        				</h:commandLink>
+					</f:facet>
+						</p:dataTable>
+						</div>
+					
+						<p:spacer width="1050px" height="400px"></p:spacer>
+					</td>
+					</tr>
+					<tr><td align="center"><h:outputText value="Copyright © PT. Neotural Era Graha" style="color:#2C238C"></h:outputText>
+					<br /><br />
+					
+					
+					
+					</td></tr>  
+</table>
+					<p:dialog id="basicDialog1" header="Confirmation Message" style=""   widgetVar="employeedelete dialog" visible="#{!employeeViewMB.valid}">
+			<h:panelGrid class="label_ui" columns="2"  style="font-size:14px; width:450px;height:100px" align="left" cellspacing="5px" >
+	        <p style="font-style: 'HelveticaNeueLT Pro 55 Roman';font-size:16px;color:black;font-family:'Helvetica Neue LT Pro 55';">Successfully deleted the employee details.</p>
+	        <h:commandButton value="Ok"  class="button" action="#{employeeViewMB.employeeViewLoad}" ></h:commandButton>
+	        </h:panelGrid>
+</p:dialog>
+
+<p:dialog header="employee Info" widgetVar="employeedialog" modal="true" showEffect="drop" hideEffect="clip" resizable="false">
+        	<p:outputPanel id="employeeDetail" style="text-align:center;">
+            <p:panelGrid  columns="3"  columnClasses="label,value,value">
+                <f:facet name="header">
+                    <p:graphicImage value="/images/LiusenLogo.png" height="50" width="50"/> 
+                </f:facet>
+					 <h:outputText value="Employee Name" />
+                <h:outputText value=":"></h:outputText>
+                <h:outputText value="#{employeeViewMB.employeeDataBean.empEmployeeName}"></h:outputText>
+                
+                 <h:outputText value="Employee ID" />
+                <h:outputText value=":"></h:outputText>
+                <h:outputText value="#{employeeViewMB.employeeDataBean.empEmployeeId}"></h:outputText>
+                
+                <h:outputText value="Address" />
+                <h:outputText value=":"></h:outputText>
+                <h:outputText value="#{employeeViewMB.employeeDataBean.empAddress}"></h:outputText>
+               
+                <h:outputText value="Designation" />
+                <h:outputText value=":"></h:outputText>
+                <h:outputText value="#{employeeViewMB.employeeDataBean.empDesignation}"></h:outputText>
+                
+                 
+                <h:outputText value="DOB" />
+                <h:outputText value=":">
+                  
+                </h:outputText>
+                <h:outputText value="#{employeeViewMB.employeeDataBean.empDob}">
+                                    <f:convertDateTime pattern="dd-MM-yyyy"></f:convertDateTime>
+                               
+                               </h:outputText>
+                 
+                 
+                
+                  <h:outputText value="Entry Date" />
+                <h:outputText value=":"></h:outputText>
+                <h:outputText value="#{employeeViewMB.employeeDataBean.empEntryDate}">
+              <f:convertDateTime pattern="dd-MM-yyyy"></f:convertDateTime>
+                </h:outputText>
+                
+                
+                  <h:outputText value="Gender" />
+                <h:outputText value=":"></h:outputText>
+                <h:outputText value="#{employeeViewMB.employeeDataBean.empGender}"></h:outputText>
+                
+                <h:outputText value="Joining Date" />
+                <h:outputText value=":"></h:outputText>
+                <h:outputText value="#{employeeViewMB.employeeDataBean.empJoinDate}">
+                <f:convertDateTime pattern="dd-MM-yyyy"></f:convertDateTime></h:outputText>
+                
+                <h:outputText value="Basic Salary" />
+                <h:outputText value=":"></h:outputText>
+                <h:outputText value="#{employeeViewMB.employeeDataBean.empBasicSalary}">
+                <f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+                </h:outputText>
+               
+                 <h:outputText value="Mail ID" />
+                <h:outputText value=":"></h:outputText>
+                <h:outputText value="#{employeeViewMB.employeeDataBean.empMaildId}"></h:outputText>
+                
+                
+                 <h:outputText value="Phone Number" />
+                <h:outputText value=":"></h:outputText>
+                <h:outputText value="#{employeeViewMB.employeeDataBean.empPhoneNo}"></h:outputText>
+                
+                <h:outputText value="Description" />
+                <h:outputText value=":"></h:outputText>
+                <h:outputText value="#{employeeViewMB.employeeDataBean.empDescription}"></h:outputText>
+               
+               
+				</p:panelGrid>
+        </p:outputPanel>
+               <center><p:commandButton type="button" icon="ui-icon-print"> <p:printer target="employeeDetail"></p:printer> </p:commandButton></center> 
+          </p:dialog>
+      
+				<p:dialog header="Translation" widgetVar="dlg3" showEffect="explode" hideEffect="shake" height="100" width="400" >
+<rich:panel>
+<h:panelGrid columns="3">
+<h:outputText value="Search by Employee Name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="pencarian dengan nama Karyawan"></h:outputText>
+<h:outputText value="Employee Name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Nama karyawan"></h:outputText>
+</h:panelGrid>
+</rich:panel>
+</p:dialog>
+
+
+<p:dialog header="Translation" widgetVar="dlg4" showEffect="explode" hideEffect="shake" height="100" width="400" >
+<rich:panel>
+<h:panelGrid columns="3">
+<h:outputText value="Search  by Employee id"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="pencarian dengan id Karyawan">
+</h:outputText>
+<h:outputText value="Employee id"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Identitas pegawai">
+</h:outputText>
+</h:panelGrid> 
+</rich:panel>
+</p:dialog>
+
+
+
+					
+					</h:form>
+					</body></ui:composition>
+					
+					

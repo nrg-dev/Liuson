@@ -1,0 +1,322 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	 xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<link rel="stylesheet" href="../../css/liusenCss.css"></link>
+
+	</h:head>
+	<body bgcolor="#4C6D90">
+
+		<h:form id="product">
+			<table align="center" bgcolor="#fff">
+				<tr bgcolor="#fff">
+					<td><ui:include src="../../pages/xhtml/templates/header.xhtml"></ui:include>
+					</td>
+				</tr>
+				<tr>
+					<td><ui:include src="/pages/xhtml/templates/menunew.xhtml" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<table>
+							<tr>
+								<td style="width: 300px"><strong style="color: #2C238C">
+										Welcome, #{loginMB.invusername}.</strong></td>
+								<td style="width: 426px" align="center"><p:clock
+										pattern="dd-MM-yyyy HH:mm:ss" mode="server"></p:clock></td>
+								<td style="width: 308px" align="right"><h:commandButton
+										value="Logout" action="#{loginMB.logout()}"
+										styleClass="button"></h:commandButton></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><br></br></td>
+				</tr>
+				<tr>
+					<td>
+
+						<div align="center">
+
+							<h:outputText styleClass="text_Header" style="font-weight:bold"
+								value="PRODUCT REGISTRATION" />
+							<br />
+							<br />
+
+							<!-- <h:messages showSummary="false" showDetail="true"   globalOnly="false" style="color:red"  layout="table"></h:messages> -->
+						</div> <br></br>
+					<br></br>
+						<div align="center">
+							<rich:panel styleClass="class2" style="width:1000px;"
+								headerClass="head2" bodyClass="body3">
+								<f:facet name="header">
+            Product Registration Form
+             <p:spacer height="10px" width="100px"></p:spacer>
+            <p:commandButton value="Help" type="button" onclick="PF('dlg3').show();"></p:commandButton>
+        </f:facet>
+       
+        <h:form>
+      <p:separator></p:separator>
+      <table class="table_UI" cellpadding="10px">
+      <tr>
+      <td class="table_td">
+        <h:outputLabel value="Category " for="productCategory" styleClass="label_ui"></h:outputLabel> <span style="color:red">*</span></td>
+        <td class="table_td"><p:selectOneMenu id="productCategory" effect="fold" styleClass="selecttext_ui" value="#{productMB.productDataBean.prodCategory}">
+        <f:selectItem itemLabel="Please Choose Category" itemValue="00"></f:selectItem>
+        <f:selectItem itemLabel="Product Trading" itemValue="Product Trading"></f:selectItem>
+        <f:selectItem itemLabel="Raw Material" itemValue="Raw Material"></f:selectItem>
+        <f:selectItem itemLabel="Project" itemValue="Project"></f:selectItem>
+        <f:selectItem itemLabel="Service" itemValue="Service"></f:selectItem>
+          <p:ajax event="valueChange" immediate="true" process="@this" update="@form"/>
+        </p:selectOneMenu><br></br>
+        <h:message for="productCategory" style="color:red;font-size:11"></h:message>
+        </td>
+        <td class="table_td">
+        <h:outputLabel for="productVendor" value="Vendor " styleClass="label_ui" rendered="#{productMB.productDataBean.prodCategory == 'Product Trading' or  productMB.productDataBean.prodCategory == 'Raw Material' or productMB.productDataBean.prodCategory == 'Service'}"></h:outputLabel><span style="color:red"><h:outputText value="*" rendered="#{productMB.productDataBean.prodCategory == 'Product Trading' or  productMB.productDataBean.prodCategory == 'Raw Material' or productMB.productDataBean.prodCategory == 'Service'}"></h:outputText> </span>
+        </td>
+        <td class="table_td">
+        <p:selectOneMenu id="productVendor" effect="fold" styleClass="selecttext_ui" value="#{productMB.productDataBean.prodVendor}" rendered="#{productMB.productDataBean.prodCategory == 'Product Trading' or  productMB.productDataBean.prodCategory == 'Raw Material' or productMB.productDataBean.prodCategory == 'Service'}">
+        <f:selectItem itemLabel="Please Choose Vendor" noSelectionOption="true"></f:selectItem>
+        <f:selectItems value="#{productMB.vendorList}"></f:selectItems>
+         <p:ajax event="valueChange" immediate="true" process="@this" update="@form"/>
+        </p:selectOneMenu><br></br>
+        <h:message for="productVendor" style="color:red;font-size:11"></h:message>
+        </td>
+      </tr>
+      <tr>
+      <td class="table_td"><h:outputLabel for="productSubCate1" value="Sub Category 1" effect="fold" styleClass="selecttext_ui" rendered="#{productMB.productDataBean.prodCategory == 'Raw Material' }"></h:outputLabel> 
+      <h:outputText value="*" rendered="#{productMB.productDataBean.prodCategory == 'Raw Material' }" style="color:red"></h:outputText>
+      
+      <h:outputLabel for="prodserviceSubCate1" value="Sub Category 1" effect="fold" styleClass="selecttext_ui" rendered="#{productMB.productDataBean.prodCategory == 'Service' }"></h:outputLabel> 
+        <h:outputText value="*" rendered="#{productMB.productDataBean.prodCategory == 'Service' }" style="color:red"></h:outputText>
+       
+        </td>
+        <td class="table_td"><p:selectOneMenu id="productSubCate1" effect="fold" styleClass="selecttext_ui" value="#{productMB.productDataBean.proRawCategory}" rendered="#{productMB.productDataBean.prodCategory == 'Raw Material' }">
+        <f:selectItem itemLabel="Please Choose Category 1" noSelectionOption="true"></f:selectItem>
+      <f:selectItem itemLabel="A" itemValue="A"></f:selectItem>
+         <f:selectItem itemLabel="B" itemValue="B"></f:selectItem>
+          <f:selectItem itemLabel="C" itemValue="C"></f:selectItem>
+           <f:selectItem itemLabel="D" itemValue="D"></f:selectItem>
+            <f:selectItem itemLabel="E" itemValue="E"></f:selectItem>
+         <f:selectItem itemLabel="F" itemValue="F"></f:selectItem>
+          <f:selectItem itemLabel="G" itemValue="G"></f:selectItem>
+           <f:selectItem itemLabel="H" itemValue="H"></f:selectItem>
+           <f:selectItem itemLabel="I" itemValue="I"></f:selectItem> 
+           <p:ajax event="valueChange" immediate="true" process="@this" update="@form"/>
+        </p:selectOneMenu><br></br>
+        <h:message for="productSubCate1" style="color:red;font-size:11"></h:message>
+        <p:selectOneMenu id="prodserviceSubCate1"  effect="fold" styleClass="selecttext_ui" value="#{productMB.productDataBean.prodSerCategory1}" rendered="#{productMB.productDataBean.prodCategory == 'Service' }">
+        <f:selectItem itemLabel="Please Choose Sub Category1" noSelectionOption="true"></f:selectItem>
+        <f:selectItem itemLabel="A" itemValue="A"></f:selectItem>
+        <f:selectItem itemLabel="B" itemValue="B"></f:selectItem>
+        <f:selectItem itemLabel="C" itemValue="C"></f:selectItem>
+        <f:selectItem itemLabel="D" itemValue="D"></f:selectItem>
+         <p:ajax event="valueChange" immediate="true" process="@this" update="@form"/>
+        </p:selectOneMenu>
+        <h:message for="prodserviceSubCate1" style="color:red;font-size:11" rendered="#{productMB.productDataBean.prodCategory == 'Service' }"></h:message>
+         </td>
+        <td class="table_td"><h:outputLabel for="productSubCate2" value="Sub Category 2" styleClass="label_ui" rendered="#{productMB.productDataBean.prodCategory == 'Raw Material' }"></h:outputLabel> 
+      <h:outputLabel for="prodserviceSubCate2" value="Sub Category 2" styleClass="label_ui" rendered="#{productMB.productDataBean.prodCategory == 'Service' }"></h:outputLabel>
+        </td>
+        <td class="table_td">
+       			 <p:inputText styleClass="text_ui" disabled="true" value="Material Alam" rendered="#{productMB.productDataBean.prodCategory == 'Raw Material' and productMB.productDataBean.proRawCategory == 'A'}"></p:inputText>
+                <p:inputText styleClass="text_ui" disabled="true" value="Pondasi" rendered="#{productMB.productDataBean.prodCategory == 'Raw Material' and productMB.productDataBean.proRawCategory == 'B'}"></p:inputText>
+                <p:inputText styleClass="text_ui" disabled="true" value="Dinding Panel &amp; Acc" rendered="#{productMB.productDataBean.prodCategory == 'Raw Material' and productMB.productDataBean.proRawCategory == 'C'}"></p:inputText>
+                <p:inputText styleClass="text_ui" disabled="true" value="Material Atap &amp; Acc" rendered="#{productMB.productDataBean.prodCategory == 'Raw Material' and productMB.productDataBean.proRawCategory == 'D'}"></p:inputText>
+                <p:inputText styleClass="text_ui" disabled="true" value="Material Kusen &amp; Acc" rendered="#{productMB.productDataBean.prodCategory == 'Raw Material' and productMB.productDataBean.proRawCategory == 'E'}"></p:inputText>
+        		 <p:inputText styleClass="text_ui" disabled="true" value="Instalasi Listrik &amp; Acc" rendered="#{productMB.productDataBean.prodCategory == 'Raw Material' and productMB.productDataBean.proRawCategory == 'F'}"></p:inputText>
+                <p:inputText styleClass="text_ui" disabled="true" value="Cat Dinding &amp; Acc" rendered="#{productMB.productDataBean.prodCategory == 'Raw Material' and productMB.productDataBean.proRawCategory == 'G'}"></p:inputText>
+                <p:inputText styleClass="text_ui" disabled="true" value="Dapur &amp; Kamar Mandi" rendered="#{productMB.productDataBean.prodCategory == 'Raw Material' and productMB.productDataBean.proRawCategory == 'H'}"></p:inputText>
+                <p:inputText styleClass="text_ui" disabled="true" value="Keramik" rendered="#{productMB.productDataBean.prodCategory == 'Raw Material' and productMB.productDataBean.proRawCategory == 'I'}"></p:inputText>
+        <h:message for="productSubCate2" style="color:red;font-size:11"></h:message> 
+        <p:inputText disabled="true" styleClass="text_ui" value="Biaya Operational Site" rendered="#{productMB.productDataBean.prodCategory == 'Service' and productMB.productDataBean.prodSerCategory1 =='A'}"></p:inputText>
+          <p:inputText disabled="true" styleClass="text_ui" value="Biaya Perjalanan Dinas" rendered="#{productMB.productDataBean.prodCategory == 'Service' and productMB.productDataBean.prodSerCategory1 =='B'}"></p:inputText>
+            <p:inputText disabled="true" styleClass="text_ui" value="Upah" rendered="#{productMB.productDataBean.prodCategory == 'Service' and productMB.productDataBean.prodSerCategory1 =='C'}"></p:inputText>
+             <p:inputText disabled="true" styleClass="text_ui" value="Biaya Expedisi" rendered="#{productMB.productDataBean.prodCategory == 'Service' and productMB.productDataBean.prodSerCategory1 =='D'}"></p:inputText>
+        </td>
+      </tr>
+      </table>
+      <p:separator></p:separator>
+      </h:form>
+        <table class="table_UI" cellpadding="10px">
+        <tr>
+        
+        <td class="table_td">
+        <h:outputLabel value="Product Name " for="productProName" styleClass="label_ui" ></h:outputLabel><span style="color:red">*</span> </td>
+        <td class="table_td"> <p:inputText id="productProName" styleClass="text_ui" value="#{productMB.productDataBean.prodProductName}"></p:inputText><br></br>
+       
+        <h:message for="productProName" style="color:red;font-size:11"></h:message>
+        
+        </td>
+        <td class="table_td">
+        <h:outputLabel for="productProductCode" value="Product Code " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+        </td>
+        <td class="table_td">
+        <p:inputText id="productProductCode" styleClass="text_ui" value="#{productMB.productDataBean.prodProductCode}"></p:inputText><br></br>
+        <h:message for="productProductCode" style="color:red;font-size:11px;"></h:message>
+        </td>
+        </tr>
+        <tr>
+        
+        <td class="table_td">
+        <h:outputLabel for="productBrand" value="Brand " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+        </td>
+        <td class="table_td"><p:inputText id="productBrand" styleClass="text_ui" value="#{productMB.productDataBean.prodBrand}"></p:inputText><br />
+        <h:message for="productBrand" style="color:red;font-size:11"></h:message>
+        </td>
+        <td class="table_td">
+        <h:outputLabel for="productSize" value="Size " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+        </td>
+        <td class="table_td">
+        <p:inputText id="productSize" styleClass="text_ui" value="#{productMB.productDataBean.prodSize}"></p:inputText><br></br>
+        <h:message for="productSize" style="color:red;font-size:11"></h:message>
+        </td>
+        </tr>
+        <tr>
+        
+        <td class="table_td">
+        <h:outputLabel for="productColor" value="Type " styleClass="label_ui"></h:outputLabel>
+        </td>
+        <td class="table_td">
+        <p:inputText id="productColor" styleClass="text_ui" value="#{productMB.productDataBean.prodColor}"></p:inputText><br></br>
+        <h:message for="productColor" style="color:red;font-size:11"></h:message>
+        </td>
+        <td class="table_td">
+        <h:outputLabel for="productUnit" value="Unit " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+        </td>
+        <td class="table_td">
+        <p:selectOneMenu id="productUnit" effect="fold" styleClass="selecttext_ui" value="#{productMB.productDataBean.prodUnit}">
+        <f:selectItem itemLabel="Please Choose Unit" itemValue="030"></f:selectItem>
+          <f:selectItem itemLabel="Mm" itemValue="Mm"></f:selectItem>  
+        <f:selectItem itemLabel="Cm" itemValue="Cm"></f:selectItem>
+        <f:selectItem itemLabel="Meter" itemValue="Meter"></f:selectItem>
+         <f:selectItem itemLabel="M2" itemValue="M2"></f:selectItem>
+        <f:selectItem itemLabel="M3" itemValue="M3"></f:selectItem>
+        <f:selectItem itemLabel="Kg" itemValue="Kg"></f:selectItem>
+        <f:selectItem itemLabel="Roll" itemValue="Roll"></f:selectItem>
+        <f:selectItem itemLabel="Ton" itemValue="Ton"></f:selectItem>  
+        <f:selectItem itemLabel="Unit" itemValue="Unit"></f:selectItem>       
+        <f:selectItem itemLabel="Hour" itemValue="Hour"></f:selectItem>
+        <f:selectItem itemLabel="Day" itemValue="Day"></f:selectItem>  
+         <f:selectItem itemLabel="Litter" itemValue="Litter"></f:selectItem>  
+        <f:selectItem itemLabel="Pieces" itemValue="Pieces"></f:selectItem>       
+         <f:selectItem itemLabel="Bag" itemValue="Bag"></f:selectItem>  
+         <f:selectItem itemLabel="Zag" itemValue="Zag"></f:selectItem>
+          <f:selectItem itemLabel="Zak" itemValue="Zak"></f:selectItem>
+        </p:selectOneMenu><br></br>
+        <h:message for="productUnit" style="color:red;font-size:11px;"></h:message>
+        </td>
+        </tr>
+        <tr>
+        
+        <td class="table_td">
+        <h:outputLabel for="productActulPrice" value="Actual Cost " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+        </td>
+        <td class="table_td"><p:inputText id="productActulPrice" styleClass="text_ui" value="#{productMB.productDataBean.prodActualPrice}"></p:inputText><br />
+        <h:message for="productActulPrice" style="color:red;font-size:11"></h:message>
+        </td>
+        <td class="table_td">
+        <h:outputLabel for="productMarketPrice" value="Market Price " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+        </td>
+        <td class="table_td">
+        <p:inputText id="productMarketPrice" styleClass="text_ui" value="#{productMB.productDataBean.prodMarketPrice}"></p:inputText><br></br>
+        <h:message for="productMarketPrice" style="color:red;font-size:11"></h:message>
+        </td>
+        </tr>
+        <tr>
+        
+        <td class="table_td">
+        <h:outputLabel for="productDesc" value="Description " styleClass="label_ui"></h:outputLabel><span style="color:red"></span>
+        </td>
+        <td class="table_td">
+        <p:inputTextarea id="productDesc" styleClass="textArea_ui" value="#{productMB.productDataBean.prodDescription}"></p:inputTextarea><br></br>
+        <h:message for="productDesc" style="color:red;font-size:11"></h:message>
+        </td>
+        </tr>
+      </table>
+      
+      <table class="table_UI" cellpadding="10px">
+        <tr align="center">
+				<td colspan="4"><h:commandButton value="Submit"
+						action="#{productMB.submit}" styleClass="button"  >
+					</h:commandButton>
+					<h:commandButton value="Reset" action="#{productMB.reset}" styleClass="button">
+					</h:commandButton>
+					<h:commandButton value="Cancel" action="#{productMB.cancel}" styleClass="button"></h:commandButton>
+				</td>
+			</tr>
+			<tr><td>
+			<p:dialog id="basicDialog" header="Confirmation Message" style="" visible="#{!productMB.valid}">
+			<h:panelGrid class="label_ui" columns="2"  style="font-size:14px; width:450px;height:100px" align="left" cellspacing="5px" >
+	        <p style="font-style: 'HelveticaNeueLT Pro 55 Roman';font-size:16px;color:black;font-family:'Helvetica Neue LT Pro 55';">Successfully saved the Product details.</p>
+	        <h:commandButton value="Ok"  class="button" action="#{productMB.productPageLoad}" ></h:commandButton>
+	        </h:panelGrid>
+</p:dialog>
+			</td></tr>
+        </table>
+        
+							</rich:panel>
+						</div>
+					</td>
+				</tr>
+				<tr><td><br /></td></tr>
+<tr><td align="center"><h:outputText value="Copyright © PT. Neotural Era Graha" style="color:#2C238C"></h:outputText></td></tr>
+<tr><td><br /></td></tr>
+			</table>
+			 <p:dialog header="Translation" widgetVar="dlg3" showEffect="explode" hideEffect="shake" height="300" width="400" >
+		 <rich:panel>
+<h:panelGrid columns="3">
+<h:outputText value="Category"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="kategori"></h:outputText>
+<h:outputText value="Product Name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="nama Produk"></h:outputText>
+<h:outputText value="Sub Category 1"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Sub Kategori 1"></h:outputText>
+<h:outputText value="Sub Category 2"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Sub Kategori 2"></h:outputText>
+<h:outputText value="Product Code"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Kode Produk"></h:outputText>
+<h:outputText value="Brand"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="merek"></h:outputText>
+<h:outputText value="Size"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="ukuran"></h:outputText>
+<h:outputText value="Type"></h:outputText><h:outputText value=":"></h:outputText>
+<h:outputText value="Mengetik"></h:outputText>
+<h:outputText value="Unit"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="satuan"></h:outputText>
+<h:outputText value="Actual Price"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Harga aktual"></h:outputText>
+<h:outputText value="Market Price"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Harga pasar"></h:outputText>
+<h:outputText value="Description"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="deskripsi"></h:outputText>
+<h:outputText value="Vendor"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Penjaja"></h:outputText>
+<h:outputText value="Description"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="deskripsi"></h:outputText>
+</h:panelGrid>
+</rich:panel>
+</p:dialog>
+		</h:form>
+	</body>
+</ui:composition>

@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	 <link rel="stylesheet" href="../../css/liusenCss.css">
+ 
+</link> 
+
+	</h:head>
+	<body bgcolor="#4C6D90" >
+	
+	<h:form id="CustomerView">
+	<table align="center" bgcolor="#fff" >
+	<tr bgcolor="#fff"><td>
+	<ui:include src="../../pages/xhtml/templates/header.xhtml"></ui:include>
+	</td></tr>
+	<tr><td>
+<ui:include src="/pages/xhtml/templates/menunew.xhtml" />
+	</td></tr>
+	<tr><td>
+	<table>
+	<tr><td style="width: 300px"><strong style="color:#2C238C"> Welcome, #{loginMB.invusername}.</strong></td><td style="width: 426px" align="center"><p:clock pattern="dd-MM-yyyy HH:mm:ss" mode="server"></p:clock></td>
+	<td style="width: 308px" align="right"><h:commandButton value="Logout" action="#{loginMB.logout()}" styleClass="button"></h:commandButton>
+	</td></tr>
+	</table>
+	</td></tr>
+	<tr>
+	<td><br></br></td>
+	</tr>
+	<tr><td>
+	
+	<div align="center">
+	
+				<h:outputText styleClass="text_Header" style="font-weight:bold"
+					value="CUSTOMER VIEW"/><br /><br />
+					</div>
+					<div align="center">
+					<table><tr><td>
+					<rich:panel styleClass="class2"  headerClass="head2" bodyClass="body3" style="width:400px;height:150px">
+	 <f:facet name="header">
+            Search by Customer Name<p:spacer height="10px" width="50px"></p:spacer>
+            <p:commandButton value="Help" type="button" onclick="PF('dlg3').show();"></p:commandButton>
+        </f:facet>
+        <table class="paneltable_UI" cellpadding="7px"><tr><td class="table_td">
+        <h:outputLabel for="cusViewName" value="Customer Name " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span> </td>
+        <td class="table_td"><p:inputText id="cusViewName" styleClass="text_ui" value="#{customerViewMB.customerDataBean.custCustomerName}"></p:inputText> 
+        <br></br>
+        <h:message for="cusViewName" style="color:red;font-size:11"></h:message>
+        </td>
+        </tr>
+        <tr>
+        <td class="table_td"></td><td class="table_td"><h:commandButton styleClass="button" value="Search" style="color: #CFF;" action="#{customerViewMB.searchCustomerName}"></h:commandButton> </td>
+        </tr>
+        </table>
+        </rich:panel></td>
+        <td>
+					<rich:panel styleClass="class2"  headerClass="head2" bodyClass="body3" style="width:400px;height:150px">
+	 <f:facet name="header">
+            Search by City<p:spacer height="10px" width="50px"></p:spacer>
+            <p:commandButton value="Help" type="button" onclick="PF('dlg4').show();"></p:commandButton>
+        </f:facet>
+        <table class="paneltable_UI" cellpadding="7px"><tr><td class="table_td">
+        <h:outputLabel for="CusCityName" value="City Name " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span> </td>
+        <td class="table_td"><p:inputText id="CusCityName" styleClass="text_ui" value="#{customerViewMB.customerDataBean.custCity}"></p:inputText> 
+        <br></br>
+        <h:message for="CusCityName" style="color:red;font-size:11"></h:message>
+        </td>
+        </tr>
+        <tr>
+        <td class="table_td"></td><td class="table_td"><h:commandButton styleClass="button" value="Search" action="#{customerViewMB.searchCity}"></h:commandButton> </td>
+        </tr>
+        </table>
+        </rich:panel></td>
+        </tr></table>
+					</div>
+					<p:spacer height="20px"></p:spacer>
+					<div align="center" style="width: 1052px">
+					<p:dataTable id="cusView" var="cus" rows="10" rendered="#{!customerViewMB.flag}" value="#{customerViewMB.custViewList}"
+					 paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="5,10,15">
+					<f:facet name="header">
+						List of Customer View
+						<h:commandLink>
+        				<p:graphicImage value="/images/Excel-icon.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="xls" target="cusView" fileName="cusViewList"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+     					<p:graphicImage value="/images/pdf.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="pdf" target="cusView" fileName="cusViewList"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+    					 <p:graphicImage value="/images/csv.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="csv" target="cusView" fileName="cusViewList"></p:dataExporter>
+        				</h:commandLink>
+						 <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
+        				<p:columnToggler datasource="cusView" trigger="toggler" /> 
+        				
+					</f:facet>
+					
+					<p:column headerText="Name" sortBy="#{cus.custCustomerName}">
+					<h:outputText value="#{cus.custCustomerName}"></h:outputText>
+					</p:column>
+					
+					<p:column headerText="Phone Number" sortBy="#{cus.custPhoneNumber}">
+					<h:outputText value="#{cus.custPhoneNumber}"></h:outputText>
+					</p:column>
+					<p:column headerText="City" sortBy="#{cus.custCity}">
+					<h:outputText value="#{cus.custCity}"></h:outputText>
+					</p:column>
+					
+					<p:column headerText="Country" sortBy="#{cus.custCountry}">
+					<h:outputText value="#{cus.custCountry}"></h:outputText>
+					</p:column>
+					<p:column headerText="View" width="50">
+					<p:commandButton update=":CustomerView:customerDetail" oncomplete="PF('customerDialog').show()" icon="ui-icon-search" action="#{customerViewMB.customerViewByName}">
+					<f:setPropertyActionListener value="#{cus.custCustomerName}" target="#{customerViewMB.customerDataBean.custCustomerName}"></f:setPropertyActionListener>
+					<f:setPropertyActionListener value="#{cus.custCity}" target="#{customerViewMB.customerDataBean.custCity}"></f:setPropertyActionListener>
+					</p:commandButton>
+					</p:column>
+					<p:column headerText="Edit" width="50" rendered="#{!customerViewMB.editflag}">
+					<p:commandButton icon="ui-icon-pencil" action="#{customerViewMB.customerEdit}" >
+					<f:setPropertyActionListener value="#{cus.custCustomerName}" target="#{customerViewMB.customerDataBean.custCustomerName}"></f:setPropertyActionListener>
+					<f:setPropertyActionListener value="#{cus.custCity}" target="#{customerViewMB.customerDataBean.custCity}"></f:setPropertyActionListener>
+					</p:commandButton>
+					</p:column>
+					<p:column headerText="Delete" width="50" rendered="#{!customerViewMB.deleteflag}"> 
+					<p:commandButton icon="ui-icon-close" oncomplete="PF('customerDeleteDialog').show()"  action="#{customerViewMB.delete}" >
+					<f:setPropertyActionListener value="#{cus.custCustomerName}" target="#{customerViewMB.customerDataBean.custCustomerName}"></f:setPropertyActionListener>
+					<f:setPropertyActionListener value="#{cus.custCity}" target="#{customerViewMB.customerDataBean.custCity}"></f:setPropertyActionListener>
+					</p:commandButton></p:column>
+					<f:facet name="footer">
+					Export Page Data Only
+					<h:commandLink>
+        				<p:graphicImage value="/images/Excel-icon.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="xls" target="cusView" fileName="cusViewList" pageOnly="true"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+     					<p:graphicImage value="/images/pdf.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="pdf" target="cusView" fileName="cusViewList" pageOnly="true"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+    					 <p:graphicImage value="/images/csv.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="csv" target="cusView" fileName="custViewList" pageOnly="true"></p:dataExporter>
+        				</h:commandLink>
+					</f:facet>
+					</p:dataTable>
+					</div>
+					<p:spacer width="1050px" height="400px"></p:spacer>
+					
+					</td>
+					</tr>
+					<tr><td align="center"><h:outputText value="Copyright © PT. Neotural Era Graha" style="color:#2C238C"></h:outputText>
+					<br /><br />
+					</td></tr>
+
+					</table>
+					<p:dialog id="basicDialog1" header="Confirmation Message" style=""   widgetVar="customerDeleteDialog" visible="#{customerViewMB.valid}">
+			<h:panelGrid class="label_ui" columns="2"  style="font-size:14px; width:450px;height:100px" align="left" cellspacing="5px" >
+	        <p style="font-style: 'HelveticaNeueLT Pro 55 Roman';font-size:16px;color:black;font-family:'Helvetica Neue LT Pro 55';">Successfully deleted the Customer details.</p>
+	        <h:commandButton value="Ok"  class="button" action="#{customerViewMB.customerViewLoad}"  ></h:commandButton>
+	        </h:panelGrid>
+</p:dialog>
+					
+					
+					    <p:dialog header="Customer Info" widgetVar="customerDialog" modal="true" showEffect="drop" hideEffect="clip" resizable="false">
+        	<p:outputPanel id="customerDetail" style="text-align:center;">
+            <p:panelGrid  columns="7" columnClasses="label,value">
+                <f:facet name="header">
+                    <p:graphicImage value="/images/LiusenLogo.png" height="50" width="50"/> 
+                </f:facet>
+ 
+                <h:outputText value="Customer Name" />
+                <h:outputText value=":"></h:outputText>
+                <h:outputText value="#{customerViewMB.customerDataBean.custCustomerName}"></h:outputText>
+ 				<h:outputText></h:outputText>
+                <h:outputText value="Date" />
+                  <h:outputText value=":"></h:outputText>
+                <h:outputText  value="#{customerViewMB.customerDataBean.custDate}">
+ 				<f:convertDateTime pattern="dd-MM-yyyy"></f:convertDateTime>
+ 				</h:outputText>
+                <h:outputText value="Billing Address" />
+                 <h:outputText value=":"></h:outputText>
+                <h:outputText value="#{customerViewMB.customerDataBean.custShipingAddress}"/>
+ 				<h:outputText></h:outputText>
+                <h:outputText value="City" />
+                 <h:outputText value=":"></h:outputText>
+                <h:outputText  value="#{customerViewMB.customerDataBean.custCity}"/>
+                
+                 <h:outputText value="State" />
+                <h:outputText value=":"></h:outputText>
+                <h:outputText value="#{customerViewMB.customerDataBean.custState}"></h:outputText>
+ 				<h:outputText></h:outputText>
+                <h:outputText value="Country" />
+                  <h:outputText value=":"></h:outputText>
+                <h:outputText  value="#{customerViewMB.customerDataBean.custCountry}"/>
+ 
+                <h:outputText value="Phone Number" />
+                 <h:outputText value=":"></h:outputText>
+                <h:outputText value="#{customerViewMB.customerDataBean.custPhoneNumber}"/>
+ 				<h:outputText></h:outputText>
+                <h:outputText value="E-mail" />
+                 <h:outputText value=":"></h:outputText>
+                <h:outputText  value="#{customerViewMB.customerDataBean.custEmail}"/>
+                
+                 <h:outputText value="Tax Number" />
+                <h:outputText value=":"></h:outputText>
+                <h:outputText value="#{customerViewMB.customerDataBean.custTaxNO}"></h:outputText>
+ 				<h:outputText></h:outputText>
+ 				    <h:outputText value="Note" />
+                 <h:outputText value=":"></h:outputText>
+                <h:outputText  value="#{customerViewMB.customerDataBean.custNote}"/>
+                 <h:outputText value="Staff ID" />
+                 <h:outputText value=":"></h:outputText>
+                <h:outputText value="#{customerViewMB.customerDataBean.custStaffId}"/>
+                <h:outputText></h:outputText>
+                
+                
+                
+                
+                
+               
+                <h:outputText></h:outputText>
+                <h:outputText></h:outputText>
+                <h:outputText></h:outputText>
+                <h:outputText></h:outputText>
+            </p:panelGrid>
+        </p:outputPanel>
+       <center><p:commandButton type="button" icon="ui-icon-print"> <p:printer target="customerDetail"></p:printer> </p:commandButton></center> 
+    </p:dialog>
+				
+				
+					
+<p:dialog header="Translation" widgetVar="dlg3" showEffect="explode" hideEffect="shake" height="100" width="400" >
+		<rich:panel>
+<h:panelGrid columns="3">
+<h:outputText value="Search by Customer Name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Cari berdasarkan Nama Pelanggan"></h:outputText>
+<h:outputText value="Customer Name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Nama Pelanggan"></h:outputText>
+</h:panelGrid>
+</rich:panel>
+		</p:dialog>
+		<p:dialog header="Translation" widgetVar="dlg4" showEffect="explode" hideEffect="shake" height="100" width="400" >
+			<rich:panel>
+<h:panelGrid columns="3">
+<h:outputText value="Search by City"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Cari berdasarkan Kota"></h:outputText>
+<h:outputText value="City Name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="nama kota"></h:outputText>
+</h:panelGrid> 
+</rich:panel>
+			</p:dialog>		
+ <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+    </p:confirmDialog>
+     
+					</h:form>
+					</body></ui:composition>
+		
+					

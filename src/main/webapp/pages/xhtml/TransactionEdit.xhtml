@@ -1,0 +1,298 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	 <link rel="stylesheet" href="../../css/liusenCss.css">
+ 
+</link> 
+
+	</h:head>
+	<body bgcolor="#4C6D90" >
+	
+	<h:form id="limit1">
+	<table align="center" bgcolor="#fff">
+	<tr bgcolor="#fff"><td>
+	<ui:include src="../../pages/xhtml/templates/header.xhtml"></ui:include>
+	</td></tr>
+	<tr><td>
+<ui:include src="/pages/xhtml/templates/menunew.xhtml" />
+	</td></tr>
+	<tr><td>
+	<table>
+	<tr><td style="width: 300px"><strong style="color:#2C238C"> Welcome, #{loginMB.invusername}.</strong></td><td style="width: 426px" align="center"><p:clock pattern="dd-MM-yyyy HH:mm:ss" mode="server"></p:clock></td>
+	<td style="width: 308px" align="right"><h:commandButton value="Logout" action="#{loginMB.logout()}" styleClass="button"></h:commandButton>
+	</td></tr>
+	</table>
+	</td></tr>
+	<tr>
+	<td><br></br></td>
+	</tr>
+	<tr><td>
+	
+	<div align="center">
+	
+				<h:outputText styleClass="text_Header" style="font-weight:bold"
+					value="TRANSACTION  EDIT	"/><br /><br />
+			
+	<!-- <h:messages showSummary="false" showDetail="true"   globalOnly="false" style="color:red"  layout="table"></h:messages> -->
+	</div>
+	<br></br><br></br>
+	<div align="center">
+	<rich:panel styleClass="class2" style="width:1000px;" headerClass="head2" bodyClass="body3">
+	 <f:facet name="header">
+            Transaction Edit Form
+             <p:spacer height="10px" width="100px"></p:spacer>
+            <p:commandButton value="Help" type="button" onclick="PF('dlg1').show();"></p:commandButton>
+        </f:facet>
+        <p:dialog header="Translation" widgetVar="dlg3" showEffect="explode" hideEffect="shake" height="300" width="500" >
+		  <h:outputText value="This dialog has nice effects." />
+</p:dialog>
+<h:form>
+		<table align="center" class="table_UI" cellpadding="10px"  style="font-size:14px; width:990px;">
+			
+			<tr>
+			<td>
+			<h:outputLabel for="tran_date" value="Date " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+			
+			</td>
+			<td>
+			<p:calendar id="tran_date" effect="fold" pattern="dd-MM-yyyy" value="#{transactionViewMB.transactionDataBean.transDate}" styleClass="text_ui">
+		  <p:ajax event="dateSelect" process="@this" update="@form" immediate="true"></p:ajax>
+			
+			</p:calendar>
+			<br></br>
+			<h:message for="tran_date" style="color:red;font-size:11"></h:message>
+			</td>
+			<td>
+			<h:outputLabel for="trans_Mode" value="Payment Mode "  styleClass="label_ui"></h:outputLabel>
+			<span style="color:red">*</span>
+			</td>
+			<td>
+			<p:selectOneMenu id="trans_Mode" value="#{transactionViewMB.transactionDataBean.transPaymentType}" disabled="true" styleClass="selecttext_ui">
+			<f:selectItem itemLabel="Please Choose Payment" itemValue="TRAN000"></f:selectItem>
+			<f:selectItem itemLabel="Cash" itemValue="Cash"></f:selectItem>
+			<f:selectItem itemLabel="Card" itemValue="Card"></f:selectItem>
+			<f:selectItem itemLabel="Cheque" itemValue="Cheque"></f:selectItem>
+			<f:selectItem itemLabel="Transfer" itemValue="Transfer"></f:selectItem>
+           
+           <f:ajax render="@form" execute="@form"></f:ajax>
+            	</p:selectOneMenu>
+			
+			<br />
+			<h:message for="trans_Mode" style="color:red;font-size:11"></h:message>
+			</td>
+			</tr>
+			<tr>
+			<td>
+			<h:outputLabel for="tran_Type" value="Transaction Type"  styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+			</td>
+			<td>
+			
+			<p:selectOneMenu id="tran_Type" value="#{transactionViewMB.transactionDataBean.transTransactionType}"  effect="fold" styleClass="selecttext_ui">
+			<f:selectItem itemLabel="Please Choose Transaction" itemValue="TRANT00"></f:selectItem>
+			<f:selectItem itemLabel="Income" itemValue="Income"></f:selectItem>
+			<f:selectItem itemLabel="Expenses" itemValue="Expenses"></f:selectItem>
+		    <f:ajax render="@form" execute="@form"></f:ajax>
+			</p:selectOneMenu>
+			<br></br>
+			<h:message for="tran_Type" style="color:red;font-size:11"></h:message>
+			</td>
+			<td>
+			<h:outputLabel for="tran_Name" value="Name "  styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+			</td>
+			<td>
+			<p:inputText id="tran_Name" value="#{transactionViewMB.transactionDataBean.transName}" styleClass="text_ui">
+		   <f:ajax render="@form" execute="@form"></f:ajax>
+			
+			</p:inputText>
+			
+			<br></br>
+			<h:message for="tran_Name" style="color:red;font-size:11"></h:message>
+			</td>
+			</tr>
+			<tr>
+			<td>
+			<h:outputLabel for="trans_Amnt" value="Amount "  styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+			</td>
+			<td>
+			<p:inputText styleClass="text_ui" id="trans_Amnt" value="#{transactionViewMB.transactionDataBean.transAmmount}" >
+           <f:ajax render="@form" execute="@form"></f:ajax>
+			</p:inputText>
+			
+			<br />
+			<h:message for="trans_Amnt" style="color:red;font-size:11"></h:message>
+			</td>
+			<td>
+			<h:outputLabel for="trans_Not" value="Note "  styleClass="label_ui"></h:outputLabel>
+			</td>
+			<td>
+			<p:inputTextarea id="trans_Not" styleClass="textArea_ui" value="#{transactionViewMB.transactionDataBean.transNote}">
+           <f:ajax render="@form" execute="@form"></f:ajax>
+			
+			</p:inputTextarea>
+			
+			<br />
+			<h:message for="trans_Not" style="color:red;font-size:11"></h:message>
+			</td>
+			</tr>
+			<tr>
+			<td>
+			<h:outputLabel for="tran_cardB" value="Bank Name "  styleClass="label_ui" rendered="#{transactionMB.transactionDataBean.transPaymentType == 'Card'}" ></h:outputLabel>
+			<h:outputText value="*" style="color:red" rendered="#{transactionViewMB.transactionDataBean.transPaymentType == 'Card'}"></h:outputText>
+			</td>
+			<td>
+			<p:inputText id="tran_cardB" styleClass="text_ui" value="#{transactionViewMB.transactionDataBean.transCardBankName}"   rendered="#{transactionMB.transactionDataBean.transPaymentType == 'Card'}">
+                <f:ajax render="@form" execute="@form"></f:ajax>	        
+			
+			</p:inputText><br/>
+			<h:message for="tran_cardB" style="color:red;font-size:11" rendered="#{transactionViewMB.transactionDataBean.transPaymentType == 'Card'}"></h:message>
+			</td>
+			<td>
+			<h:outputLabel for="trans_cardN"  styleClass="label_ui" value="Account Number " rendered="#{transactionMB.transactionDataBean.transPaymentType == 'Card'}"></h:outputLabel>
+			<h:outputText value="*" style="color:red" rendered="#{transactionViewMB.transactionDataBean.transPaymentType == 'Card'}"></h:outputText>
+			
+			</td>
+			<td>
+			<p:inputText id="trans_cardN" styleClass="text_ui" value="#{transactionViewMB.transactionDataBean.transCardAccountNo}"  rendered="#{transactionMB.transactionDataBean.transPaymentType == 'Card'}">
+            <f:ajax render="@form" execute="@form"></f:ajax>			
+			</p:inputText><br></br>
+			<h:message for="trans_cardN" style="color:red;font-size:11" rendered="#{transactionViewMB.transactionDataBean.transPaymentType == 'Card'}"></h:message>
+			</td>
+			</tr>
+			<tr>
+			<td>
+			<h:outputLabel for="tran_TransB"  styleClass="label_ui" value="Bank Name " rendered="#{transactionViewMB.transactionDataBean.transPaymentType == 'Transfer'}"></h:outputLabel>
+			<h:outputText value="*" style="color:red" rendered="#{transactionViewMB.transactionDataBean.transPaymentType == 'Transfer'}"></h:outputText>
+			</td>
+			<td>
+			<p:inputText id="tran_TransB" styleClass="text_ui" value="#{transactionViewMB.transactionDataBean.transTransferBName}"   rendered="#{transactionMB.transactionDataBean.transPaymentType == 'Transfer'}">
+            	        <p:ajax  event="valueChange"  process="@this" update="@form" immediate="true"></p:ajax>
+            
+			
+			</p:inputText><br></br>
+			<h:message for="tran_TransB" style="color:red;font-size:11" rendered="#{transactionViewMB.transactionDataBean.transPaymentType == 'Transfer'}"></h:message>
+			</td>
+			<td>
+			<h:outputLabel for="trans_TransN" value="Account Number "  styleClass="label_ui" rendered="#{transactionViewMB.transactionDataBean.transPaymentType == 'Transfer'}"></h:outputLabel>
+			<h:outputText value="*" style="color:red" rendered="#{transactionViewMB.transactionDataBean.transPaymentType == 'Transfer'}"></h:outputText>
+			</td>
+			<td>
+			<p:inputText id="trans_TransN"  styleClass="text_ui"  value="#{transactionViewMB.transactionDataBean.transtranferAccontNo}"  rendered="#{transactionMB.transactionDataBean.transPaymentType == 'Transfer'}">
+	        <p:ajax  event="valueChange"  process="@this" update="@form" immediate="true"></p:ajax>
+			
+			</p:inputText><br></br>
+			<h:message for="trans_TransN" style="color:red;font-size:11" rendered="#{transactionViewMB.transactionDataBean.transPaymentType == 'Transfer'}"></h:message>
+			</td>
+			</tr>
+			<tr>
+			<td>
+			<h:outputLabel for="tran_ChequeB"  styleClass="label_ui" value="Bank Name " rendered="#{transactionViewMB.transactionDataBean.transPaymentType == 'Cheque'}"></h:outputLabel>
+			<h:outputText value="*" style="color:red" rendered="#{transactionViewMB.transactionDataBean.transPaymentType == 'Cheque'}"></h:outputText>
+			</td>
+			<td>
+			<p:inputText id="tran_ChequeB"  styleClass="text_ui"  value="#{transactionViewMB.transactionDataBean.transChequeBName}"    rendered="#{transactionMB.transactionDataBean.transPaymentType == 'Cheque'}">
+	        <p:ajax  event="valueChange"  process="@this" update="@form" immediate="true"></p:ajax>
+			
+			</p:inputText><br></br>
+			<h:message for="tran_ChequeB" style="color:red;font-size:11" rendered="#{transactionViewMB.transactionDataBean.transPaymentType == 'Cheque'}"></h:message>
+			</td>
+			<td>
+			<h:outputLabel for="tran_ChequeN"  styleClass="label_ui" value="Cheque Number " rendered="#{transactionMB.transactionDataBean.transPaymentType == 'Cheque'}"></h:outputLabel>
+			<h:outputText value="*" style="color:red" rendered="#{transactionViewMB.transactionDataBean.transPaymentType == 'Cheque'}"></h:outputText>
+			</td>
+			<td>
+			<p:inputText id="tran_ChequeN" styleClass="text_ui" value="#{transactionViewMB.transactionDataBean.transChequeNo}" rendered="#{transactionMB.transactionDataBean.transPaymentType == 'Cheque'}">
+	        <p:ajax  event="valueChange"  process="@this" update="@form" immediate="true"></p:ajax>
+			
+			</p:inputText><br></br>
+			<h:message for="tran_ChequeN" style="color:red;font-size:11" rendered="#{transactionViewMB.transactionDataBean.transPaymentType == 'Cheque'}"></h:message>
+			</td>
+			</tr>
+			<tr>
+			<td>
+			<h:outputLabel  styleClass="label_ui" for="tran_ChequeDate" value="Cheque Date" rendered="#{transactionMB.transactionDataBean.transPaymentType == 'Cheque'}"></h:outputLabel>
+			<h:outputText value="*" style="color:red" rendered="#{transactionViewMB.transactionDataBean.transPaymentType == 'Cheque'}"></h:outputText>
+			
+			</td>
+			<td>
+			<p:calendar id="tran_ChequeDate" value="#{transactionViewMB.transactionDataBean.transChequeDate}" rendered="#{transactionMB.transactionDataBean.transPaymentType == 'Cheque'}" pattern="dd-MM-yyyy">
+			<p:ajax event="dateSelect" process="@form" update="@this" immediate=""></p:ajax>
+			</p:calendar>
+			<br></br>
+			<h:message for="tran_ChequeDate" style="color:red;font-size:11" rendered="#{transactionViewMB.transactionDataBean.transPaymentType == 'Cheque'}" ></h:message>
+			</td>
+			</tr>
+			</table>
+			</h:form>
+			
+		
+			
+			 <tr align="center">
+				<td colspan="4"><h:commandButton value="Update"
+						action="#{transactionViewMB.save}" styleClass="button"  >
+					</h:commandButton>
+					
+					<h:commandButton value="Cancel" action="home.xhtml?faces-redirect=true" styleClass="button"></h:commandButton>
+				</td>
+			</tr>
+			<tr><td>
+			<p:dialog id="basicDialog" header="Confirmation Message" style="" visible="#{!transactionViewMB.valid}">
+			<h:panelGrid class="label_ui" columns="2"  style="font-size:14px; width:450px;height:100px" align="left" cellspacing="5px" >
+	        <p style="font-style: 'HelveticaNeueLT Pro 55 Roman';font-size:16px;color:black;font-family:'Helvetica Neue LT Pro 55';">Successfully Update  the Transaction details.</p>
+	        <h:commandButton value="Ok"  class="button" action="#{transactionViewMB.TransactionViewLoad}" ></h:commandButton>
+	        </h:panelGrid>
+</p:dialog>
+			</td></tr>
+		</rich:panel>
+</div></td></tr><tr><td><br /></td></tr>
+
+			
+<tr><td align="center"><h:outputText value="Copyright © PT. Neotural Era Graha" style="color:#2C238C"></h:outputText></td></tr>
+<tr><td><br /></td></tr>
+</table>
+ <p:dialog header="Translation" widgetVar="dlg1" showEffect="explode" hideEffect="shake" height="300" width="400" >
+<rich:panel>
+<h:panelGrid columns="3">
+<h:outputText value="Date"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Tanggal"></h:outputText>
+<h:outputText value="Payment Mode"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Modus Pembayaran"></h:outputText>
+<h:outputText value="Transaction type"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Tipe transaksi"></h:outputText>
+<h:outputText value="Name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Nama"></h:outputText>
+<h:outputText value="Amount"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Jumlah"></h:outputText>
+<h:outputText value="Note"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Catatan"></h:outputText>
+<h:outputText value="Bank name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="nama Bank"></h:outputText>
+<h:outputText value="Account Number"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Nomor akun"></h:outputText>
+<h:outputText value="Cheque date"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="tanggal Cek"></h:outputText>
+<h:outputText value="Cheque number"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Cek nomor"></h:outputText>
+
+</h:panelGrid>	
+</rich:panel>	
+</p:dialog>
+	</h:form>
+	</body>
+</ui:composition>
+	

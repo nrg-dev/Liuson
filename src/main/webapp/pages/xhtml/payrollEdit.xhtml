@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	 <link rel="stylesheet" href="../../css/liusenCss.css">
+ 
+</link> 
+<style type="text/css">
+	.special tr[id]{
+		display:none; 
+	}
+	*.rf-cal-hdr-month{
+	
+	    font-size: 14px;
+	}
+</style> 
+	</h:head>
+	<body bgcolor="#4C6D90" >
+	
+	<h:form id="payrollView">
+	<table align="center" bgcolor="#fff" >
+	<tr bgcolor="#fff"><td>
+	<ui:include src="../../pages/xhtml/templates/header.xhtml"></ui:include>
+	</td></tr>
+	<tr><td>
+<ui:include src="/pages/xhtml/templates/menunew.xhtml" />
+	</td></tr>
+	<tr><td>
+	<table>
+	<tr><td style="width: 300px"><strong style="color:#2C238C"> Welcome, #{loginMB.invusername}.</strong></td><td style="width: 426px" align="center"><p:clock pattern="dd-MM-yyyy HH:mm:ss" mode="server"></p:clock></td>
+	<td style="width: 308px" align="right"><h:commandButton value="Logout" action="#{loginMB.logout()}" styleClass="button"></h:commandButton>
+	</td></tr>
+	</table>
+	</td></tr>
+	<tr>
+	<td><br></br></td>
+	</tr>
+	<tr><td>
+	
+	<div align="center">
+	
+				<h:outputText styleClass="text_Header" style="font-weight:bold"
+					value="PAYROLL GENERATION"/><br /><br />
+					</div>
+					<div align="center">
+					<table>
+					<tr align="center">
+					<td colspan="2">
+					<rich:panel styleClass="class2"  headerClass="head2" bodyClass="body3" style="width:400px;height:100px">
+					<f:facet name="header">
+            Month &amp; Year
+        </f:facet>
+        <table><tr>
+        <td>
+        <h:outputLabel for="payMonth" value="Month &amp; Year " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+        </td>
+        <td>
+        <p:calendar id="payMonth" pattern="MMMMMMM yyyy" value="#{payrollViewMB.employeeDataBean.empPayMonth}" rendered="#{payrollViewMB.flag}"> </p:calendar>
+       	<p:calendar id="payMonth1" pattern="MMMMMMM yyyy" disabled="true" value="#{payrollViewMB.employeeDataBean.empPayMonth}" rendered="#{!payrollViewMB.flag}"> </p:calendar>
+        
+        <br></br>
+        <h:message for="payMonth" style="color:red;font-size:11"></h:message>
+						</td></tr></table>
+						</rich:panel>
+						
+						</td>
+					</tr>
+					</table>
+					</div>
+					<p:spacer height="20px"></p:spacer>
+					<div align="center">
+	<rich:panel styleClass="class2" style="width:1000px;" headerClass="head2" bodyClass="body3" >
+	 <f:facet name="header">
+            Payroll Edit  Form
+        </f:facet>
+        <h:form>
+		<table align="center" class="table_UI" cellpadding="10px">
+			<tr>
+				<td class="table_td"><h:outputLabel for="payGenDate" value="Date " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+				</td>
+				<td><p:calendar id="payGenDate"
+						value="#{payrollViewMB.employeeDataBean.empPayTodayDate}" disabled="true" ></p:calendar> <br></br>
+					<h:message for="payGenDate" style="color:red;font-size:11"></h:message></td>
+				<td class="table_td"><h:outputLabel for="payGenEName" value="Employee Name " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+				</td>
+				<td><p:inputText id="payGenEName"
+						value="#{payrollViewMB.employeeDataBean.empEmployeeName}" styleClass="text_ui" disabled="true"></p:inputText> <br />
+					<h:message for="payGenEName" style="color:red;font-size:11"></h:message></td>
+			</tr>
+
+			<tr>
+				<td><h:outputLabel for="payGenEId" value="Employee ID " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+				</td>
+				<td><p:inputText id="payGenEId"
+						value="#{payrollViewMB.employeeDataBean.empEmployeeId}" styleClass="text_ui" disabled="true"></p:inputText> <br></br>
+					<h:message for="payGenEId" style="color:red;font-size:11"></h:message></td>
+				<td><h:outputLabel for="payGenBasic" value="Basic Salary " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+				</td>
+				<td><p:inputText id="payGenBasic"
+						value="#{payrollViewMB.employeeDataBean.empBasicSalary}" styleClass="text_ui" disabled="true">
+						<f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+						</p:inputText> <br />
+					<h:message for="payGenBasic" style="color:red;font-size:11"></h:message></td>
+			</tr>
+
+			<tr>
+				<td><h:outputLabel for="payGenDes" value="Designation" styleClass="label_ui"></h:outputLabel>
+				</td>
+				<td><p:inputText id="payGenDes"
+						value="#{payrollViewMB.employeeDataBean.empDesignation}" styleClass="text_ui" disabled="true"> </p:inputText> <br></br>
+					<h:message for="venWeb" style="color:red;font-size:11"></h:message></td>
+				<td><h:outputLabel for="payGenMonth" value="Payroll Month &amp; Year " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+				</td>
+				<td><p:calendar id="payGenMonth"
+						value="#{payrollViewMB.employeeDataBean.empPayMonth}"  styleClass="text_ui" pattern="MMMMMMM yyyy" disabled="true"></p:calendar> <br />
+					<h:message for="payGenMonth" style="color:red;font-size:11"></h:message></td>
+			</tr>
+
+			<tr>
+				<td><h:outputLabel for="payGenWork" value="Working Days " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+				</td>
+				<td><p:inputText id="payGenWork"
+						value="#{payrollViewMB.employeeDataBean.empPayWorkDays}" styleClass="text_ui">
+					<p:ajax event="valueChange" process="@this" update="@form" immediate="true"></p:ajax>
+						
+						</p:inputText> <br></br>
+					<h:message for="payGenWork" style="color:red;font-size:11"></h:message></td>
+				<td><h:outputLabel for="payGenComm" value="Commission " styleClass="label_ui"></h:outputLabel>
+				</td>
+				<td><p:inputText id="payGenComm"
+						value="#{payrollViewMB.employeeDataBean.empPayCommision}"  valueChangeListener="#{payrollViewMB.calComision}" styleClass="text_ui" >
+						<p:ajax event="valueChange" process="@this" update="@form" immediate="true"></p:ajax>
+						</p:inputText> <br />
+					<h:message for="payGenComm" style="color:red;font-size:11"></h:message></td>
+			</tr>
+
+			<tr>
+				<td><h:outputLabel for="payGenOT" value="Over Time Amount " styleClass="label_ui"></h:outputLabel>
+				</td>
+				<td><p:inputText id="payGenOT"
+						value="#{payrollViewMB.employeeDataBean.empPayOTAmmount}" valueChangeListener="#{payrollViewMB.calAmt}"  styleClass="text_ui">
+					<p:ajax event="valueChange" process="@this" update="@form" immediate="true"></p:ajax>
+						</p:inputText> <br></br>
+					<h:message for="payGenOT" style="color:red;font-size:11"></h:message></td>
+				<td><h:outputLabel for="payGenLoan" value="Loan Advance " styleClass="label_ui"></h:outputLabel>
+				</td>
+				<td><p:inputText id="payGenLoan"
+						value="#{payrollViewMB.employeeDataBean.empPayLoanAdvance}"  valueChangeListener="#{payrollViewMB.calLoan}" styleClass="text_ui">
+						<p:ajax event="valueChange" process="@this" update="@form" immediate="true"></p:ajax>
+						</p:inputText> <br></br>
+					<h:message for="payGenLoan" style="color:red;font-size:11"></h:message></td>
+					
+					
+			</tr>
+
+			 <tr>
+				<td><h:outputLabel for="payGenTotal" value="Total Salary " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+				</td>
+				<td>
+				
+				<h:outputText id="payGenTotal"
+						value="#{payrollViewMB.employeeDataBean.empPayTotalSalary}" styleClass="text_ui" disabled="true">
+						<f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+						</h:outputText> <br></br>
+					<h:message for="payGenTotal" style="color:red;font-size:11"></h:message></td>
+				
+			</tr> 
+</table>
+		</h:form>	
+<table align="center" class="table_UI" cellpadding="10px">
+			<tr align="center">
+				<td colspan="4"><h:commandButton value="Update"
+						action="#{payrollViewMB.submit}" styleClass="button"  >
+					</h:commandButton>
+					
+					<h:commandButton value="Cancel" action="#{payrollViewMB.cancel}" styleClass="button"></h:commandButton>
+				</td>
+			</tr>
+		</table></rich:panel>
+	
+</div>
+					<p:spacer width="1050px" height="400px" ></p:spacer>
+					
+					</td>
+					</tr>
+					
+					<tr><td align="center"><h:outputText value="Copyright © PT. Neotural Era Graha" style="color:#2C238C"></h:outputText>
+					<br /><br />
+					</td></tr>
+
+					</table>
+					
+					
+					<p:dialog id="basicDialog1" header="Confirmation Message" style=""   widgetVar="payrollDeleteDialog"  visible="#{!payrollViewMB.flag5}">
+			<h:panelGrid class="label_ui" columns="2"  style="font-size:14px; width:450px;height:100px" align="left" cellspacing="5px" >
+	        <p style="font-style: 'HelveticaNeueLT Pro 55 Roman';font-size:16px;color:black;font-family:'Helvetica Neue LT Pro 55';">Successfully updated the payroll</p>
+	        <h:commandButton value="Ok"  class="button" action="#{payrollViewMB.payrollViewLoad}" onclick="basicDialog1.hide();"  ></h:commandButton>
+	        </h:panelGrid>
+</p:dialog>
+					
+					
+					
+					</h:form>
+					</body></ui:composition>

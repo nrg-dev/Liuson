@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	 <link rel="stylesheet" href="../../css/liusenCss.css">
+ 
+</link> 
+
+	</h:head>
+	<body bgcolor="#4C6D90" >
+	
+	<h:form id="limit1">
+	<table align="center" bgcolor="#fff">
+	<tr bgcolor="#fff"><td>
+	<ui:include src="../../pages/xhtml/templates/header.xhtml"></ui:include>
+	</td></tr>
+	<tr><td>
+<ui:include src="/pages/xhtml/templates/menunew.xhtml" />
+	</td></tr>
+	<tr><td>
+	<table>
+	<tr><td style="width: 300px"><strong style="color:#2C238C"> Welcome, #{loginMB.invusername} - #{loginMB.rollname}.</strong></td><td style="width: 426px" align="center"><p:clock pattern="dd-MM-yyyy HH:mm:ss" mode="server"></p:clock></td>
+	<td style="width: 308px" align="right"><h:commandButton value="Logout" action="#{loginMB.logout()}" styleClass="button"></h:commandButton>
+	</td></tr>
+	</table>
+	</td></tr>
+	<tr >
+	<td>
+	  
+	</td>
+	</tr>
+	<tr><td>
+	
+	<div align="center">
+	
+				<h:outputText styleClass="text_Header" style="font-weight:bold"
+					value="Sales Order Approval View"/><br /><br />
+			
+	<!-- <h:messages showSummary="false" showDetail="true"   globalOnly="false" style="color:red"  layout="table"></h:messages> -->
+	</div>
+	<br></br><br></br>
+	<div align="center">
+	<rich:panel styleClass="class2" style="width:920px;" headerClass="head2" bodyClass="body3" >
+	 <f:facet name="header" style="color:white;">
+           Sales Order Approval View Form
+         <p:spacer height="10px" width="100px" style="color:white;"></p:spacer>
+            <p:commandButton value="Help" type="button" onclick="PF('dlg3').show();"></p:commandButton>
+        </f:facet>
+        <p:dialog header="Translation" widgetVar="dlg3" showEffect="explode" hideEffect="shake" height="300" width="500" >
+		  <h:outputText value="This dialog has nice effects." />
+</p:dialog>
+		<table align="center" class="table_UI" cellpadding="10px">
+			<tr>
+			<td class="table_td">			
+			<h:outputLabel value="Date " styleClass="label_ui"></h:outputLabel></td>
+			<td class="table_td">
+			<h:outputLabel pattern="dd-MM-yyyy" value="#{salesRemainderMB.salesOrderDataBean.saleDate}" styleClass="label_ui">
+			<f:convertDateTime pattern="dd-MM-yyyy"></f:convertDateTime>
+			</h:outputLabel><br />
+			</td>			
+			<td class="table_td">
+			<h:outputLabel value="Delivery Date" styleClass="label_ui"></h:outputLabel>
+			</td>
+			<td class="table_td">
+			<h:outputLabel value="#{salesRemainderMB.salesOrderDataBean.saleEstDate}" styleClass="label_ui">
+			<f:convertDateTime pattern="dd-MM-yyyy"></f:convertDateTime>
+			</h:outputLabel><br />
+			</td>
+			</tr>
+			<tr>
+			
+			<td class="table_td">
+			<h:outputLabel value="Order Number " styleClass="label_ui"></h:outputLabel>
+			</td>
+			<td class="table_td">
+			<h:outputLabel value="#{salesRemainderMB.salesOrderDataBean.saleSalesOrderNo}" styleClass="label_ui">
+			</h:outputLabel><br />
+			</td>
+			<td class="table_td">
+			<h:outputLabel value="Category " styleClass="label_ui"></h:outputLabel>
+			</td>
+			<td class="table_td">
+			<h:outputLabel value="#{salesRemainderMB.salesOrderDataBean.saleCategory}" styleClass="label_ui" >
+			</h:outputLabel><br />
+			</td>
+			</tr>
+			<tr>
+			<td class="table_td">
+			<h:outputLabel value="Project Name " styleClass="label_ui"></h:outputLabel>
+			</td>
+			<td class="table_td">
+			<h:outputLabel value="#{salesRemainderMB.salesOrderDataBean.saleCustomerName}" styleClass="label_ui">
+			</h:outputLabel><br/>
+			</td>
+			<td class="table_td">
+			<h:outputLabel value="Employee ID " styleClass="label_ui"></h:outputLabel>
+			</td>
+			<td class="table_td">
+			<h:outputLabel value="#{salesRemainderMB.salesOrderDataBean.saleStaffId}" styleClass="label_ui">
+			</h:outputLabel>
+			<br />
+			</td>
+			</tr>
+			<tr>
+			<td class="table_td">
+			<h:outputLabel value="Tax Type" styleClass="label_ui"></h:outputLabel>
+			</td>
+			<td class="table_td">
+			<h:outputLabel value="#{salesRemainderMB.salesOrderDataBean.saleTaxType}" styleClass="label_ui">
+			</h:outputLabel>
+			<br />
+			</td>			
+			</tr>
+		</table>		
+		<br></br><br></br>
+		
+		<p:spacer height="20px"></p:spacer>
+					<div align="center" style="width: 900px">
+					 <p:dataTable id="salView" var="sal" rows="10" value="#{salesRemainderMB.salesOrderDataBean.salist}"
+					 paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="5,10,15">
+					<f:facet name="header">
+						List of Sales Order Approval View
+						<h:commandLink>
+        				<p:graphicImage value="/images/Excel-icon.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="xls" target="salView" fileName="salesOrderDataBean.salist"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+     					<p:graphicImage value="/images/pdf.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="pdf" target="salView" fileName="salesOrderDataBean.salist"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+    					 <p:graphicImage value="/images/csv.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="csv" target="salView" fileName="salesOrderDataBean.salist"></p:dataExporter>
+        				</h:commandLink>
+						
+					</f:facet>
+					
+					<p:column headerText="No" sortBy="#{sal.saleSerialNo}">
+					<h:outputText value="#{sal.saleSerialNo}"></h:outputText>
+					</p:column>
+					<p:column headerText="Product Name" sortBy="#{sal.saleProductName}">
+					<h:outputText value="#{sal.saleProductName}"></h:outputText>
+					</p:column>
+					<p:column headerText="Unit Price" sortBy="#{sal.salePrice}">
+					<h:outputText value="#{sal.salePrice}">
+						<f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+					</h:outputText>
+					</p:column>
+					<p:column headerText="Quantity" sortBy="#{sal.saleQuantity}">
+					<h:outputText value="#{sal.saleQuantity}"></h:outputText>
+					</p:column>
+					<p:column headerText="Net Amount" sortBy="#{sal.saleNetAmount}">
+					<h:outputText value="#{sal.saleNetAmount}">
+						<f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+					</h:outputText>
+					</p:column>				
+					
+					<f:facet name="footer">
+					Export Page Data Only
+					<h:commandLink>
+        				<p:graphicImage value="/images/Excel-icon.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="xls" target="salView" fileName="salesOrderDataBean.salist" pageOnly="true"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+     					<p:graphicImage value="/images/pdf.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="pdf" target="salView" fileName="salesOrderDataBean.salist" pageOnly="true"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+    					 <p:graphicImage value="/images/csv.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="csv" target="salView" fileName="salesOrderDataBean.salist" pageOnly="true"></p:dataExporter>
+        				</h:commandLink>
+					</f:facet>
+					</p:dataTable>
+				
+				<table align="right"><tr align="right"><td align="right">
+				<strong><h:outputText value="Total Amount :" styleClass="label_ui"></h:outputText></strong>
+					<strong></strong>
+					<strong><h:outputText value="#{salesRemainderMB.salesOrderDataBean.saleTotalAmount}" styleClass="label_ui">
+						<f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+					</h:outputText></strong>
+				</td>
+				</tr></table>
+				<table align="center" style="margin-left:+400px;">
+				<tr align="center"><td align="center">
+				<br/>
+				<h:commandButton value="Back" action="#{salesRemainderMB.viewApprovalBack}" styleClass="button"></h:commandButton>
+				</td></tr>
+				</table>
+					</div>
+					
+									
+				
+				<br></br><br></br>
+					</rich:panel>
+</div></td></tr>
+<tr><td align="center"><h:outputText value="Copyright © PT. Neotural Era Graha" style="color:#2C238C"></h:outputText></td></tr>
+<tr><td><br /></td></tr>
+</table>
+<p:dialog header="Translation" widgetVar="dlg3" showEffect="explode" hideEffect="shake" height="300" width="500" >
+		
+<rich:panel>
+<h:panelGrid columns="3">
+<h:outputText value="Date"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Tanggal"></h:outputText>
+<h:outputText value="Delivery Date"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Pengiriman Tanggal"></h:outputText>
+<h:outputText value="Category"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Kategori"></h:outputText>
+<h:outputText value="Project Name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Nama Projet"></h:outputText>
+<h:outputText value="Employee ID"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Karyawan ID"></h:outputText>
+<h:outputText value="Product Name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Nama Produk"></h:outputText>
+<h:outputText value="Price"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="harga"></h:outputText>
+<h:outputText value="Quantity"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="kuantitas"></h:outputText>
+<h:outputText value="Net Amount"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Jumlah bersih"></h:outputText>
+<h:outputText value="Tax Type"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Jenis Pajak"></h:outputText>
+<h:outputText value="Total Amount"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Jumlah total"></h:outputText>
+</h:panelGrid>
+</rich:panel>
+</p:dialog>
+	</h:form>
+	</body>
+</ui:composition>

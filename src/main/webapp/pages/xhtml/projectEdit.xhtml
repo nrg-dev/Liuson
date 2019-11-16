@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	 <link rel="stylesheet" href="../../css/liusenCss.css">
+ 
+</link> 
+
+	</h:head>
+	<body bgcolor="#4C6D90" >
+	
+	<h:form id="project1">
+	<table align="center" bgcolor="#fff">
+	<tr bgcolor="#fff"><td>
+	<ui:include src="../../pages/xhtml/templates/header.xhtml"></ui:include>
+	</td></tr>
+	<tr><td>
+<ui:include src="/pages/xhtml/templates/menunew.xhtml" />
+	</td></tr>
+	<tr><td>
+	<table>
+	<tr><td style="width: 300px"><strong style="color:#2C238C"> Welcome, #{loginMB.invusername}.</strong></td><td style="width: 426px" align="center"><p:clock pattern="dd-MM-yyyy HH:mm:ss" mode="server"></p:clock></td>
+	<td style="width: 308px" align="right"><h:commandButton value="Logout" action="#{loginMB.logout()}" styleClass="button"></h:commandButton>
+	</td></tr>
+	</table>
+	</td></tr>
+	<tr >
+	<td>
+	   <p:dialog id="dlg" header="Confirmation Message" visible="#{projectViewMB.valid}" widgetVar="dlg" modal="true" dynamic="true" style="height:150px;">
+    <tr> <td align="center"> <p:outputLabel styleClass="label_ui" style="font-size:16px;font-family:Times New Roman;">Successfully Update the Project Details</p:outputLabel> </td></tr>
+    <tr> <td align="center"> <h:commandButton value="OK" action="#{projectViewMB.projectViewLoad}" oncomplete="dlg.hide();"/> </td></tr>
+       </p:dialog>
+       </td>
+	</tr>
+	<tr>
+	<td><br></br></td>
+	</tr>
+	<tr><td>
+	
+	<div align="center">
+	
+				<h:outputText styleClass="text_Header" style="font-weight:bold"
+					value="PROJECT EDIT"/><br /><br />
+			<h:outputText value="#{projectMB.message}" style="color:red;"></h:outputText>
+	<!-- <h:messages showSummary="false" showDetail="true"   globalOnly="false" style="color:red"  layout="table"></h:messages> -->
+	</div>
+	<br></br><br></br>
+	<div align="center">
+	<rich:panel styleClass="class2" style="width:1000px;" headerClass="head2" bodyClass="body3">
+	 <f:facet name="header">
+            Project Edit Form
+            <p:spacer height="10px" width="100px"></p:spacer>
+            <p:commandButton value="Help" type="button" onclick="PF('dlg3').show();"></p:commandButton>
+        </f:facet>
+      
+		<table align="center" class="table_UI" cellpadding="10px">
+			<tr>
+				<td class="table_td"><h:outputLabel for="proDate" value="Date" styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+				</td>
+				<td><p:calendar effect="fold" pattern="dd-MM-yyyy" id="proDate" value="#{projectViewMB.projectDataBean.projDate}"></p:calendar> <br></br>
+					<h:message for="proDate" style="color:red;font-size:11"></h:message></td>
+				
+				<td class="table_td"><h:outputLabel for="date1" value="Start Date " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+				</td>
+				<td><p:calendar effect="fold" pattern="dd-MM-yyyy" id="date1" value="#{projectViewMB.projectDataBean.projDate1}"></p:calendar> <br></br>
+					<h:message for="date1" style="color:red;font-size:11"></h:message></td>
+				
+			</tr>	<tr>
+				
+				<td class="table_td"><h:outputLabel for="date2" value="Finish Date " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+				</td>
+				<td><p:calendar effect="fold" pattern="dd-MM-yyyy" id="date2" value="#{projectViewMB.projectDataBean.projDate2}"></p:calendar> <br></br>
+					<h:message for="date2" style="color:red;font-size:11"></h:message></td>
+				<td class="table_td"><h:outputLabel for="proName" value="Project Name " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+				</td>
+				<td>
+				<p:inputText value="#{projectViewMB.projectDataBean.projProjectName}" styleClass="text_ui" disabled="true"></p:inputText>
+				 <br />
+					<h:message for="proName" style="color:red;font-size:11"></h:message></td>
+			</tr>
+
+			<tr>
+				<td><h:outputLabel for="proClient" value="Client Name " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+				</td>
+				<td><p:inputText id="proClient"
+						value="#{projectViewMB.projectDataBean.projClientName}" styleClass="text_ui"></p:inputText> <br></br>
+					<h:message for="proClient" style="color:red;font-size:11"></h:message></td>
+				<td><h:outputLabel for="proContact" value="Contact Number " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+				</td>
+				<td><p:inputText id="proContact"
+						value="#{projectViewMB.projectDataBean.projContactNO}" styleClass="text_ui"></p:inputText> <br />
+					<h:message for="proContact" style="color:red;font-size:11"></h:message></td>
+			</tr>
+
+			<tr>
+				<td><h:outputLabel for="proAddress" value="Address" styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+				</td>
+				<td><p:inputText id="proAddress"
+						value="#{projectViewMB.projectDataBean.projAddress}" styleClass="text_ui"> </p:inputText> <br></br>
+					<h:message for="proAddress" style="color:red;font-size:11"></h:message></td>
+				<td><h:outputLabel for="proLocation" value="Location " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+				</td>
+				<td><p:inputText id="proLocation"
+						value="#{projectViewMB.projectDataBean.projLocation}" styleClass="text_ui"></p:inputText> <br />
+					<h:message for="proLocation" style="color:red;font-size:11"></h:message></td>
+			</tr>
+
+			<tr>
+				<td><h:outputLabel for="proPM" value="Project Manager " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+				</td>
+				<td><p:selectOneMenu id="proPM"
+						value="#{projectViewMB.projectDataBean.projProjectManager}" styleClass="text_ui">
+						<f:selectItem itemLabel="Please Choose Project Manager" itemValue="11100"></f:selectItem>
+						<f:selectItems value="#{projectViewMB.projectDataBean.projectmanager}"></f:selectItems>
+						</p:selectOneMenu> <br></br>
+					<h:message for="proPM" style="color:red;font-size:11"></h:message></td>
+				<td><h:outputLabel for="proM" value="Marketing Manager" styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+				</td>
+				<td><p:selectOneMenu id="proM"
+						value="#{projectViewMB.projectDataBean.projMarketing}" styleClass="text_ui">
+						<f:selectItem itemLabel="Please Choose Marketing Manager" itemValue="11200"></f:selectItem>
+						<f:selectItems value="#{projectViewMB.projectDataBean.marketingmanager}"></f:selectItems>
+						</p:selectOneMenu> <br />
+					<h:message for="proM" style="color:red;font-size:11"></h:message></td>
+			</tr>
+
+			<tr>
+				<td><h:outputLabel for="proAdmin" value="Admin Project " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+				</td>
+				<td><p:selectOneMenu id="proAdmin"
+						value="#{projectViewMB.projectDataBean.projAdminProject}" styleClass="text_ui">
+						<f:selectItem itemLabel="Please Choose Admin Project" itemValue="11300"></f:selectItem>
+						<f:selectItems value="#{projectViewMB.projectDataBean.adminproject}"></f:selectItems>
+						</p:selectOneMenu> <br></br>
+					<h:message for="proAdmin" style="color:red;font-size:11"></h:message></td>
+				<td><h:outputLabel for="proValue" value="Project Value " styleClass="label_ui"></h:outputLabel>
+				</td>
+				<td><p:inputText id="proValue"
+						value="#{projectViewMB.projectDataBean.projProjectValue}" styleClass="text_ui"></p:inputText> <br />
+					<h:message for="proValue" style="color:red;font-size:11"></h:message></td>
+			</tr>
+
+			<tr>
+				<td><h:outputLabel for="proDesc" value="Description " styleClass="label_ui"></h:outputLabel>
+				</td>
+				<td><p:inputTextarea id="proDesc"
+						value="#{projectViewMB.projectDataBean.projDescription}" styleClass="textArea_ui"></p:inputTextarea> <br></br>
+					<h:message for="proDesc" style="color:red;font-size:11"></h:message></td>
+			<td>
+			<h:outputLabel value="Project Image " styleClass="label_ui"></h:outputLabel>
+			</td>	<td>
+				 <a4j:mediaOutput style="width:100px;height:100px;" element="img"
+   cacheable="false" session="true" createContent="#{projectViewMB.paint2}" mimeType="image/png" />
+				</td>
+			</tr>
+
+			
+
+			<tr align="center">
+				<td colspan="4"><h:commandButton value="Update"
+						action="#{projectViewMB.editSubmit}" styleClass="button"  >
+					</h:commandButton>
+					
+					<h:commandButton value="Cancel" action="#{projectViewMB.cancel}" styleClass="button"></h:commandButton>
+				</td>
+			</tr>
+		</table></rich:panel>
+</div></td></tr><tr><td><br /></td></tr>
+<tr><td align="center"><h:outputText value="Copyright © PT. Neotural Era Graha" style="color:#2C238C"></h:outputText></td></tr>
+<tr><td><br /></td></tr>
+</table>
+	</h:form>
+	  <p:dialog header="Translation" widgetVar="dlg3" showEffect="explode" hideEffect="shake" height="300" width="500" >
+		 <rich:panel>
+         <h:panelGrid columns="3">
+         <h:outputText value="Date"></h:outputText>
+         <h:outputText value=":"></h:outputText>
+         <h:outputText value="Tanggal"></h:outputText>
+         <h:outputText value="Project Name"></h:outputText>
+         <h:outputText value=":"></h:outputText>
+         <h:outputText value="Nama Proyek"></h:outputText>
+         <h:outputText value="Client Name"></h:outputText>
+         <h:outputText value=":"></h:outputText>
+         <h:outputText value="Nama Klien"></h:outputText>
+         <h:outputText value="Contact Number"></h:outputText>
+         <h:outputText value=":"></h:outputText>
+         <h:outputText value="Nomor Kontak"></h:outputText>
+         <h:outputText value="Address"></h:outputText>
+         <h:outputText value=":"></h:outputText>
+         <h:outputText value="Alamat"></h:outputText>
+         <h:outputText value="Location"></h:outputText>
+         <h:outputText value=":"></h:outputText>
+         <h:outputText value="Tempat"></h:outputText>
+         <h:outputText value="Project Manager"></h:outputText>
+         <h:outputText value=":"></h:outputText>
+         <h:outputText value="Manajer Proyek"></h:outputText>
+         <h:outputText value="Marketing Manager"></h:outputText>
+         <h:outputText value=":"></h:outputText>
+         <h:outputText value="Manajer Pemasaran"></h:outputText>
+         <h:outputText value="Admin Project"></h:outputText>
+         <h:outputText value=":"></h:outputText>
+         <h:outputText value="Proyek Admin"></h:outputText>
+         <h:outputText value="Project Value"></h:outputText>
+         <h:outputText value=":"></h:outputText>
+         <h:outputText value="Nilai Proyek"></h:outputText>
+         <h:outputText value="Description"></h:outputText>
+         <h:outputText value=":"></h:outputText>
+         <h:outputText value="Deskripsi"></h:outputText>
+         </h:panelGrid>
+        </rich:panel>
+</p:dialog>
+	</body>
+</ui:composition>

@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	 <link rel="stylesheet" href="../../css/liusenCss.css">
+ 
+</link> 
+
+	</h:head>
+	<body bgcolor="#4C6D90" >
+	
+	<h:form id="purchasePay">
+	<table align="center" bgcolor="#fff" >
+	<tr bgcolor="#fff"><td>
+	<ui:include src="../../pages/xhtml/templates/header.xhtml"></ui:include>
+	</td></tr>
+	<tr><td>
+<ui:include src="/pages/xhtml/templates/menunew.xhtml" />
+	</td></tr>
+	<tr><td>
+	<table>
+	<tr><td style="width: 300px"><strong style="color:#2C238C"> Welcome, #{loginMB.invusername}.</strong></td><td style="width: 426px" align="center"><p:clock pattern="dd-MM-yyyy HH:mm:ss" mode="server"></p:clock></td>
+	<td style="width: 308px" align="right"><h:commandButton value="Logout" action="#{loginMB.logout()}" styleClass="button"></h:commandButton>
+	</td></tr>
+	</table>
+	</td></tr>
+	<tr>
+	<td><br></br></td>
+	</tr>
+	<tr><td>
+	
+	<div align="center">
+	
+				<h:outputText styleClass="text_Header" style="font-weight:bold"
+					value="SALES DELIVERY"/><br /><br />
+					</div>
+					<div align="center">
+					<table><tr><td>
+					<rich:panel styleClass="class2"  headerClass="head2" bodyClass="body3" style="width:400px;height:160px">
+	 <f:facet name="header">
+            Search by Sales Order Number
+        </f:facet>
+        <table class="paneltable_UI" cellpadding="7px"><tr><td class="table_td">
+        <h:outputLabel for="saleNo" value="Order Number " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span> </td>
+        <td class="table_td">
+        <h:selectOneMenu id="saleNo" value="#{salesDeliveryMB.salesOrderDataBean.saleSalesOrderNo}" styleClass="text_ui">
+        <f:selectItem itemValue="DEL00" itemLabel="Please Choose Order Number"></f:selectItem>
+        </h:selectOneMenu>
+        <br></br>
+        <h:message for="saleNo" style="color:red;font-size:11"></h:message>
+        </td>
+        </tr>
+        
+        <tr>
+        <td class="table_td"></td><td class="table_td"><h:commandButton styleClass="button" value="Search" style="color: #CFF;" action="#{salesDeliveryMB.searchOrder}"></h:commandButton> </td>
+        </tr>
+        </table>
+        </rich:panel></td>
+       
+        </tr></table>
+					</div>
+					<p:spacer height="20px"></p:spacer>
+					<div align="center" style="width: 1052px">
+					<a4j:region>
+					<rich:dataTable rows="5" rowKeyVar="row" columnsWidth="100px,200px,150px,150px,150px,75px,75px,75px" rendered="#{!salesDeliveryMB.flag}">
+					<f:facet name="header">
+					<h:outputText value="Sales Delivery"></h:outputText>
+					</f:facet>
+					<rich:column>
+					<f:facet name="header">
+					<h:outputText value="Date"></h:outputText>
+					</f:facet>
+					</rich:column>
+					<rich:column>
+					<f:facet name="header">
+					<h:outputText value="Order Number"></h:outputText>
+					</f:facet>
+					</rich:column>
+					<rich:column>
+					<f:facet name="header">
+					<h:outputText value="Category"></h:outputText>
+					</f:facet>
+					</rich:column>
+					<rich:column>
+					<f:facet name="header">
+					<h:outputText value="Customer Name"></h:outputText>
+					</f:facet>
+					</rich:column>
+					<rich:column>
+					<f:facet name="header">
+					<h:outputText value="Total Amount"></h:outputText>
+					</f:facet>
+					</rich:column>
+					<rich:column>
+					<f:facet name="header">
+					<h:outputText value="Outstanding Balance"></h:outputText>
+					</f:facet>
+					</rich:column>
+					<rich:column>
+					<f:facet name="header">
+					<h:outputText value="Status"></h:outputText>
+					</f:facet>
+					</rich:column>
+					<rich:column>
+					<f:facet name="header">
+					<h:outputText value="View"></h:outputText>
+					</f:facet>
+					</rich:column>
+					<f:facet name="footer">
+					<rich:dataScroller renderIfSinglePage="false" maxPages="5"></rich:dataScroller>
+					</f:facet>
+					</rich:dataTable>
+					</a4j:region>
+					</div>
+					<p:spacer width="1050px" height="400px"></p:spacer>
+					
+					</td>
+					</tr>
+					<tr><td align="center"><h:outputText value="Copyright © PT. Neotural Era Graha" style="color:#2C238C"></h:outputText>
+					<br /><br />
+					</td></tr>
+
+					</table>
+					</h:form>
+					</body></ui:composition>

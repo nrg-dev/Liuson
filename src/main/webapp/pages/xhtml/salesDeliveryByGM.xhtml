@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	 <link rel="stylesheet" href="../../css/liusenCss.css">
+ 
+</link> 
+
+	</h:head>
+	<body bgcolor="#4C6D90" onload="#{salesRemainderMB.listofDeliveryGM()}">
+	
+	<h:form id="limit1">
+	<table align="center" bgcolor="#fff">
+	<tr bgcolor="#fff"><td>
+	<ui:include src="../../pages/xhtml/templates/header.xhtml"></ui:include>
+	</td></tr>
+	<tr><td>
+<ui:include src="/pages/xhtml/templates/menunew.xhtml" />
+	</td></tr>
+	<tr><td>
+	<table>
+	<tr><td style="width: 300px"><strong style="color:#2C238C"> Welcome, #{loginMB.invusername} - #{loginMB.rollname}.</strong></td><td style="width: 426px" align="center"><p:clock pattern="dd-MM-yyyy HH:mm:ss" mode="server"></p:clock></td>
+	<td style="width: 308px" align="right"><h:commandButton value="Logout" action="#{loginMB.logout()}" styleClass="button"></h:commandButton>
+	</td></tr>
+	</table>
+	</td></tr>
+	<tr >
+	<td>
+	   <p:dialog id="dlg" header="Confirmation Message" visible="#{salesRemainderMB.flag}" widgetVar="dlg" modal="true" dynamic="true" style="height:150px;">
+    <tr> <td align="center"> <p:outputLabel styleClass="label_ui" style="font-size:16px;font-family:Times New Roman;">This Sales Order is Successfully Delivered</p:outputLabel> </td></tr>
+    <tr> <td align="center"> <h:commandButton value="OK" action="#{salesRemainderMB.dialogGMdel}" oncomplete="dlg.hide();"/> </td></tr>
+       </p:dialog>
+       </td>
+	</tr>
+	<tr><td>
+       <p:dialog id="dlg1" header="Confirmation Message" visible="#{salesRemainderMB.reflag}" widgetVar="dlg1" modal="true" dynamic="true" style="height:150px;">
+    <tr> <td align="center"> <p:outputLabel styleClass="label_ui" style="font-size:16px;font-family:Times New Roman;">This Sales Order is Successfully Rejected</p:outputLabel> </td></tr>
+    <tr> <td align="center"> <h:commandButton value="OK" action="#{salesRemainderMB.dialogGMdel}" oncomplete="dlg1.hide();" /> </td></tr>
+       </p:dialog>
+	</td>
+	</tr>
+	
+	<tr><td>
+	
+	<div align="center">
+	
+				<h:outputText styleClass="text_Header" style="font-weight:bold"
+					value="Sales Order Delivery By GM"/><br /><br />
+	</div>
+	<br></br><br></br>
+	<div align="center">
+	
+	<rich:panel styleClass="class2" style="width:1000px;" >
+				<div align="center" style="width: 980px">
+				<h:message for="dell" style="color:red;font-size:16px;"></h:message>
+					<p:dataTable id="dell" var="sal" rows="10" value="#{salesRemainderMB.salesOrderDataBean.salist}"
+					 paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="5,10,15">
+					<f:facet name="header">	
+						List of Sales Delivery By GM
+						
+					</f:facet>
+					<p:column headerText="No" sortBy="#{sal.saleSerialNo}" width="10px;">
+					<h:outputText value="#{sal.saleSerialNo}"></h:outputText>
+					</p:column>
+					<p:column headerText="Date" sortBy="#{sal.saleDate}" width="80px;">
+					<h:outputText value="#{sal.saleDate}">
+					<f:convertDateTime pattern="dd-MM-yyyy"></f:convertDateTime>
+					</h:outputText>
+					</p:column>
+					<p:column headerText="Order Number" sortBy="#{sal.saleSalesOrderNo}" width="120px;">
+					<h:outputText value="#{sal.saleSalesOrderNo}"></h:outputText>
+					</p:column>
+					<p:column headerText="Total Amount" sortBy="#{sal.saleTotalAmount}" width="80px;">
+					<h:outputText value="#{sal.saleTotalAmount}">
+					<f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+					</h:outputText>
+					</p:column>				
+						
+					<p:column headerText="Status" width="280px;">
+					<p:selectOneRadio value="#{sal.action}" id="dataMessege1">
+					<f:selectItem itemLabel="Delivery" itemValue="Delivery"></f:selectItem>
+					<f:selectItem itemLabel="Reject" itemValue="Reject"></f:selectItem>
+					</p:selectOneRadio>
+					</p:column>	
+					<p:column headerText="Reason" width="120px;">
+					<p:inputTextarea value="#{sal.reason}" style="height:40px;width:120px;overflow:auto;" autoResize="false" id="dataMessege">
+					</p:inputTextarea>
+					</p:column>	
+					<p:column headerText="Action" width="30px;">
+					<h:commandButton image="/images/accept.png" action="#{salesRemainderMB.deliveryGM}">
+					<f:setPropertyActionListener value="#{sal.saleSalesOrderNo}" target="#{salesRemainderMB.salesOrderDataBean.saleSalesOrderNo}"></f:setPropertyActionListener>
+					<f:setPropertyActionListener value="#{sal.reason}" target="#{salesRemainderMB.salesOrderDataBean.reason}"></f:setPropertyActionListener>
+					<f:setPropertyActionListener value="#{sal.action}" target="#{salesRemainderMB.salesOrderDataBean.action}"></f:setPropertyActionListener>
+					 <f:ajax render="@form" execute="@form"></f:ajax>
+					</h:commandButton>
+					</p:column>	
+					<p:column headerText="View" width="30px;">
+					<p:commandButton icon="ui-icon-search" action="#{salesRemainderMB.viewDeliveryGM}">
+					<f:setPropertyActionListener value="#{sal.saleSalesOrderNo}" target="#{salesRemainderMB.salesOrderDataBean.saleSalesOrderNo}"></f:setPropertyActionListener>
+					<f:setPropertyActionListener value="#{sal.reason}" target="#{salesRemainderMB.salesOrderDataBean.reason}"></f:setPropertyActionListener>
+					<f:setPropertyActionListener value="#{sal.action}" target="#{salesRemainderMB.salesOrderDataBean.action}"></f:setPropertyActionListener>
+					</p:commandButton>
+					</p:column>	
+					</p:dataTable>
+					<br/>
+					<h:commandButton value="Back" action="home.xhtml?faces.redirect=true" styleClass="button" >
+					</h:commandButton>
+					 
+					</div>
+					
+				<br></br><br></br>
+					</rich:panel>
+</div></td></tr>
+<tr><td align="center"><h:outputText value="Copyright © PT. Neotural Era Graha" style="color:#2C238C"></h:outputText></td></tr>
+<tr><td><br /></td></tr>
+</table>
+
+	</h:form>
+	</body>
+</ui:composition>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="liusen-pu" transaction-type="RESOURCE_LOCAL">
+		<class>com.nrg.liusen.shared.Barcode</class>
+		<class>com.nrg.liusen.shared.Batch</class>
+		<class>com.nrg.liusen.shared.Country</class>
+		<class>com.nrg.liusen.shared.Customer</class>
+		<class>com.nrg.liusen.shared.Designation</class>
+		<class>com.nrg.liusen.shared.Employee</class>
+		<class>com.nrg.liusen.shared.ImagePath</class>
+		<class>com.nrg.liusen.shared.Invoice</class>
+		<class>com.nrg.liusen.shared.Payment</class>
+		<class>com.nrg.liusen.shared.Payroll</class>
+		<class>com.nrg.liusen.shared.PayrollApproval</class>
+		<class>com.nrg.liusen.shared.Product</class>
+		<class>com.nrg.liusen.shared.ProductSubcategory1</class>
+		<class>com.nrg.liusen.shared.ProductSubcategory2</class>
+		<class>com.nrg.liusen.shared.ProjectEmployee</class>
+		<class>com.nrg.liusen.shared.Projet</class>
+		<class>com.nrg.liusen.shared.Purchase</class>
+		<class>com.nrg.liusen.shared.PurchaseApproval</class>
+		<class>com.nrg.liusen.shared.PurchaseRecord</class>
+		<class>com.nrg.liusen.shared.PurchaseReturn</class>
+		<class>com.nrg.liusen.shared.Qualification</class>
+		<class>com.nrg.liusen.shared.Roll</class>
+		<class>com.nrg.liusen.shared.Sale</class>
+		<class>com.nrg.liusen.shared.SalesApproval</class>
+		<class>com.nrg.liusen.shared.SalesRecord</class>
+		<class>com.nrg.liusen.shared.SalesReturn</class>
+		<class>com.nrg.liusen.shared.Stock</class>
+		<class>com.nrg.liusen.shared.StockDamage</class>
+		<class>com.nrg.liusen.shared.StockoutManual</class>
+		<class>com.nrg.liusen.shared.StockoutRecored</class>
+		<class>com.nrg.liusen.shared.Transaction</class>
+		<class>com.nrg.liusen.shared.User</class>
+		<class>com.nrg.liusen.shared.UserRoll</class>
+		<class>com.nrg.liusen.shared.Vendor</class>
+		<class>com.nrg.liusen.shared.VendorProduct</class>
+		<class>com.nrg.liusen.shared.ProductLimit</class>
+		<class>com.nrg.liusen.shared.Limit</class>
+		<class>com.nrg.liusen.shared.RawMaterial</class>
+		<class>com.nrg.liusen.shared.OpeningStock</class>
+		<class>com.nrg.liusen.shared.Stockoutapproval</class>
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+	</persistence-unit>
+</persistence>

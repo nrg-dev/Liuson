@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14039736773300" configfile="/liusen/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/productNotSales.xhtml" x="122" y="1841" id="pf14373718147673" referenceLink="//@navigationRule.275/@navigationCase.0/@toViewId|" path="/pages/xhtml/productNotSales.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/login.xhtml" x="122" y="21298" id="pf14449831083580" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf14449831083581" path="pages/xhtml/login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/template/mainPage.xhtml" x="338" y="22450" id="pf14449831083582" referenceLink="//@navigationRule.90/@navigationCase.0/@toViewId|" inlinks="pf14449831083581 pf14454877979480 pf14458476138850 pf14459469021099 pf144594813934212 pf144594892494315 pf14464487305495 pf14466232917670 pf14526759342700 pf14527681921838" path="/pages/xhtml/home.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/home.xhtml" x="122" y="3889" id="pf14454122331750" referenceLink="//@navigationRule.1/@fromViewId|" path="pages/xhtml/home.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/vendorRegisteration.xhtml" x="338" y="178" id="pf14454122331752" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf14455917968780" path="/pages/xhtml/vendorRegisteration.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/vendorRegisteration.xhtml" x="122" y="20914" id="pf14454877979581" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf14454877979480 pf14476550461105" path="pages/xhtml/vendorRegisteration.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="12034" id="pf14455917968781" outlinks="pf14455917968780 pf14455917968782 pf14455994391875 pf14458520444013 pf14459260646001 pf14459348074593 pf14459392725040 pf14459422156153 pf14459455056286 pf14460085395381 pf14462078345571 pf14462685015281 pf14464373889510 pf14464382083023 pf14464487305495 pf14464565173336 pf14464649571618 pf14464649571619 pf144646495716110 pf144646649432814 pf14465325427390 pf14465325427391 pf14465325427392 pf14465325427393 pf144653313091310 pf144654463816712 pf144654463816713 pf14466232917671 pf14466283246715 pf14466299413458 pf144663457768011 pf14466966494120 pf14467016700173 pf14467872380150 pf14467872380151 pf14467973895065 pf14476547099751 pf14476555406047 pf14492308865071 pf14492990869500 pf14492990869501 pf14492990869502 pf14492990869503 pf14492990869504 pf14494569077137 pf14494923597920 pf14497354674690 pf14497354674691 pf14497354674692 pf14497354674693 pf14497354674694 pf14524936032270 pf14524936032271 pf14525723589420 pf14526759342711 pf14529238694170 pf14529238694171 pf14529238694172 pf14531763572530 pf14532801640490 pf14532844664637 pf14534386560050 pf14537130872195 pf14543225565980" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/vendorView.xhtml" x="338" y="946" id="pf14455917968783" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" inlinks="pf14455917968782" path="/pages/xhtml/vendorView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/productRegistration.xhtml" x="338" y="1714" id="pf14455994391876" referenceLink="//@navigationRule.7/@navigationCase.0/@toViewId|" inlinks="pf14455994391875" path="/pages/xhtml/productRegistration.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/productRegistration.xhtml" x="122" y="21682" id="pf14458476138851" referenceLink="//@navigationRule.8/@fromViewId|" outlinks="pf14458476138850" path="pages/xhtml/productRegistration.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/productView.xhtml" x="338" y="2098" id="pf14458520444014" referenceLink="//@navigationRule.10/@navigationCase.0/@toViewId|" inlinks="pf14458520444013" path="/pages/xhtml/productView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/customerView.xhtml" x="338" y="2866" id="pf14459260646002" referenceLink="//@navigationRule.19/@navigationCase.0/@toViewId|" inlinks="pf14459260646001" path="/pages/xhtml/customerView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/projectRegistration.xhtml" x="338" y="3250" id="pf14459348074594" referenceLink="//@navigationRule.15/@navigationCase.0/@toViewId|" inlinks="pf14459348074593" path="/pages/xhtml/projectRegistration.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/projectView.xhtml" x="338" y="3634" id="pf14459392725041" referenceLink="//@navigationRule.16/@navigationCase.0/@toViewId|" inlinks="pf14459392725040" path="/pages/xhtml/projectView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/limitRegistration.xhtml" x="338" y="4402" id="pf14459422156154" referenceLink="//@navigationRule.11/@navigationCase.0/@toViewId|" inlinks="pf14459422156153" path="/pages/xhtml/limitRegistration.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/limitView.xhtml" x="338" y="4786" id="pf14459455056287" referenceLink="//@navigationRule.13/@navigationCase.0/@toViewId|" inlinks="pf14459455056286" path="/pages/xhtml/limitView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/limitRegistration.xhtml" x="122" y="22066" id="pf144594690210910" referenceLink="//@navigationRule.12/@fromViewId|" outlinks="pf14459469021099" path="pages/xhtml/limitRegistration.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/projectRegistration.xhtml" x="122" y="22450" id="pf144594813934213" referenceLink="//@navigationRule.17/@fromViewId|" outlinks="pf144594813934212" path="pages/xhtml/projectRegistration.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/customerRegistration.xhtml" x="122" y="22834" id="pf144594892494316" referenceLink="//@navigationRule.20/@fromViewId|" outlinks="pf144594892494315" path="pages/xhtml/customerRegistration.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/purchaseOder.xhtml" x="338" y="5170" id="pf14460085395392" referenceLink="//@navigationRule.22/@navigationCase.0/@toViewId|" inlinks="pf14460085395381" path="/pages/xhtml/purchaseOder.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/purchasePaymentStatus.xhtml" x="338" y="21298" id="pf14462078345572" referenceLink="//@navigationRule.97/@navigationCase.0/@toViewId|" inlinks="pf14462078345571 pf14532058250132" path="/pages/xhtml/purchasePaymentStatus.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/purchaseView.xhtml" x="338" y="6322" id="pf14462685015292" referenceLink="//@navigationRule.53/@navigationCase.0/@toViewId|" inlinks="pf14462685015281 pf14492990869502" path="/pages/xhtml/purchaseView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/purchaseOrderClose.xhtml" x="338" y="6706" id="pf14464373889521" referenceLink="//@navigationRule.25/@navigationCase.0/@toViewId|" inlinks="pf14464373889510" path="/pages/xhtml/purchaseOrderClose.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/salesOrder.xhtml" x="338" y="26290" id="pf14464382083024" referenceLink="//@navigationRule.62/@navigationCase.0/@toViewId|" outlinks="pf14497354674705" inlinks="pf14464382083023 pf14497354674706" path="/pages/xhtml/salesOrder.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/salesOrderView.xhtml" x="338" y="25522" id="pf14464565173337" referenceLink="//@navigationRule.59/@navigationCase.0/@toViewId|" outlinks="pf14494563112460 pf14494563112461" inlinks="pf14464565173336 pf14494563112462 pf14494563112463" path="/pages/xhtml/salesOrderView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/salesDelivery.xhtml" x="338" y="7090" id="pf144646495716111" referenceLink="//@navigationRule.39/@navigationCase.0/@toViewId|" inlinks="pf14464649571618" path="/pages/xhtml/salesDelivery.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/salesOrderReturn.xhtml" x="338" y="7474" id="pf144646495716112" referenceLink="//@navigationRule.40/@navigationCase.0/@toViewId|" inlinks="pf14464649571619" path="/pages/xhtml/salesOrderReturn.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/salesOrderReturnView.xhtml" x="338" y="20146" id="pf144646495716113" referenceLink="//@navigationRule.107/@navigationCase.0/@toViewId|" inlinks="pf144646495716110 pf14537055236583" path="/pages/xhtml/salesOrderReturnView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/salesPaymentStatus.xhtml" x="338" y="20914" id="pf144646649432815" referenceLink="//@navigationRule.99/@navigationCase.0/@toViewId|" inlinks="pf144646649432814 pf14532801640491" path="/pages/xhtml/salesPaymentStatus.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/purchaseInvoice.xhtml" x="338" y="562" id="pf14465325427395" referenceLink="//@navigationRule.87/@fromViewId|" outlinks="pf14527556431803" inlinks="pf14465325427390" path="/pages/xhtml/purchaseInvoice.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/purchasePayment.xhtml" x="338" y="7858" id="pf14465325427396" referenceLink="//@navigationRule.27/@navigationCase.0/@toViewId|" inlinks="pf14465325427391" path="/pages/xhtml/purchasePayment.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/salesInvoice.xhtml" x="338" y="1330" id="pf14465325427397" referenceLink="//@navigationRule.88/@fromViewId|" outlinks="pf14527556670086" inlinks="pf14465325427392" path="/pages/xhtml/salesInvoice.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/salesPayment.xhtml" x="338" y="8242" id="pf14465325427398" referenceLink="//@navigationRule.44/@navigationCase.0/@toViewId|" inlinks="pf14465325427393" path="/pages/xhtml/salesPayment.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/customerRegistration.xhtml" x="338" y="8626" id="pf144653313091311" referenceLink="//@navigationRule.18/@navigationCase.0/@toViewId|" inlinks="pf144653313091310" path="/pages/xhtml/customerRegistration.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/purchaseReport.xhtml" x="338" y="9010" id="pf144654463817714" referenceLink="//@navigationRule.28/@navigationCase.0/@toViewId|" inlinks="pf144654463816712" path="/pages/xhtml/purchaseReport.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/salesReport.xhtml" x="338" y="9394" id="pf144654463817715" referenceLink="//@navigationRule.45/@navigationCase.0/@toViewId|" inlinks="pf144654463816713" path="/pages/xhtml/salesReport.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/stockIn.xhtml" x="338" y="9778" id="pf14466232917672" referenceLink="//@navigationRule.46/@navigationCase.0/@toViewId|" inlinks="pf14466232917671" path="/pages/xhtml/stockIn.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/stockIn.xhtml" x="122" y="23218" id="pf14466232917673" referenceLink="//@navigationRule.47/@fromViewId|" outlinks="pf14466232917670" path="pages/xhtml/stockIn.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/stockInView.xhtml" x="338" y="10162" id="pf14466283246716" referenceLink="//@navigationRule.49/@navigationCase.0/@toViewId|" inlinks="pf14466283246715" path="/pages/xhtml/stockInView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/stockOutView.xhtml" x="338" y="10546" id="pf14466299413459" referenceLink="//@navigationRule.50/@navigationCase.0/@toViewId|" inlinks="pf14466299413458" path="/pages/xhtml/stockOutView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/stockDamage.xhtml" x="338" y="10930" id="pf144663457768012" referenceLink="//@navigationRule.51/@navigationCase.0/@toViewId|" inlinks="pf144663457768011" path="/pages/xhtml/stockDamage.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/employeeRegistration.xhtml" x="338" y="11314" id="pf14466966494121" referenceLink="//@navigationRule.31/@navigationCase.0/@toViewId|" inlinks="pf14466966494120" path="/pages/xhtml/employeeRegistration.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/payrollGeraration.xhtml" x="338" y="11698" id="pf14467016700174" referenceLink="//@navigationRule.32/@navigationCase.0/@toViewId|" inlinks="pf14467016700173" path="/pages/xhtml/payrollGeraration.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/employeeView.xhtml" x="338" y="2482" id="pf14467872380152" referenceLink="//@navigationRule.89/@fromViewId|" outlinks="pf14527681921869" inlinks="pf14467872380150" path="/pages/xhtml/employeeView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/payrollView.xhtml" x="338" y="5938" id="pf14467872380153" referenceLink="//@navigationRule.86/@fromViewId|" outlinks="pf14527471385311" inlinks="pf14467872380151 pf14526759342742" path="/pages/xhtml/payrollView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/transaction.xhtml" x="338" y="12082" id="pf14467973895166" referenceLink="//@navigationRule.82/@navigationCase.0/@toViewId|" inlinks="pf14467973895065 pf14526759342711" path="/pages/xhtml/transaction.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/transactionView.xhtml" x="338" y="12466" id="pf14476547099792" referenceLink="//@navigationRule.30/@navigationCase.0/@toViewId|" inlinks="pf14476547099751" path="/pages/xhtml/transactionView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/login.xhtml" x="338" y="22066" id="pf14476550461106" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" inlinks="pf14476550461105 pf14476555406047" path="/pages/xhtml/login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/vendorView.xhtml" x="122" y="24370" id="pf14478389808232" referenceLink="//@navigationRule.6/@fromViewId|" outlinks="pf14478389808233" path="pages/xhtml/vendorView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/vendorEdit.xhtml" x="338" y="24370" id="pf14478389808234" referenceLink="//@navigationRule.6/@navigationCase.0/@toViewId|" inlinks="pf14478389808233" path="/pages/xhtml/vendorEdit.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/productView.xhtml" x="122" y="24754" id="pf14480145679102" referenceLink="//@navigationRule.9/@fromViewId|" outlinks="pf14480145679103" path="pages/xhtml/productView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/productEdtit.xhtml" x="338" y="24754" id="pf14480145679104" referenceLink="//@navigationRule.9/@navigationCase.0/@toViewId|" inlinks="pf14480145679103" path="/pages/xhtml/productEdtit.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/limitView.xhtml" x="122" y="25138" id="pf14489432772812" referenceLink="//@navigationRule.14/@fromViewId|" outlinks="pf14489432772813" path="pages/xhtml/limitView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/limitEdit.xhtml" x="338" y="25138" id="pf14489432772814" referenceLink="//@navigationRule.14/@navigationCase.0/@toViewId|" inlinks="pf14489432772813" path="/pages/xhtml/limitEdit.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/customerEdit.xhtml" x="338" y="12850" id="pf14492308865082" referenceLink="//@navigationRule.21/@navigationCase.0/@toViewId|" inlinks="pf14492308865071" path="/pages/xhtml/customerEdit.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/EmployeEdit.xhtml" x="338" y="13234" id="pf14492990869505" referenceLink="//@navigationRule.35/@navigationCase.0/@toViewId|" inlinks="pf14492990869500" path="/pages/xhtml/EmployeEdit.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/purchaseOderView.xhtml" x="338" y="13618" id="pf14492990869506" referenceLink="//@navigationRule.52/@navigationCase.0/@toViewId|" inlinks="pf14492990869501" path="/pages/xhtml/purchaseOderView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/purchaseOderEdit.xhtml" x="338" y="14002" id="pf14492990869507" referenceLink="//@navigationRule.54/@navigationCase.0/@toViewId|" inlinks="pf14492990869503" path="/pages/xhtml/purchaseOderEdit.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/purchaseOderEditConfirm.xhtml" x="338" y="14386" id="pf14492990869508" referenceLink="//@navigationRule.55/@navigationCase.0/@toViewId|" inlinks="pf14492990869504" path="/pages/xhtml/purchaseOderEditConfirm.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/salesViewForm.xhtml" x="122" y="25522" id="pf14494563112484" referenceLink="//@navigationRule.58/@fromViewId|" outlinks="pf14494563112462" inlinks="pf14494563112460" path="/pages/xhtml/salesViewForm.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/salesOrderUpdateForm.xhtml" x="122" y="25906" id="pf14494563112485" referenceLink="//@navigationRule.59/@fromViewId|" outlinks="pf14494563112463" inlinks="pf14494563112461" path="/pages/xhtml/salesOrderUpdateForm.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/stackoutManual.xhtml" x="338" y="26674" id="pf14494569077158" referenceLink="//@navigationRule.75/@navigationCase.0/@toViewId|" outlinks="pf14524936032312" inlinks="pf14494569077137 pf145251190799814" path="/pages/xhtml/stackoutManual.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/purchaseOderConfirm.xhtml" x="338" y="14770" id="pf14494923597931" referenceLink="//@navigationRule.60/@navigationCase.0/@toViewId|" inlinks="pf14494923597920" path="/pages/xhtml/purchaseOderConfirm.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/salesOrderConfirmation.xhtml" x="122" y="26290" id="pf14497354674747" referenceLink="//@navigationRule.62/@fromViewId|" outlinks="pf14497354674706" inlinks="pf14497354674705" path="/pages/xhtml/salesOrderConfirmation.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/poGMApproval.xhtml" x="338" y="15154" id="pf14497354674748" referenceLink="//@navigationRule.63/@navigationCase.0/@toViewId|" inlinks="pf14497354674690" path="/pages/xhtml/poGMApproval.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/poMMApproval.xhtml" x="338" y="15538" id="pf14497354674749" referenceLink="//@navigationRule.64/@navigationCase.0/@toViewId|" inlinks="pf14497354674691" path="/pages/xhtml/poMMApproval.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/poDelGMApproval.xhtml" x="338" y="15922" id="pf144973546747410" referenceLink="//@navigationRule.65/@navigationCase.0/@toViewId|" inlinks="pf14497354674692" path="/pages/xhtml/poDelGMApproval.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/poDelPMApproval.xhtml" x="338" y="16306" id="pf144973546747411" referenceLink="//@navigationRule.66/@navigationCase.0/@toViewId|" inlinks="pf14497354674693" path="/pages/xhtml/poDelPMApproval.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/poView.xhtml" x="338" y="16690" id="pf144973546747512" referenceLink="//@navigationRule.67/@navigationCase.0/@toViewId|" inlinks="pf14497354674694" path="/pages/xhtml/poView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/salesApprovalViewForm.xhtml" x="338" y="4018" id="pf14524936032323" referenceLink="//@navigationRule.70/@fromViewId|" outlinks="pf14524936032324 pf14524936032325" inlinks="pf14524936032270" path="/pages/xhtml/salesApprovalViewForm.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/salesApprovalByMM.xhtml" x="554" y="3826" id="pf14524936032326" referenceLink="//@navigationRule.69/@navigationCase.0/@toViewId|" inlinks="pf14524936032324" path="/pages/xhtml/salesApprovalByMM.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/salesApprovalByGM.xhtml" x="554" y="4210" id="pf14524936032327" referenceLink="//@navigationRule.70/@navigationCase.0/@toViewId|" inlinks="pf14524936032325" path="/pages/xhtml/salesApprovalByGM.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/salesDeliveryViewForm.xhtml" x="338" y="5554" id="pf14524936032328" referenceLink="//@navigationRule.73/@fromViewId|" outlinks="pf14524936032329 pf145249360323210" inlinks="pf14524936032271" path="/pages/xhtml/salesDeliveryViewForm.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/salesDeliveryByGM.xhtml" x="554" y="5362" id="pf145249360323211" referenceLink="//@navigationRule.72/@navigationCase.0/@toViewId|" inlinks="pf14524936032329" path="/pages/xhtml/salesDeliveryByGM.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/salesDeliveryByPM.xhtml" x="554" y="5746" id="pf145249360323212" referenceLink="//@navigationRule.73/@navigationCase.0/@toViewId|" inlinks="pf145249360323210" path="/pages/xhtml/salesDeliveryByPM.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/stockOutManualConfirmation.xhtml" x="122" y="26674" id="pf145249360323213" referenceLink="//@navigationRule.75/@fromViewId|" outlinks="pf145251190799814" inlinks="pf14524936032312" path="/pages/xhtml/stockOutManualConfirmation.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/stockOutWaiting.xhtml" x="338" y="27058" id="pf145251287855115" referenceLink="//@navigationRule.78/@navigationCase.0/@toViewId|" outlinks="pf145251287855116" inlinks="pf14525723589451" path="/pages/xhtml/stockOutWaiting.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/stockOutManualApproveView.xhtml" x="122" y="27058" id="pf145251287855117" referenceLink="//@navigationRule.78/@fromViewId|" outlinks="pf14525723589451 pf14582144951760" inlinks="pf145251287855116" path="/pages/xhtml/stockOutManualApproveView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/stockOutManualView.xhtml" x="338" y="27442" id="pf14525723589452" referenceLink="//@navigationRule.80/@navigationCase.0/@toViewId|" outlinks="pf14526759342783" inlinks="pf14525723589420 pf14526759342784" path="/pages/xhtml/stockOutManualView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/stockOutManualViewForm.xhtml" x="122" y="27442" id="pf14526759342785" referenceLink="//@navigationRule.80/@fromViewId|" outlinks="pf14526759342784" inlinks="pf14526759342783" path="/pages/xhtml/stockOutManualViewForm.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/transaction.xhtml" x="122" y="23602" id="pf14526759342786" referenceLink="//@navigationRule.81/@fromViewId|" outlinks="pf14526759342700" path="pages/xhtml/transaction.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/transactionView.xhtml" x="122" y="27835" id="pf14526759342787" referenceLink="//@navigationRule.83/@fromViewId|" outlinks="pf14526759342788" path="pages/xhtml/transactionView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/TransactionEdit.xhtml" x="338" y="27835" id="pf14526759342789" referenceLink="//@navigationRule.83/@navigationCase.0/@toViewId|" inlinks="pf14526759342788" path="/pages/xhtml/TransactionEdit.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/payrollEdit.xhtml" x="122" y="5938" id="pf145267593427910" referenceLink="//@navigationRule.85/@fromViewId|" outlinks="pf14526759342742" path="pages/xhtml/payrollEdit.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/payrollView.xhtml" x="338" y="21682" id="pf145267593427911" referenceLink="//@navigationRule.84/@fromViewId|" outlinks="pf145267593427912" path="pages/xhtml/payrollView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/payrollEdit.xhtml" x="554" y="13810" id="pf145267593427913" referenceLink="//@navigationRule.86/@navigationCase.0/@toViewId|" inlinks="pf145267593427912 pf14527471385311" path="/pages/xhtml/payrollEdit.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/purchaseInvoiceForm.xhtml" x="554" y="562" id="pf14527471385322" referenceLink="//@navigationRule.87/@navigationCase.0/@toViewId|" inlinks="pf14527556431803" path="/pages/xhtml/purchaseInvoiceForm.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/salesInvoiceViewForm.xhtml" x="554" y="1330" id="pf14527556670117" referenceLink="//@navigationRule.88/@navigationCase.0/@toViewId|" inlinks="pf14527556670086" path="/pages/xhtml/salesInvoiceViewForm.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/Employee edit.xhtml" x="554" y="2482" id="pf145276819218910" referenceLink="//@navigationRule.89/@navigationCase.0/@toViewId|" inlinks="pf14527681921869" path="/pages/xhtml/Employee edit.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/Employee edit.xhtml" x="122" y="23986" id="pf145276819218911" referenceLink="//@navigationRule.90/@fromViewId|" outlinks="pf14527681921838" path="pages/xhtml/Employee edit.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/salesPayment.xhtml" x="122" y="28227" id="pf14529238694213" referenceLink="//@navigationRule.91/@fromViewId|" outlinks="pf14529238694214" path="pages/xhtml/salesPayment.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/salesPaymentReceive.xhtml" x="338" y="28227" id="pf14529238694215" referenceLink="//@navigationRule.91/@navigationCase.0/@toViewId|" inlinks="pf14529238694214" path="/pages/xhtml/salesPaymentReceive.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/DesignRegister.xhtml" x="338" y="17074" id="pf14529238694216" referenceLink="//@navigationRule.92/@navigationCase.0/@toViewId|" inlinks="pf14529238694170" path="/pages/xhtml/DesignRegister.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/DesignView.xhtml" x="338" y="17458" id="pf14529238694217" referenceLink="//@navigationRule.93/@navigationCase.0/@toViewId|" inlinks="pf14529238694171" path="/pages/xhtml/DesignView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/DesignViews.xhtml" x="338" y="17842" id="pf14529238694218" referenceLink="//@navigationRule.94/@navigationCase.0/@toViewId|" inlinks="pf14529238694172" path="/pages/xhtml/DesignViews.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/purchasePayment.xhtml" x="122" y="28618" id="pf14530969493140" referenceLink="//@navigationRule.95/@fromViewId|" outlinks="pf14530969493141" path="pages/xhtml/purchasePayment.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/purchasePaymentForm.xhtml" x="338" y="28618" id="pf14530969493142" referenceLink="//@navigationRule.95/@navigationCase.0/@toViewId|" inlinks="pf14530969493141" path="/pages/xhtml/purchasePaymentForm.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/profitAndLoss.xhtml" x="338" y="18226" id="pf14531763572581" referenceLink="//@navigationRule.96/@navigationCase.0/@toViewId|" inlinks="pf14531763572530" path="/pages/xhtml/profitAndLoss.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/purchasePaymentStatusView.xhtml" x="122" y="20530" id="pf14532058250183" referenceLink="//@navigationRule.97/@fromViewId|" outlinks="pf14532058250132" path="pages/xhtml/purchasePaymentStatusView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/salesPaymentStatus.xhtml" x="122" y="29008" id="pf14532801640502" referenceLink="//@navigationRule.98/@fromViewId|" outlinks="pf14532801640503" path="pages/xhtml/salesPaymentStatus.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/salesPaymentView.xhtml" x="338" y="29008" id="pf14532801640504" referenceLink="//@navigationRule.98/@navigationCase.0/@toViewId|" inlinks="pf14532801640503" path="/pages/xhtml/salesPaymentView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/salesPaymentView.xhtml" x="122" y="20146" id="pf14532801640505" referenceLink="//@navigationRule.99/@fromViewId|" outlinks="pf14532801640491" path="pages/xhtml/salesPaymentView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/cashBook.xhtml" x="338" y="18610" id="pf14532801640506" referenceLink="//@navigationRule.100/@navigationCase.0/@toViewId|" inlinks="pf14532801640490" path="pages/xhtml/cashBook.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/accountsReceiveAsset.xhtml" x="338" y="18994" id="pf14532844664678" referenceLink="//@navigationRule.101/@navigationCase.0/@toViewId|" inlinks="pf14532844664637" path="/pages/xhtml/accountsReceiveAsset.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/DesignView.xhtml" x="122" y="29397" id="pf14533717129090" referenceLink="//@navigationRule.102/@fromViewId|" outlinks="pf14533717129091" path="pages/xhtml/DesignView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/designViewEdit.xhtml" x="338" y="29397" id="pf14533717129092" referenceLink="//@navigationRule.102/@navigationCase.0/@toViewId|" inlinks="pf14533717129091" path="/pages/xhtml/designViewEdit.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/projectView.xhtml" x="122" y="29785" id="pf14533717129093" referenceLink="//@navigationRule.103/@fromViewId|" outlinks="pf14533717129094" path="pages/xhtml/projectView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/projectEdit.xhtml" x="338" y="29785" id="pf14533717129105" referenceLink="//@navigationRule.103/@navigationCase.0/@toViewId|" inlinks="pf14533717129094" path="/pages/xhtml/projectEdit.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/payrollLiability.xhtml" x="338" y="19378" id="pf14534386560111" referenceLink="//@navigationRule.104/@navigationCase.0/@toViewId|" inlinks="pf14534386560050" path="/pages/xhtml/payrollLiability.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/salesOrderReturn.xhtml" x="122" y="30172" id="pf14534386560112" referenceLink="//@navigationRule.105/@fromViewId|" outlinks="pf14534386560113" path="pages/xhtml/salesOrderReturn.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/salesReturnForm.xhtml" x="338" y="30172" id="pf14534386560114" referenceLink="//@navigationRule.105/@navigationCase.0/@toViewId|" inlinks="pf14534386560113" path="/pages/xhtml/salesReturnForm.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/salesOrderReturnView.xhtml" x="122" y="30558" id="pf14537029171560" referenceLink="//@navigationRule.106/@fromViewId|" outlinks="pf14537029171561" path="pages/xhtml/salesOrderReturnView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/salesReturnView.xhtml" x="338" y="30558" id="pf14537029171572" referenceLink="//@navigationRule.106/@navigationCase.0/@toViewId|" inlinks="pf14537029171561" path="/pages/xhtml/salesReturnView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/salesReturnView.xhtml" x="122" y="19378" id="pf14537055236604" referenceLink="//@navigationRule.107/@fromViewId|" outlinks="pf14537055236583" path="pages/xhtml/salesReturnView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/purchaseOrderReturn.xhtml" x="338" y="19762" id="pf14537130872246" referenceLink="//@navigationRule.108/@navigationCase.0/@toViewId|" inlinks="pf14537130872195" path="/pages/xhtml/purchaseOrderReturn.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/purchaseOrderReturn.xhtml" x="122" y="30943" id="pf14537139788367" referenceLink="//@navigationRule.109/@fromViewId|" outlinks="pf14537139788368" path="pages/xhtml/purchaseOrderReturn.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/purchaseOrderReturnForm.xhtml" x="338" y="30943" id="pf14537139788369" referenceLink="//@navigationRule.109/@navigationCase.0/@toViewId|" inlinks="pf14537139788368" path="/pages/xhtml/purchaseOrderReturnForm.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/purchaseReturnView.xhtml" x="338" y="20530" id="pf14543225566031" referenceLink="//@navigationRule.111/@navigationCase.0/@toViewId|" inlinks="pf14543225565980 pf14582144951791" path="/pages/xhtml/purchaseReturnView.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/purchaseReturnViewForm.xhtml" x="122" y="19762" id="pf14582144951792" referenceLink="//@navigationRule.111/@fromViewId|" outlinks="pf14582144951791" path="pages/xhtml/purchaseReturnViewForm.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/xhtml/stockOutApprovalPM.xhtml" id="pf14582144951793" referenceLink="//@navigationRule.78/@navigationCase.0/@toViewId|" inlinks="pf14582144951760" path="/pages/xhtml/stockOutApprovalPM.xhtml"/>
+  <links id="pf14449831083581" target="pf14449831083582" source="pf14449831083580" outcome="success" redirect="true"/>
+  <links id="pf14454877979480" target="pf14449831083582" source="pf14454877979581" outcome="cancelSuccess" redirect="true"/>
+  <links id="pf14455917968780" target="pf14454122331752" source="pf14455917968781" outcome="venRegPage" redirect="true"/>
+  <links id="pf14455917968782" target="pf14455917968783" source="pf14455917968781" outcome="venViewLoad" redirect="true"/>
+  <links id="pf14455994391875" target="pf14455994391876" source="pf14455917968781" outcome="productLoadPage" redirect="true"/>
+  <links id="pf14458476138850" target="pf14449831083582" source="pf14458476138851" outcome="cancelSuccess" redirect="true"/>
+  <links id="pf14458520444013" target="pf14458520444014" source="pf14455917968781" outcome="prodViewLoad" redirect="true"/>
+  <links id="pf14459260646001" target="pf14459260646002" source="pf14455917968781" outcome="customerViewLoadPage" redirect="true"/>
+  <links id="pf14459348074593" target="pf14459348074594" source="pf14455917968781" outcome="loadProjectPage" redirect="true"/>
+  <links id="pf14459392725040" target="pf14459392725041" source="pf14455917968781" outcome="projectViewLoadPage" redirect="true"/>
+  <links id="pf14459422156153" target="pf14459422156154" source="pf14455917968781" outcome="limitLoadPage" redirect="true"/>
+  <links id="pf14459455056286" target="pf14459455056287" source="pf14455917968781" outcome="limViewLoad" redirect="true"/>
+  <links id="pf14459469021099" target="pf14449831083582" source="pf144594690210910" outcome="cancelSuccess" redirect="true"/>
+  <links id="pf144594813934212" target="pf14449831083582" source="pf144594813934213" outcome="cancelSuccess" redirect="true"/>
+  <links id="pf144594892494315" target="pf14449831083582" source="pf144594892494316" outcome="cancelSuccess" redirect="true"/>
+  <links id="pf14460085395381" target="pf14460085395392" source="pf14455917968781" outcome="purchaseViewLoadPage" redirect="true"/>
+  <links id="pf14462078345571" target="pf14462078345572" source="pf14455917968781" outcome="purchasePayLoad" redirect="true"/>
+  <links id="pf14462685015281" target="pf14462685015292" source="pf14455917968781" outcome="purchaseViewLoad" redirect="true"/>
+  <links id="pf14464373889510" target="pf14464373889521" source="pf14455917968781" outcome="purchaseCloseLoad" redirect="true"/>
+  <links id="pf14464382083023" target="pf14464382083024" source="pf14455917968781" outcome="salesLoadPage" redirect="true"/>
+  <links id="pf14464487305495" target="pf14449831083582" source="pf14455917968781" outcome="cancelSuccess" redirect="true"/>
+  <links id="pf14464565173336" target="pf14464565173337" source="pf14455917968781" outcome="saleViewLoad" redirect="true"/>
+  <links id="pf14464649571618" target="pf144646495716111" source="pf14455917968781" outcome="salesDelLoad" redirect="true"/>
+  <links id="pf14464649571619" target="pf144646495716112" source="pf14455917968781" outcome="salesReturnLoadPage" redirect="true"/>
+  <links id="pf144646495716110" target="pf144646495716113" source="pf14455917968781" outcome="salesRetrnViewLoad" redirect="true"/>
+  <links id="pf144646649432814" target="pf144646649432815" source="pf14455917968781" outcome="salesPayPageLoad" redirect="true"/>
+  <links id="pf14465325427390" target="pf14465325427395" source="pf14455917968781" outcome="purchaseINLoadPage" redirect="true"/>
+  <links id="pf14465325427391" target="pf14465325427396" source="pf14455917968781" outcome="purchasePaymentLoadPage" redirect="true"/>
+  <links id="pf14465325427392" target="pf14465325427397" source="pf14455917968781" outcome="salesInLoad" redirect="true"/>
+  <links id="pf14465325427393" target="pf14465325427398" source="pf14455917968781" outcome="salesPayLoadPage" redirect="true"/>
+  <links id="pf144653313091310" target="pf144653313091311" source="pf14455917968781" outcome="customerLoadPage" redirect="true"/>
+  <links id="pf144654463816712" target="pf144654463817714" source="pf14455917968781" outcome="purReportPageLoad" redirect="true"/>
+  <links id="pf144654463816713" target="pf144654463817715" source="pf14455917968781" outcome="saleReportPageLoad" redirect="true"/>
+  <links id="pf14466232917671" target="pf14466232917672" source="pf14455917968781" outcome="stockPageLoad" redirect="true"/>
+  <links id="pf14466232917670" target="pf14449831083582" source="pf14466232917673" outcome="cancellSucess" redirect="true"/>
+  <links id="pf14466283246715" target="pf14466283246716" source="pf14455917968781" outcome="stockInViewLoad" redirect="true"/>
+  <links id="pf14466299413458" target="pf14466299413459" source="pf14455917968781" outcome="outStockLoadPage" redirect="true"/>
+  <links id="pf144663457768011" target="pf144663457768012" source="pf14455917968781" outcome="stockDamageLoad" redirect="true"/>
+  <links id="pf14466966494120" target="pf14466966494121" source="pf14455917968781" outcome="empRegLoad" redirect="true"/>
+  <links id="pf14467016700173" target="pf14467016700174" source="pf14455917968781" outcome="payrollLoadPage" redirect="true"/>
+  <links id="pf14467872380150" target="pf14467872380152" source="pf14455917968781" outcome="employeeViewLoadPage" redirect="true"/>
+  <links id="pf14467872380151" target="pf14467872380153" source="pf14455917968781" outcome="payrollViewLoadPage" redirect="true"/>
+  <links id="pf14467973895065" target="pf14467973895166" source="pf14455917968781" outcome="transRegisterPage" redirect="true"/>
+  <links id="pf14476547099751" target="pf14476547099792" source="pf14455917968781" outcome="transViewLoad" redirect="true"/>
+  <links id="pf14476550461105" target="pf14476550461106" source="pf14454877979581" outcome="loginNull" redirect="true"/>
+  <links id="pf14476555406047" target="pf14476550461106" source="pf14455917968781" outcome="nullLogin" redirect="true"/>
+  <links id="pf14478389808233" target="pf14478389808234" source="pf14478389808232" outcome="vendorListNotEmpty" redirect="true"/>
+  <links id="pf14480145679103" target="pf14480145679104" source="pf14480145679102" outcome="productListtNotEmpty" redirect="true"/>
+  <links id="pf14489432772813" target="pf14489432772814" source="pf14489432772812" outcome="LimitNotEmpty" redirect="true"/>
+  <links id="pf14492308865071" target="pf14492308865082" source="pf14455917968781" outcome="customerListNotEmpty" redirect="true"/>
+  <links id="pf14492990869500" target="pf14492990869505" source="pf14455917968781" outcome="EmpEdit" redirect="true"/>
+  <links id="pf14492990869501" target="pf14492990869506" source="pf14455917968781" outcome="purchaseOrderView" redirect="true"/>
+  <links id="pf14492990869502" target="pf14462685015292" source="pf14455917968781" outcome="purchaseOrder" redirect="true"/>
+  <links id="pf14492990869503" target="pf14492990869507" source="pf14455917968781" outcome="purchaseOrderEdit" redirect="true"/>
+  <links id="pf14492990869504" target="pf14492990869508" source="pf14455917968781" outcome="purchaseOderEditConfirm" redirect="true"/>
+  <links id="pf14494563112460" target="pf14494563112484" source="pf14464565173337" outcome="salesViewForm" redirect="true"/>
+  <links id="pf14494563112461" target="pf14494563112485" source="pf14464565173337" outcome="salesOrderUpdateForm" redirect="true"/>
+  <links id="pf14494563112462" target="pf14464565173337" source="pf14494563112484" outcome="viewbackview" redirect="true"/>
+  <links id="pf14494563112463" target="pf14464565173337" source="pf14494563112485" outcome="editbackview" redirect="true"/>
+  <links id="pf14494569077137" target="pf14494569077158" source="pf14455917968781" outcome="StockoutManualPage" redirect="true"/>
+  <links id="pf14494923597920" target="pf14494923597931" source="pf14455917968781" outcome="purchaseOderConfirm" redirect="true"/>
+  <links id="pf14497354674705" target="pf14497354674747" source="pf14464382083024" outcome="salesOrderConfirmation" redirect="true"/>
+  <links id="pf14497354674706" target="pf14464382083024" source="pf14497354674747" outcome="salesorderback" redirect="true"/>
+  <links id="pf14497354674690" target="pf14497354674748" source="pf14455917968781" outcome="back1" redirect="true"/>
+  <links id="pf14497354674691" target="pf14497354674749" source="pf14455917968781" outcome="back2" redirect="true"/>
+  <links id="pf14497354674692" target="pf144973546747410" source="pf14455917968781" outcome="back3" redirect="true"/>
+  <links id="pf14497354674693" target="pf144973546747411" source="pf14455917968781" outcome="back4" redirect="true"/>
+  <links id="pf14497354674694" target="pf144973546747512" source="pf14455917968781" outcome="poView" redirect="true"/>
+  <links id="pf14524936032270" target="pf14524936032323" source="pf14455917968781" outcome="approvalViewPageMM" redirect="true"/>
+  <links id="pf14524936032324" target="pf14524936032326" source="pf14524936032323" outcome="approvalViewPageMM" redirect="true"/>
+  <links id="pf14524936032325" target="pf14524936032327" source="pf14524936032323" outcome="approvalViewPageGM" redirect="true"/>
+  <links id="pf14524936032271" target="pf14524936032328" source="pf14455917968781" outcome="deliveryViewPage" redirect="true"/>
+  <links id="pf14524936032329" target="pf145249360323211" source="pf14524936032328" outcome="deliveryViewPageGM" redirect="true"/>
+  <links id="pf145249360323210" target="pf145249360323212" source="pf14524936032328" outcome="deliveryViewPagePM" redirect="true"/>
+  <links id="pf14524936032312" target="pf145249360323213" source="pf14494569077158" outcome="stockOutManualConfirmation" redirect="true"/>
+  <links id="pf145251190799814" target="pf14494569077158" source="pf145249360323213" outcome="stockOutmanualBack" redirect="true"/>
+  <links id="pf145251287855116" target="pf145251287855117" source="pf145251287855115" outcome="stockOutManualApproveView" redirect="true"/>
+  <links id="pf14525723589451" target="pf145251287855115" source="pf145251287855117" outcome="stockOutManualwaitingback" redirect="true"/>
+  <links id="pf14525723589420" target="pf14525723589452" source="pf14455917968781" outcome="stockOutManualView" redirect="true"/>
+  <links id="pf14526759342783" target="pf14526759342785" source="pf14525723589452" outcome="stockOutManualViewForm" redirect="true"/>
+  <links id="pf14526759342784" target="pf14525723589452" source="pf14526759342785" outcome="stockOutManualViewback" redirect="true"/>
+  <links id="pf14526759342700" target="pf14449831083582" source="pf14526759342786" outcome="canSuccess" redirect="true"/>
+  <links id="pf14526759342711" target="pf14467973895166" source="pf14455917968781" outcome="transRegisterPage" redirect="true"/>
+  <links id="pf14526759342788" target="pf14526759342789" source="pf14526759342787" outcome="cancel" redirect="true"/>
+  <links id="pf14526759342742" target="pf14467872380153" source="pf145267593427910" outcome="cancelSuccess1" redirect="true"/>
+  <links id="pf145267593427912" target="pf145267593427913" source="pf145267593427911" outcome="payrollListtNotEmpty" redirect="true"/>
+  <links id="pf14527471385311" target="pf145267593427913" source="pf14467872380153" outcome="payrollUpdatePage" redirect="true"/>
+  <links id="pf14527556431803" target="pf14527471385322" source="pf14465325427395" outcome="purchaseInvoiceForm" redirect="true"/>
+  <links id="pf14527556670086" target="pf14527556670117" source="pf14465325427397" outcome="salesInvoiceViewForm" redirect="true"/>
+  <links id="pf14527681921869" target="pf145276819218910" source="pf14467872380152" outcome="employeeedit" redirect="true"/>
+  <links id="pf14527681921838" target="pf14449831083582" source="pf145276819218911" outcome="Winner" redirect="true"/>
+  <links id="pf14529238694214" target="pf14529238694215" source="pf14529238694213" outcome="salesPaymentReceive" redirect="true"/>
+  <links id="pf14529238694170" target="pf14529238694216" source="pf14455917968781" outcome="DesignRegisterPage" redirect="true"/>
+  <links id="pf14529238694171" target="pf14529238694217" source="pf14455917968781" outcome="DesignViewPage" redirect="true"/>
+  <links id="pf14529238694172" target="pf14529238694218" source="pf14455917968781" outcome="DesignViewsPage" redirect="true"/>
+  <links id="pf14530969493141" target="pf14530969493142" source="pf14530969493140" outcome="purchasePaymentForm" redirect="true"/>
+  <links id="pf14531763572530" target="pf14531763572581" source="pf14455917968781" outcome="profitLossPage" redirect="true"/>
+  <links id="pf14532058250132" target="pf14462078345572" source="pf14532058250183" outcome="purpaymnetBacks" redirect="true"/>
+  <links id="pf14532801640503" target="pf14532801640504" source="pf14532801640502" outcome="salesPaymentView" redirect="true"/>
+  <links id="pf14532801640491" target="pf144646649432815" source="pf14532801640505" outcome="salPaymentbacks" redirect="true"/>
+  <links id="pf14532801640490" target="pf14532801640506" source="pf14455917968781" outcome="cashBook" redirect="true"/>
+  <links id="pf14532844664637" target="pf14532844664678" source="pf14455917968781" outcome="winner" redirect="true"/>
+  <links id="pf14533717129091" target="pf14533717129092" source="pf14533717129090" outcome="success" redirect="true"/>
+  <links id="pf14533717129094" target="pf14533717129105" source="pf14533717129093" outcome="editProject" redirect="true"/>
+  <links id="pf14534386560050" target="pf14534386560111" source="pf14455917968781" outcome="win" redirect="true"/>
+  <links id="pf14534386560113" target="pf14534386560114" source="pf14534386560112" outcome="salesReturnForm" redirect="true"/>
+  <links id="pf14537029171561" target="pf14537029171572" source="pf14537029171560" outcome="salesReturnView" redirect="true"/>
+  <links id="pf14537055236583" target="pf144646495716113" source="pf14537055236604" outcome="salesReturnViewback" redirect="true"/>
+  <links id="pf14537130872195" target="pf14537130872246" source="pf14455917968781" outcome="purchaseOrderReturn" redirect="true"/>
+  <links id="pf14537139788368" target="pf14537139788369" source="pf14537139788367" outcome="purchaseOrderReturnForm" redirect="true"/>
+  <links id="pf14543225565980" target="pf14543225566031" source="pf14455917968781" outcome="purchaseReturnView" redirect="true"/>
+  <links id="pf14582144951791" target="pf14543225566031" source="pf14582144951792" outcome="purchaseReturnViewbac" redirect="true"/>
+  <links id="pf14582144951760" target="pf14582144951793" source="pf145251287855117" outcome="stockOutManualwaitingbackPM" redirect="true"/>
+</pageflow:Pageflow>

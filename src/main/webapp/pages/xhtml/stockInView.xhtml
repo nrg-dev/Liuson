@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	 <link rel="stylesheet" href="../../css/liusenCss.css">
+ 
+</link> 
+
+	</h:head>
+	<body bgcolor="#4C6D90" >
+	
+	<h:form id="stockView">
+	<table align="center" bgcolor="#fff" >
+	<tr bgcolor="#fff"><td>
+	<ui:include src="../../pages/xhtml/templates/header.xhtml"></ui:include>
+	</td></tr>
+	<tr><td>
+<ui:include src="/pages/xhtml/templates/menunew.xhtml" />
+	</td></tr>
+	<tr><td>
+	<table>
+	<tr><td style="width: 300px"><strong style="color:#2C238C"> Welcome, #{loginMB.invusername}.</strong></td><td style="width: 426px" align="center"><p:clock pattern="dd-MM-yyyy HH:mm:ss" mode="server"></p:clock></td>
+	<td style="width: 308px" align="right"><h:commandButton value="Logout" action="#{loginMB.logout()}" styleClass="button"></h:commandButton>
+	</td></tr>
+	</table>
+	</td></tr>
+	<tr>
+	<td><br></br></td>
+	</tr>
+	<tr><td>
+	
+	<div align="center">
+	
+				<h:outputText styleClass="text_Header" style="font-weight:bold"
+					value="STOCK IN VIEW"/><br /><br />
+					</div>
+					<div align="center">
+					<table><tr><td>
+					<rich:panel styleClass="class2"  headerClass="head2" bodyClass="body3" style="width:400px;height:170px">
+	 <f:facet name="header">
+            Search by Product Name <p:spacer height="10px" width="50px"></p:spacer>
+            <p:commandButton value="Help" type="button" onclick="PF('dlg3').show();"></p:commandButton>
+        </f:facet>
+        <table class="paneltable_UI" cellpadding="7px"><tr><td class="table_td">
+        <h:outputLabel for="stockViewPName" value="Product Name " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span> </td>
+        <td class="table_td"> 
+        <p:selectOneMenu id="stockViewPName" styleClass="selecttext_ui" effect="fold" value="#{stockInViewMB.stockDataBean.stockProductName}">
+        <f:selectItem itemLabel="Please Choose Product Name" noSelectionOption="true"></f:selectItem>
+        <f:selectItems value="#{stockInViewMB.productNameList}"></f:selectItems>
+        </p:selectOneMenu>
+        <br></br>
+        <h:message for="stockViewPName" style="color:red;font-size:11"></h:message>
+        </td>
+        </tr>
+        <tr>
+        <td class="table_td"></td><td class="table_td"><h:commandButton styleClass="button" value="Search"  action="#{stockInViewMB.searchProduct}"></h:commandButton> </td>
+        </tr>
+        </table>
+        </rich:panel></td>
+        <td>
+					<rich:panel styleClass="class2"  headerClass="head2" bodyClass="body3" style="width:400px;height:170px">
+	 <f:facet name="header">
+            Search by Vendor Name <p:spacer height="10px" width="50px"></p:spacer>
+            <p:commandButton value="Help" type="button" onclick="PF('dlg4').show();"></p:commandButton>
+        </f:facet>
+        <table class="paneltable_UI" cellpadding="7px"><tr><td class="table_td">
+        <h:outputLabel for="stockViewVName" value="Vendor Name " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span> </td>
+        <td class="table_td"><p:selectOneMenu id="stockViewVName" styleClass="selecttext_ui" effect="fold" value="#{stockInViewMB.stockDataBean.stockFirmName}">
+        <f:selectItem itemLabel="Please Choose Vendor Name" noSelectionOption="true"></f:selectItem>
+        <f:selectItems value="#{stockInViewMB.vendornameList}"></f:selectItems>
+        </p:selectOneMenu> 
+        <br></br>
+        <h:message for="stockViewVName" style="color:red;font-size:11"></h:message>
+        </td>
+        </tr>
+        <tr>
+        <td class="table_td"></td><td class="table_td"><h:commandButton styleClass="button" value="Search" action="#{stockInViewMB.searchFirmName}"></h:commandButton> </td>
+        </tr>
+        </table>
+        </rich:panel></td>
+        </tr></table>
+					</div>
+					<p:spacer height="20px"></p:spacer>
+					<div align="center" style="width: 1052px">
+					<p:dataTable id="stockinView" var="stock" rows="10" rendered="#{!stockInViewMB.flag}" value="#{stockInViewMB.stockinViewList}"
+					 paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="5,10,15">
+					<f:facet name="header">
+						List of Stock-IN View
+						<h:commandLink>
+        				<p:graphicImage value="/images/Excel-icon.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="xls" target="stockinView" fileName="stockinViewList"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+     					<p:graphicImage value="/images/pdf.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="pdf" target="stockinView" fileName="stockinViewList"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+    					 <p:graphicImage value="/images/csv.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="csv" target="stockinView" fileName="stockinViewList"></p:dataExporter>
+        				</h:commandLink>
+						 <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
+        				<p:columnToggler datasource="stockinView" trigger="toggler" /> 
+        				
+					</f:facet>
+					
+					<p:column headerText="Date" sortBy="#{stock.stockInDate}">
+					<h:outputText value="#{stock.stockInDate}">
+					<f:convertDateTime pattern="dd-MM-yyyy"></f:convertDateTime>
+					</h:outputText>
+					</p:column>
+					<p:column headerText="Product Name" sortBy="#{stock.stockProductName}">
+					<h:outputText value="#{stock.stockProductName}"></h:outputText>
+					</p:column>
+					<p:column headerText="Firm Name" sortBy="#{stock.stockFirmName}">
+					<h:outputText value="#{stock.stockFirmName}"></h:outputText>
+					</p:column>
+					<p:column headerText="Category" sortBy="#{stock.stockCategory}">
+					<h:outputText value="#{stock.stockCategory}"></h:outputText>
+					</p:column>
+					<p:column headerText="Unit Price" sortBy="#{stock.stockUnitPrice}">
+					<h:outputText value="#{stock.stockUnitPrice}">
+					<f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+					</h:outputText>
+					</p:column>
+					<p:column headerText="Quantity" sortBy="#{stock.stockinQty}">
+					<h:outputText value="#{stock.stockinQty}"></h:outputText><h:outputText value=" #{stock.stockUnit}"></h:outputText>
+					</p:column>
+					
+					
+					<f:facet name="footer">
+					Export Page Data Only
+					<h:commandLink>
+        				<p:graphicImage value="/images/Excel-icon.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="xls" target="stockinView" fileName="stockinViewList" pageOnly="true"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+     					<p:graphicImage value="/images/pdf.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="pdf" target="stockinView" fileName="stockinViewList" pageOnly="true"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+    					 <p:graphicImage value="/images/csv.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="csv" target="stockinView" fileName="stockinViewList" pageOnly="true"></p:dataExporter>
+        				</h:commandLink>
+					</f:facet>
+					</p:dataTable>
+					</div>
+					<p:spacer width="1050px" height="400px"></p:spacer>
+					
+					</td>
+					</tr>
+					<tr><td align="center"><h:outputText value="Copyright © PT. Neotural Era Graha" style="color:#2C238C"></h:outputText>
+					<br /><br />
+					</td></tr>
+
+					</table>
+					
+					<p:dialog header="Translation" widgetVar="dlg3" showEffect="explode" hideEffect="shake" height="100" width="400" >
+<rich:panel>
+<h:panelGrid columns="3">
+<h:outputText value="Search by Product Name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Cari Berdasarkan Nama Produk"></h:outputText>
+<h:outputText value="Product Name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Nama Produk"></h:outputText>
+
+
+</h:panelGrid>	
+</rich:panel>	
+</p:dialog>
+<p:dialog header="Translation" widgetVar="dlg4" showEffect="explode" hideEffect="shake" height="100" width="400" >
+<rich:panel>
+<h:panelGrid columns="3">
+<h:outputText value="Search by Vendor Name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Cari Berdasarkan Nama Pedagang"></h:outputText>
+<h:outputText value="Vendor Name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Nama Pedagang"></h:outputText>
+
+
+</h:panelGrid>	
+</rich:panel>	
+</p:dialog>
+					</h:form>
+					</body></ui:composition>

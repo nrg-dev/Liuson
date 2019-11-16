@@ -1,0 +1,321 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	 <link rel="stylesheet" href="../../css/liusenCss.css">
+ 
+</link> 
+
+	</h:head>
+	<body bgcolor="#4C6D90" >
+	
+	<h:form id="vendor1">
+	<table align="center" bgcolor="#fff">
+	<tr bgcolor="#fff"><td>
+	<ui:include src="../../pages/xhtml/templates/header.xhtml"></ui:include>
+	</td></tr>
+	<tr><td>
+<ui:include src="/pages/xhtml/templates/menunew.xhtml" />
+	</td></tr>
+	<tr><td>
+	<table>
+	<tr><td style="width: 300px"><strong style="color:#2C238C"> Welcome, #{loginMB.invusername}.</strong></td><td style="width: 426px" align="center"><p:clock pattern="dd-MM-yyyy HH:mm:ss" mode="server"></p:clock></td>
+	<td style="width: 308px" align="right"><h:commandButton value="Logout" action="#{loginMB.logout()}" styleClass="button"></h:commandButton>
+	</td></tr>
+	</table>
+	</td></tr>
+	<tr>
+	<td><br></br></td>
+	</tr>
+	<tr><td>
+	
+	<div align="center">
+	
+				<h:outputText styleClass="text_Header" style="font-weight:bold"
+					value="STOCKOUT MANUAL"/><br /><br /><br/>
+			<!-- <h:outputText  style="font-size:18px;color:red;" value="#{stockOutManualMB.stockOutManualDataBean.message}"/> -->
+	<!-- <h:messages showSummary="false" showDetail="true"   globalOnly="false" style="color:red"  layout="table"></h:messages> -->
+	</div>
+	<br></br>
+	<div align="center">
+	<rich:panel styleClass="class2" style="width:1000px;" headerClass="head2" bodyClass="body3">
+	 <f:facet name="header">
+            Stockout Manual Form
+ <p:spacer height="10px" width="100px"></p:spacer>
+            <p:commandButton value="Help" type="button" onclick="PF('dlg3').show();"></p:commandButton>
+        </f:facet>
+        <h:form>
+      	<table align="center" class="table_UI" cellpadding="10px">
+      	<tr>
+      	<td>
+      	<h:outputLabel for="proname" value="Product Name" styleClass="text_ui"></h:outputLabel><span style="color:red">*</span>
+      	</td>
+      	<td><p:selectOneMenu id="proname" effect="fold" styleClass="selecttext_ui" value="#{stockOutManualMB.stockOutManualDataBean.soutProjectName}" valueChangeListener="#{stockOutManualMB.orderChange}">
+      	<f:selectItem itemLabel="Please Choose Product Name" noSelectionOption="true"></f:selectItem>
+      	<f:selectItems value="#{stockOutManualMB.stockOutManualDataBean.projectList}"></f:selectItems>
+      	<p:ajax event="valueChange" immediate="true" process="@this" update="@form"/>
+      	</p:selectOneMenu>
+      	<br />
+      	<h:message for="proname" style="color:red;font-size:11"></h:message>
+      	 </td>
+      	 <td>
+      	 <h:outputLabel for="category" value="Category "></h:outputLabel><span style="color:red">*</span>
+      	 </td><td>
+      	 <p:selectOneMenu id="category" effect="fold" styleClass="selecttext_ui" value="#{stockOutManualMB.stockOutManualDataBean.soutCategory}" valueChangeListener="#{stockOutManualMB.categoryChange}">
+      	<f:selectItem itemLabel="Please Choose Category" noSelectionOption="true"></f:selectItem>
+      	<f:selectItem itemLabel="Raw Material" itemValue="Raw Material"></f:selectItem>
+      	<f:selectItem itemLabel="Service" itemValue="Service"></f:selectItem>
+      	<p:ajax event="valueChange" immediate="true" process="@this" update="@form"/>
+      	</p:selectOneMenu>
+      	<br></br>
+      	<h:message for="category" style="color:red;font-size:11"></h:message>
+      	</td>
+      	</tr>
+      	<tr>
+      	<td>
+      	<h:outputLabel for="empid" value="Employee ID" styleClass="text_ui"></h:outputLabel><span style="color:red">*</span>
+      	</td>
+      	<td><p:selectOneMenu id="empid" effect="fold" styleClass="selecttext_ui" value="#{stockOutManualMB.stockOutManualDataBean.soutEmployeeID}" valueChangeListener="#{stockOutManualMB.orderChange}">
+      	<f:selectItem itemLabel="Please Choose Employee ID" noSelectionOption="true"></f:selectItem>
+      	<f:selectItems value="#{stockOutManualMB.stockOutManualDataBean.employeelist}"></f:selectItems>
+      	<p:ajax event="valueChange" immediate="true" process="@this" update="@form"/>
+      	</p:selectOneMenu>
+      	<br />
+      	<h:message for="empid" style="color:red;font-size:11"></h:message>
+      	 </td>
+      	 <td>
+      	 <h:outputLabel for="cusno" value="Project Name"></h:outputLabel><span style="color:red">*</span>
+      	 </td>
+      	<td><p:selectOneMenu id="cusno" effect="fold" styleClass="selecttext_ui" value="#{stockOutManualMB.stockOutManualDataBean.soutProjectnames}" valueChangeListener="#{stockOutManualMB.orderChange}">
+      	<f:selectItem itemLabel="Please Choose the Project Name" noSelectionOption="true"></f:selectItem>
+      	<f:selectItems value="#{stockOutManualMB.projectNameList}"></f:selectItems>
+      	<p:ajax event="valueChange" immediate="true" process="@this" update="@form"/>
+      	</p:selectOneMenu>
+      	<br />
+      	<h:message for="cusno" style="color:red;font-size:11"></h:message>
+      	 </td>
+      	</tr>
+      	
+      	</table>
+      	
+      	<rich:panel>
+		<h:message for="message" style="color:red;font-size:11px"></h:message>
+		<rich:dataTable  var="info" value="#{stockOutManualMB.stockOutManualDataBean.stockOutList}" id="message" columnsWidth="50px,300px,150px,150px,200px,100px">
+				
+					<h:column headerText="No">
+					
+					<f:facet name="header"> <span style="font-style: normal;font-size:16px;padding-top:10px;font-family:'Helvetica Neue LT Pro 55';"> No  </span>      </f:facet>
+				
+					
+					<div>
+						 <h:outputText  value="#{info.soutSerialNo}" class="label_ui"/>
+						 </div>
+					</h:column>
+					
+					<h:column headerText="PName">
+					<f:facet name="header"> <span style="font-style: normal;font-size:16px;padding-top:10px;font-family:'Helvetica Neue LT Pro 55';"> Product Name </span>      </f:facet>
+					
+					<div>
+						 <p:selectOneMenu id="salPname" value="#{info.soutProductName1}"  styleClass="selectdrop_ui" style="display:#{info.flag};" valueChangeListener="#{stockOutManualMB.productChange}">
+				  	<f:selectItem itemLabel="Please Choose the Product Name" itemValue=""></f:selectItem>
+				  	<f:selectItems value="#{stockOutManualMB.productNameList}"></f:selectItems>
+			<p:ajax process="@this" update="@form" event="valueChange" immediate="true"></p:ajax>
+			<f:attribute value="#{info.soutSerialNo}" name="sno"></f:attribute>
+				 </p:selectOneMenu><br></br>
+				 <h:outputText  value="#{info.soutProductName1}" class="label_ui" style="display:#{info.flag1};"/>
+				
+						</div>
+					</h:column>
+					<h:column headerText="Price">
+					<f:facet name="header"> <span style="font-style: normal;font-size:16px;padding-top:10px;font-family:'Helvetica Neue LT Pro 55';"> Price  </span>      </f:facet>
+					<div>
+					 <p:inputText value="#{info.soutUnitPrice}" style="width:150px;display:#{info.pflag};" valueChangeListener="#{stockOutManualMB.productPrice}">
+	          		 <p:ajax process="@this" update="@form" event="valueChange" immediate="true"></p:ajax>
+	          		 <f:attribute value="#{info.soutSerialNo}" name="sno"></f:attribute>
+	          		 <f:attribute value="#{info.soutProductName1}" name="product"></f:attribute>
+	          		  <f:attribute value="#{info.soutLimit}" name="limit"></f:attribute>
+	           			</p:inputText>
+					<h:panelGroup>
+					
+						<h:outputText value="#{info.soutUnitPrice}" styleClass="label_ui" style="display:#{info.pflag1};">
+						<f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+						</h:outputText>
+					</h:panelGroup>
+						 
+						 </div>
+					</h:column>
+						<h:column headerText="Quantity">
+						<f:facet name="header"> <span style="font-style: normal;font-size:16px;padding-top:10px;font-family:'Helvetica Neue LT Pro 55';"> 
+						<h:outputText value="Quantity"></h:outputText><p:separator></p:separator>
+						<h:outputText value="Limit"></h:outputText>
+						 </span>      </f:facet>
+					<div>
+						 <p:inputText id="salQty" value="#{info.soutQty}" style="width:150px;display:#{info.qflag};" valueChangeListener="#{stockOutManualMB.quantityChange}">
+	          		 <p:ajax process="@this" update="@form" event="valueChange" immediate="true"></p:ajax>
+	           			<f:attribute value="#{info.soutSerialNo}" name="sno"></f:attribute>
+	          		 <f:attribute value="#{info.soutProductName1}" name="product"></f:attribute>
+	          		  <f:attribute value="#{info.soutLimit}" name="limit"></f:attribute>
+	          		  <f:attribute value="#{info.soutUnitPrice}" name="price"></f:attribute>
+	           			</p:inputText>
+	           			 <p:outputLabel value="#{info.soutQty}" style="display:#{info.qflag1};">
+	           			 </p:outputLabel>
+	           			<p:separator></p:separator>
+	           			<p:inputText value="#{info.soutLimit}" style="width:150px" disabled="true"></p:inputText>
+	           			
+						</div>
+					</h:column>
+					
+					<h:column headerText="Net Amount">
+					<f:facet name="header"> <span style="font-style: normal;font-size:16px;padding-top:10px;font-family:'Helvetica Neue LT Pro 55';"> Net Amount  </span>      </f:facet>
+					<div>
+					<h:panelGroup>
+					
+						 <h:outputText value="#{info.soutNetAmount}" styleClass="label_ui">
+						 <f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+						 </h:outputText>
+						 </h:panelGroup>
+						 </div>
+					</h:column>
+					
+					
+					<h:column width="180" headerText="edit">
+					<f:facet name="header"> <span style="font-style: normal;font-size:16px;padding-top:10px;font-family:'Helvetica Neue LT Pro 55';"> Edit  </span>      </f:facet>
+					<div align="center"> 
+					<h:commandButton id="saledit" image="/images/edit_new.png" action="#{stockOutManualMB.recordEdit}">
+	            	<f:setPropertyActionListener value="#{info.soutNetAmount}" target="#{stockOutManualMB.stockOutManualDataBean.soutNetAmount}"></f:setPropertyActionListener>
+	            	<f:setPropertyActionListener value="#{info.soutSerialNo}" target="#{stockOutManualMB.stockOutManualDataBean.soutSerialNo}"></f:setPropertyActionListener>
+	            	<f:setPropertyActionListener value="#{info.soutProductName1}" target="#{stockOutManualMB.stockOutManualDataBean.soutProductName1}"></f:setPropertyActionListener>
+	            		<f:ajax render="@form" execute="saledit"></f:ajax>
+	         		  </h:commandButton></div> 
+	         		  
+					</h:column>
+				</rich:dataTable></rich:panel>
+      	<table align="center" class="table_UI" cellpadding="10px"><tr><td>
+				<h:commandButton id="saladd"  value="Add"  action="#{stockOutManualMB.Add}" image="/images/add.png">
+				<f:ajax render="@form" execute="saladd"></f:ajax>
+				
+				</h:commandButton>
+			<p:spacer width="300px" height="30px"></p:spacer>
+			</td>
+			<td align="right">
+				<h:outputLabel for="salCross" value="Cross Total:" styleClass="label_ui"></h:outputLabel>
+			</td><td>
+			
+				 <h:outputText id="salCross" value="#{stockOutManualMB.stockOutManualDataBean.soutCrossTotal}" styleClass="label_ui">
+				 <f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+				 </h:outputText> </td>
+				</tr>
+				<tr>
+				<td></td>
+				<td align="right"><h:outputLabel for="taxType" value="Tax Type :" styleClass="label_ui"></h:outputLabel>
+				</td><td>
+				<p:selectOneRadio id="taxType" value="#{stockOutManualMB.stockOutManualDataBean.soutTaxType}" valueChangeListener="#{stockOutManualMB.taxTypeChange}" >
+				<f:selectItem itemLabel="NO Tax" itemValue="NO Tax"></f:selectItem>
+				<f:selectItem itemLabel="10% Tax" itemValue="10% Tax"></f:selectItem>
+				<p:ajax process="@this" update="@form" event="valueChange" immediate="true"></p:ajax>
+				
+				</p:selectOneRadio>
+				
+				<h:message for="taxType" style="color:red;font-size:11px"></h:message>
+				
+				</td>
+			
+				
+				
+				</tr>
+				<!-- <tr>
+				<td></td>
+				<td align="right"><h:outputLabel value="Discount Amount:" styleClass="label_ui"></h:outputLabel> </td>
+				<td>
+				<h:inputText style="height:30px;width:100px" value="#{purchaseOrderMB.purchaseOrederDataBean.purDiscAmmount}"></h:inputText>
+				</td>
+				</tr> -->
+				<tr>
+				<td></td>
+				<td></td>
+				<td>
+				<p:separator></p:separator>
+				</td>
+				</tr>
+				<tr>
+				<td>
+				</td>
+				<td align="right">
+				<strong><h:outputText value="Total Amount :" styleClass="label_ui"></h:outputText></strong>
+				</td>
+				<td>
+				<strong></strong>
+				<strong><h:outputText value="#{stockOutManualMB.stockOutManualDataBean.soutTotalAmount}" styleClass="label_ui">
+				<f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+				</h:outputText></strong>
+				</td>
+				</tr>
+				<tr>
+				<td></td>
+				<td></td>
+				<td>
+				<p:separator></p:separator>
+				</td>
+				</tr>
+				</table>
+      	</h:form>
+      		<table align="center" class="table_UI" cellpadding="10px">
+      		<tr align="center">
+				<td colspan="4"><h:commandButton value="Submit"	action="#{stockOutManualMB.stockManualInsert}" styleClass="button"  >
+					</h:commandButton>
+					<h:commandButton value="Reset"	action="#{stockOutManualMB.reset}" styleClass="button"  >
+					</h:commandButton>
+					<h:commandButton value="Cancel" action="home.xhtml?faces-redirect=true" styleClass="button"></h:commandButton>
+				</td>
+			</tr>
+      		</table>
+      	</rich:panel>
+      	</div>
+      	</td>
+      	</tr>
+      	</table>
+      	<p:dialog header="Translation" widgetVar="dlg3" showEffect="explode" hideEffect="shake" height="300" width="500" >
+		
+<rich:panel>
+<h:panelGrid columns="3">
+<h:outputText value="Category"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="kategori"></h:outputText>
+<h:outputText value="Customer Phone Number"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="nomor Telepon Pelanggan"></h:outputText>
+<h:outputText value="Employee ID"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Karyawan ID"></h:outputText>
+<h:outputText value="Product Name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Nama Produk"></h:outputText>
+<h:outputText value="Price"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="harga"></h:outputText>
+<h:outputText value="Quantity"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="kuantitas"></h:outputText>
+<h:outputText value="Net Amount"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Jumlah bersih"></h:outputText>
+<h:outputText value="Cross Total"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Jumlah lintas"></h:outputText>
+<h:outputText value="Tax Type"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Jenis Pajak"></h:outputText>
+<h:outputText value="Total Amount"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Jumlah total"></h:outputText>
+</h:panelGrid>
+</rich:panel>
+</p:dialog>
+      	</h:form>
+      	</body>
+      	</ui:composition>

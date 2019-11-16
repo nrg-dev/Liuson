@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition 
+xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core" 
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+    xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich">
+
+ <h:head>
+<title> Inventory | Home  </title>
+  <link rel="stylesheet" href="../../css/liusenCss.css">
+ 
+</link> 
+ <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+ShowTime();
+});
+function ShowTime() {
+var dt = new Date();
+document.getElementById("lblTime").innerHTML = dt.toLocaleTimeString();
+window.setTimeout("ShowTime()", 1000); // Here 1000(milliseconds) means one 1 Sec  
+}
+</script>
+</h:head>
+
+ <body bgcolor="#4C6D90" onload="#{purchaseOrderApprovalMB.purchaseApproval()} #{salesRemainderMB.remainders()}">
+
+     
+
+<h:form id="homeID" >
+<table align="center" border="0" bgcolor="#fff">
+<tr bgcolor="#fff">
+<td>
+<ui:include src="../../pages/xhtml/templates/header.xhtml"></ui:include>
+<br /><br />
+</td>
+
+</tr>
+
+
+<tr>
+<td align="left"> 
+<ui:include src="/pages/xhtml/templates/menunew.xhtml" />
+ </td>
+</tr>
+<tr>
+</tr>
+<tr>
+</tr>
+<!-- #E0E0E0 -->
+<tr>
+
+
+<td align="center" >
+ <table border="0"   bgcolor="">
+<!-- <tr>
+
+<td>
+<ui:include src="/pages/xhtml/templates/menu.xhtml" />
+</td>
+</tr>
+ -->
+<tr>
+<td>
+<div style="font-family: Calibri;width:900px;height: 250px;font-size: 50px;color:#2C238C">
+
+Welcome, #{loginMB.invusername} - #{loginMB.rollname}<br/> Today is The Time is <label id="lblTime" style=" font-weight:normal;"></label>
+<br/>
+<table align="right">
+<tr>
+<td >
+<h:commandButton value="Logout" action="#{loginMB.logout()}" class="button"></h:commandButton></td></tr>
+</table>
+</div>
+
+</td>
+
+</tr>
+
+
+<!-- <tr>
+<td ></td> <td></td> 
+<td> 
+</td>	
+</tr>
+ --></table> 
+</td>
+</tr>
+
+<tr><td align="center">
+<rich:panel styleClass="class2" style="width:1000px;" headerClass="head2" bodyClass="body3">
+<f:facet name="header">
+Reminders
+</f:facet>
+<h:panelGrid columns="3">
+<rich:panel  style="width:300px;height:100px" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager' or loginMB.rollname == 'Admin Project'}">
+<f:facet name="header">
+<span style="color:white">Purchase Order Waiting for Approval by PM</span>
+</f:facet>
+<div>
+<a href="poMMApproval.xhtml?faces-redirect=true" style="font-family: Times New Roman;font-size:14px;color:black">You have &nbsp;&nbsp;<h:outputLabel value="#{purchaseOrderApprovalMB.purchaseOrederDataBean.count2}"  style="color:red;font-weight:bold"></h:outputLabel>&nbsp;&nbsp; Purchase Order.  </a>
+</div>
+</rich:panel>
+
+<rich:panel   style="width:300px;height:100px" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager' or loginMB.rollname == 'Admin Project'}">
+<f:facet name="header" >
+<span style="color:white">Purchase Order Waiting for Approval by GM</span>
+
+</f:facet>
+<div>
+
+<a href="poGMApproval.xhtml?faces-redirect=true"   style="font-family: Times New Roman;font-size:14px;color:black">You have &nbsp;&nbsp;<h:outputLabel value="#{purchaseOrderApprovalMB.purchaseOrederDataBean.count1}"  style="color:red;font-weight:bold"></h:outputLabel>&nbsp;&nbsp; Purchase Order.  </a>
+</div>
+</rich:panel>
+
+<rich:panel   style="width:300px;height:100px" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'General Manager'}">
+<f:facet name="header">
+<span style="color:white">Sales Delivery Waiting for Approval by GM</span>
+</f:facet>
+<a href="salesDeliveryByGM.xhtml?faces-redirect=true"  style="font-family: Times New Roman;font-size:14px;color:black">You have &nbsp;&nbsp;<h:outputLabel value="#{salesRemainderMB.salesdeliveryGM}"  style="color:red;font-weight:bold"></h:outputLabel>&nbsp;&nbsp; Sales Order.  </a>
+</rich:panel>
+
+<rich:panel   style="width:300px;height:100px" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'General Manager'}">
+<f:facet name="header">
+<span style="color: white">
+Sales Order Waiting for Approval by MM</span>
+</f:facet>
+
+<a href="salesApprovalByMM.xhtml?faces-redirect=true"  style="font-family: Times New Roman;font-size:14px;color:black">You have &nbsp;&nbsp;<h:outputLabel value="#{salesRemainderMB.salesapprovalMM}"  style="color:red;font-weight:bold"></h:outputLabel>&nbsp;&nbsp; Sales Order.  </a>
+</rich:panel>
+
+<rich:panel   style="width:300px;height:100px" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'General Manager'}">
+<f:facet name="header">
+<span style="color: white">Sales Order Waiting for Approval by GM</span>
+</f:facet>
+<a href="salesApprovalByGM.xhtml?faces-redirect=true"  style="font-family: Times New Roman;font-size:14px;color:black">You have &nbsp;&nbsp;<h:outputLabel value="#{salesRemainderMB.salesapprovalGM}"  style="color:red;font-weight:bold"></h:outputLabel>&nbsp;&nbsp; Sales Order.  </a>
+</rich:panel>
+
+<rich:panel   style="width:300px;height:100px" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Marketing Manager' or loginMB.rollname == 'Marketing Staff' or loginMB.rollname == 'General Manager'}">
+<f:facet name="header">
+<span style="color:white">Sales Delivery Waiting for Approval by PM</span>
+</f:facet>
+<a href="salesDeliveryByPM.xhtml?faces-redirect=true"  style="font-family: Times New Roman;font-size:14px;color:black">You have &nbsp;&nbsp;<h:outputLabel value="#{salesRemainderMB.salesdeliveryPM}"  style="color:red;font-weight:bold"></h:outputLabel>&nbsp;&nbsp; Sales Order.  </a>
+</rich:panel>
+
+
+<rich:panel   style="width:300px;height:100px" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Director'}">
+<f:facet name="header">
+<span style="color:white">Purchase Payment Waiting for Approval by FM </span>
+</f:facet>
+<a href="purchasePaymentApprovalFM.xhtml?faces-redirect=true"  style="font-family: Times New Roman;font-size:14px;color:black">You have &nbsp;&nbsp;<h:outputLabel value="#{purchaseOrderApprovalMB.purchaseOrederDataBean.payFM}"  style="color:red;font-weight:bold"></h:outputLabel>&nbsp;&nbsp; Purchase Payment.  </a>
+</rich:panel>
+
+<rich:panel   style="width:300px;height:100px" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Director'}">
+<f:facet name="header">
+<span style="color:white">Purchase Payment Waiting for Approval by Director </span>
+</f:facet>
+<a href="purchasePaymentApprovalDirector.xhtml?faces-redirect=true"  style="font-family: Times New Roman;font-size:14px;color:black">You have &nbsp;&nbsp;<h:outputLabel value="#{purchaseOrderApprovalMB.purchaseOrederDataBean.payDir}"  style="color:red;font-weight:bold"></h:outputLabel>&nbsp;&nbsp;Purchase Payment . </a>
+</rich:panel>
+
+<rich:panel   style="width:300px;height:100px" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Director'}" >
+<f:facet name="header">
+<span style="color:white">Sales Payment Waiting for Approval by FM</span>
+</f:facet>
+<a href="salesPaymentFM.xhtml?faces-redirect=true"  style="font-family: Times New Roman;font-size:14px;color:black">You have &nbsp;&nbsp;<h:outputLabel value="#{salesRemainderMB.salespaymentFM}"  style="color:red;font-weight:bold"></h:outputLabel>&nbsp;&nbsp; Sales Payment.  </a>
+</rich:panel>
+
+<rich:panel   style="width:300px;height:100px" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'Finance Manager' or loginMB.rollname == 'Finance Staff' or loginMB.rollname == 'Director'}">
+<f:facet name="header">
+<span style="color:white">Sales Payment Waiting for Approval by Director</span>
+</f:facet>
+<a href="salesPaymentDirector.xhtml?faces-redirect=true"  style="font-family: Times New Roman;font-size:14px;color:black">You have &nbsp;&nbsp;<h:outputLabel value="#{salesRemainderMB.salespaymentdirector}"  style="color:red;font-weight:bold"></h:outputLabel>&nbsp;&nbsp; Sales Payment.  </a>
+</rich:panel>
+
+
+<rich:panel   style="width:300px;height:100px" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager' or loginMB.rollname == 'Admin Project'}">
+<f:facet name="header">
+<span style="color:white">Stock Out Manual Waiting for Approval by GM</span>
+</f:facet>
+<a href="stockOutWaiting.xhtml?faces-redirect=true"  style="font-family: Times New Roman;font-size:14px;color:black">You have &nbsp;&nbsp;<h:outputLabel value="#{salesRemainderMB.stockoutmanual}"  style="color:red;font-weight:bold"></h:outputLabel>&nbsp;&nbsp; Stock Out Manual.  </a>
+</rich:panel>
+
+<rich:panel   style="width:300px;height:100px" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager' or loginMB.rollname == 'Admin Project'}">
+<f:facet name="header">
+<span style="color:white">Stock Out Manual Waiting for Approval by PM</span>
+</f:facet>
+<a href="stockOutApprovalPM.xhtml?faces-redirect=true"  style="font-family: Times New Roman;font-size:14px;color:black">You have &nbsp;&nbsp;<h:outputLabel value="#{salesRemainderMB.stockoutmanualPM}"  style="color:red;font-weight:bold"></h:outputLabel>&nbsp;&nbsp; Stock Out Manual.  </a>
+</rich:panel>
+<!-- <rich:panel   style="width:300px;height:100px" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager' or loginMB.rollname == 'Admin Project'}">
+<f:facet name="header">
+<a style="color: white">Purchase Delivery Waiting for Approval by GM</a>
+</f:facet>
+<a href="poDelGMApproval.xhtml?faces-redirect=true"   style="font-family: Times New Roman;font-size:14px;color:black">You have &nbsp;&nbsp;<h:outputLabel value="#{purchaseOrderApprovalMB.purchaseOrederDataBean.count3}"  style="color:red;font-weight:bold"></h:outputLabel>&nbsp;&nbsp; Purchase Order.  </a>
+</rich:panel>
+
+<rich:panel   style="width:300px;height:100px" rendered="#{loginMB.rollname == 'Super Admin' or loginMB.rollname == 'General Manager' or loginMB.rollname == 'Project Manager' or loginMB.rollname == 'Admin Project'}">
+<f:facet name="header">
+<a style="color: white">Purchase Delivery Waiting for Approval by PM</a>
+</f:facet>
+<a href="poDelPMApproval.xhtml?faces-redirect=true"   style="font-family: Times New Roman;font-size:14px;color:black">You have &nbsp;&nbsp;<h:outputLabel value="#{purchaseOrderApprovalMB.purchaseOrederDataBean.count4}"  style="color:red;font-weight:bold"></h:outputLabel>&nbsp;&nbsp; Purchase Order.  </a>
+</rich:panel> -->
+</h:panelGrid>
+</rich:panel>
+</td></tr>
+
+<tr><td align="center">
+                <div style="font-size:18px;color:#2C238C;clear:both;width:1040px;text-align:center;padding:5px;align:center; background-color: #fff;font-family: 'HelveticaNeueLT Pro 55 Roman'">
+Copyright © 
+PT. Neotural Era Graha
+
+</div>
+<br></br></td></tr>
+</table>
+</h:form>
+
+</body>
+
+</ui:composition>

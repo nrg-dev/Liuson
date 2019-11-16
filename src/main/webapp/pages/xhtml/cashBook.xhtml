@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	 <link rel="stylesheet" href="../../css/liusenCss.css">
+ 
+</link> 
+
+	</h:head>
+	<body bgcolor="#4C6D90" >
+	
+	<h:form id="cashView">
+	<table align="center" bgcolor="#fff" >
+	<tr bgcolor="#fff"><td>
+	<ui:include src="../../pages/xhtml/templates/header.xhtml"></ui:include>
+	</td></tr>
+	<tr><td>
+<ui:include src="/pages/xhtml/templates/menunew.xhtml" />
+	</td></tr>
+	<tr><td>
+	<table>
+	<tr><td style="width: 300px"><strong style="color:#2C238C"> Welcome, #{loginMB.invusername} - #{loginMB.rollname}.</strong></td><td style="width: 426px" align="center"><p:clock pattern="dd-MM-yyyy HH:mm:ss" mode="server"></p:clock></td>
+	<td style="width: 308px" align="right"><h:commandButton value="Logout" action="#{loginMB.logout()}" styleClass="button"></h:commandButton>
+	</td></tr>
+	</table>
+	</td></tr>
+	<tr>
+	
+	</tr>
+	<tr><td>
+	
+	<div align="center">
+	
+				<h:outputText styleClass="text_Header" style="font-weight:bold"
+					value="CASH BOOK"/><br /><br />
+						</div>
+					<div align="center">
+					<table><tr><td>
+					<rich:panel styleClass="class2"  headerClass="head2" bodyClass="body3" style="width:400px;height:220px">
+	 <f:facet name="header">
+            Search by Date<p:spacer height="10px" width="50px"></p:spacer>
+            <p:commandButton value="Help" type="button" onclick="PF('dlg3').show();"></p:commandButton>
+        </f:facet>
+        <table class="paneltable_UI" cellpadding="7px"><tr><td class="table_td">
+        <h:outputLabel for="Fdate" value="From Date " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span> </td>
+        <td class="table_td"><p:calendar id="Fdate" pattern="dd-MM-yyyy" value="#{cashBookMB.purchaseOrederDataBean.fromDate}"></p:calendar> 
+        <br></br>
+        <h:message for="Fdate" style="color:red;font-size:11"></h:message>
+        </td>
+        </tr>
+        <tr><td class="table_td">
+        <h:outputLabel for="Tdate" value="To Date " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span> </td>
+        <td class="table_td"><p:calendar id="Tdate" pattern="dd-MM-yyyy" value="#{cashBookMB.purchaseOrederDataBean.toDate}"></p:calendar>
+        <br></br>
+        <h:message for="Tdate" style="color:red;font-size:11"></h:message>
+        </td>
+        </tr>
+        <tr   align="center" >
+        <td colspan="4">
+        <h:commandButton styleClass="button" value="Search" id="norec" style="color: #CFF;" action="#{cashBookMB.findcashbook}"></h:commandButton>
+        <h:commandButton styleClass="button" value="Print" style="color: #CFF;" class="button">
+				<p:printer target="cashView2" />
+			</h:commandButton></td>
+        </tr>
+        </table>
+        </rich:panel></td>
+        
+        </tr></table>
+					</div>
+					
+					<p:spacer height="20px"></p:spacer>
+					<div align="center" style="width: 1052px">
+					<p:spacer height="20px"></p:spacer>
+					<p:dataTable id="cashView2" var="cash"  rendered="#{cashBookMB.flag}" value="#{cashBookMB.purchaseOrederDataBean.cashList}" >
+					 <f:facet name="header">
+						Cash Book 
+						<!-- <h:commandLink>
+        				<p:graphicImage value="/images/Excel-icon.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="xls" target="cashView2" fileName="purchaseOrederDataBean.cashList"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+     					<p:graphicImage value="/images/pdf.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="pdf" target="cashView2" fileName="purchaseOrederDataBean.cashList"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+    					 <p:graphicImage value="/images/csv.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="csv" target="cashView2" fileName="purchaseOrederDataBean.cashList"></p:dataExporter>
+        				</h:commandLink> -->
+						 
+
+					</f:facet>
+					<p:column headerText="No" sortBy="#{cash.sNo}">
+					<h:outputText value="#{cash.sNo}"></h:outputText>
+					</p:column>
+					
+					<p:column headerText="Date" sortBy="#{cash.date}">
+					<h:outputText value="#{cash.date}">
+					<f:convertDateTime pattern="dd-MM-yyyy"></f:convertDateTime>
+					</h:outputText>
+					</p:column>
+					
+					<p:column headerText="Client Name" sortBy="#{cash.clientName}">
+					<h:outputText value="#{cash.clientName}"></h:outputText>
+					</p:column>
+					
+					<p:column headerText="Particulars" sortBy="#{cash.particulars}">
+					<h:outputText value="#{cash.particulars}"></h:outputText>
+					</p:column>
+					<p:column headerText="Debit" sortBy="#{cash.debit}">
+					<h:outputText value="#{cash.debit}" style="color:green">
+					 <f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+					</h:outputText>
+					</p:column>
+					<p:column headerText="Credit" sortBy="#{cash.credit}">
+					<h:outputText value="#{cash.credit}" style="color:red">
+					 <f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+					</h:outputText>
+					</p:column>
+					
+					
+					
+					<f:facet name="footer">
+					<table align="right">
+					
+				  <h:outputLabel value="Total Debit" styleClass="height: 30px; width: 150px; font-size:22px;font-family:'Helvetica Neue LT Pro 55';"></h:outputLabel>
+				  <h:outputText value=":"></h:outputText>
+				  <h:outputLabel value="#{cashBookMB.purchaseOrederDataBean.totaldebit}" style="color:green; height: 30px; width: 150px; font-size:22px;font-family:'Helvetica Neue LT Pro 55';">
+				   <f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+				  </h:outputLabel>
+				
+				  <h:outputLabel value="Total Credit" styleClass="height: 30px; width: 150px; font-size:22px;font-family:'Helvetica Neue LT Pro 55';"></h:outputLabel>
+				  <h:outputText value=":"></h:outputText>
+				  <h:outputLabel value="#{cashBookMB.purchaseOrederDataBean.totalcredit}" style="color:red; height: 30px; width: 150px; font-size:22px;font-family:'Helvetica Neue LT Pro 55';" >
+				   <f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+				  </h:outputLabel>
+					
+					</table>
+					</f:facet>
+					
+					</p:dataTable>
+				
+					</div>
+				<p:spacer width="1050px" height="400px" rendered="#{cashBookMB.flag}"></p:spacer>
+					
+					</td>
+					</tr>
+					<tr><td align="center"><h:outputText value="Copyright © PT. Neotural Era Graha" style="color:#2C238C"></h:outputText>
+					<br /><br />
+					</td></tr>
+
+					</table>
+					
+    <p:dialog header="Translation" widgetVar="dlg3" showEffect="explode" hideEffect="shake" height="100" width="400" >
+<rich:panel>
+<h:panelGrid columns="3">
+<h:outputText value="Search by Date"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Cari Berdasarkan Tanggal"></h:outputText>
+<h:outputText value="From Date"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Dari Tanggal"></h:outputText>
+<h:outputText value="To Date"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Saat Ini Tanggal"></h:outputText>
+</h:panelGrid>
+</rich:panel>
+</p:dialog>
+
+
+
+ <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+    </p:confirmDialog>
+					</h:form>
+					</body></ui:composition>

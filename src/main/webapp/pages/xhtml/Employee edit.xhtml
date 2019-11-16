@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	 <link rel="stylesheet" href="../../css/liusenCss.css">
+ 
+</link> 
+
+	</h:head>
+	<body bgcolor="#4C6D90" >
+	
+	<h:form id="vendorEdit">
+	<table align="center" bgcolor="#fff">
+	<tr bgcolor="#fff"><td>
+	<ui:include src="../../pages/xhtml/templates/header.xhtml"></ui:include>
+	</td></tr>
+	<tr><td>
+<ui:include src="/pages/xhtml/templates/menunew.xhtml" />
+	</td></tr>
+	<tr><td>
+	<table>
+	<tr><td style="width: 300px"><strong style="color:#2C238C"> Welcome, #{loginMB.invusername}-  #{loginMB.rollname}.</strong></td><td style="width: 426px" align="center"><p:clock pattern="dd-MM-yyyy HH:mm:ss" mode="server"></p:clock></td>
+	<td style="width: 308px" align="right"><h:commandButton value="Logout" action="#{loginMB.logout()}" styleClass="button"></h:commandButton>
+	</td></tr>
+	</table>
+	</td></tr>
+	<tr>
+	<td><br></br></td>
+	</tr>
+	<tr><td>
+	
+	<div align="center">
+	
+				<h:outputText styleClass="text_Header" style="font-weight:bold"
+					value="EMPLOYEE EDIT "/><br /><br />
+			
+	<!-- <h:messages showSummary="false" showDetail="true"   globalOnly="false" style="color:red"  layout="table"></h:messages> -->
+	</div>
+	<br></br><br></br>
+	<div align="center">
+	<rich:panel styleClass="class2" style="width:1000px;" headerClass="head2" bodyClass="body3">
+	 <f:facet name="header">
+            Employee Edit Form
+            <p:spacer height="10px" width="100px"></p:spacer>
+            <p:commandButton value="Help" type="button" onclick="PF('dlg3').show();"></p:commandButton>
+        </f:facet>
+       
+		<table align="center" class="table_UI" cellpadding="10px">
+			<tr>
+				<td class="table_td"><h:outputLabel for="empName" value="Employee Name " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+				</td>
+				<td><p:inputText  id="empName" 
+						value="#{employeeViewMB.employeeDataBean.empEmployeeName}"  styleClass="text_ui"></p:inputText > <br></br>
+					<h:message for="empName" style="color:red;font-size:11"></h:message></td>
+				<td class="table_td"><h:outputLabel for="empid" value="Employee ID" styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+				</td>
+				<td><p:inputText id="empid" 
+						value="#{employeeViewMB.employeeDataBean.empEmployeeId}" disabled="true" styleClass="text_ui"></p:inputText>  <br />
+					<h:message for="empid" style="color:red;font-size:11"></h:message></td>
+			</tr>
+
+			<tr>
+				<td><h:outputLabel for="empAddres" value="Address " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+				</td>
+				<td><p:inputTextarea id="empAddres"
+						value="#{employeeViewMB.employeeDataBean.empAddress}" styleClass="textArea_ui"></p:inputTextarea> <br></br>
+					<h:message for="empAddres" style="color:red;font-size:11"></h:message></td>
+				<td><h:outputLabel for="empsalary" value="Basic Salary " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+				</td>
+				<td><p:inputText id="empsalary" 
+						value="#{employeeViewMB.employeeDataBean.empBasicSalary}" styleClass="text_ui"></p:inputText> <br />
+					
+					<h:message for="empsalary" style="color:red;font-size:11"></h:message></td>
+			</tr>
+
+			<tr>
+				<td><h:outputLabel for="empdesignation" value="Designation " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+				</td>
+				<td><p:selectOneMenu   id="empdesignation" 
+						value="#{employeeViewMB.employeeDataBean.empDesignation}"  effect="fold" styleClass="selecttext_ui">
+						<f:selectItem itemLabel="please choose designation" itemValue="emp"></f:selectItem>
+						<f:selectItems value="#{employeeViewMB.designationList}"></f:selectItems>
+						</p:selectOneMenu > <br></br>
+					<h:message for="empdesignation" style="color:red;font-size:11"></h:message></td>
+				
+				
+				<td><h:outputLabel for="empdob" value="DOB " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+				</td>
+				<td><p:calendar id="empdob"
+						value="#{employeeViewMB.employeeDataBean.empDob}"  pattern="dd-MM-yyyy" styleClass="text_ui">
+						</p:calendar> <br />
+					<h:message for="empdob" style="color:red;font-size:11"></h:message></td>
+			</tr>
+
+			<tr>
+				<td><h:outputLabel for="empentry" value="Entry Date" styleClass="label_ui">
+					
+				</h:outputLabel><span style="color:red">*</span>
+				</td>
+				<td><p:calendar id="empentry"
+						value="#{employeeViewMB.employeeDataBean.empEntryDate}"   pattern="dd-MM-yyyy" styleClass="text_ui">
+						
+						
+						</p:calendar> <br></br>
+					<h:message for="empentry" style="color:red;font-size:11"></h:message></td>
+				<td><h:outputLabel for="empgender" value="Gender" styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+				</td>
+				<td><p:selectOneRadio id="empgender"
+						value="#{employeeViewMB.employeeDataBean.empGender}" styleClass="text_ui">
+						<f:selectItem itemLabel="Male" itemValue="Male"></f:selectItem>
+						<f:selectItem itemLabel="Female" itemValue="Female"></f:selectItem>
+						 </p:selectOneRadio><br />
+					<h:message for="empgender" style="color:red;font-size:11"></h:message></td>
+			</tr>
+
+			<tr>
+				<td><h:outputLabel for="empmail" value="Mail ID " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+				</td>
+				<td><p:inputText id="empmail"
+						value="#{employeeViewMB.employeeDataBean.empMaildId}" styleClass="text_ui"></p:inputText> <br></br>
+					<h:message for="empmail" style="color:red;font-size:11"></h:message></td>
+					
+					
+					
+					
+				<td><h:outputLabel for="empjoin" value="Joining Date " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+				</td>
+				<td><p:calendar id="empjoin"
+						value="#{employeeViewMB.employeeDataBean.empJoinDate}"  pattern="dd-MM-yyyy" styleClass="text_ui"></p:calendar> <br />
+					<h:message for="empjoin" style="color:red;font-size:11"></h:message></td>
+			</tr>
+
+			<tr>
+				<td><h:outputLabel for="empquailfication" value="Qualification " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+				</td>
+				<td><p:selectOneMenu  id="empquailfication" 
+						 value="#{employeeViewMB.employeeDataBean.empQualification}"  effect="fold" styleClass="selecttext_ui">
+						<f:selectItem itemLabel="please choose qualification" itemValue="emp1"></f:selectItem>
+						<f:selectItems value="#{employeeViewMB.qualList}"></f:selectItems>
+						</p:selectOneMenu> <br></br>
+					<h:message for="empquailfication" style="color:red;font-size:11"></h:message></td>
+				
+			<td><h:outputLabel for="empphone" value="Phone Number " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+				</td>
+				<td><p:inputText id="empphone"
+						value="#{employeeViewMB.employeeDataBean.empPhoneNo}" styleClass="text_ui"></p:inputText> <br />
+					<h:message for="empphone" style="color:red;font-size:11"></h:message></td></tr>
+					<tr>
+					<td><h:outputLabel for="empdesc" value="Description " styleClass="label_ui"></h:outputLabel>
+				</td>
+				<td><p:inputText id="empdesc"
+						value="#{employeeViewMB.employeeDataBean.empDescription}" styleClass="text_ui"></p:inputText> <br />
+					<h:message for="empdesc" style="color:red;font-size:11"></h:message></td>
+					</tr>
+		  <tr align="center">
+				<td colspan="4"><h:commandButton value="Update"
+						action="#{employeeViewMB.save}" styleClass="button"  >
+					</h:commandButton>
+					
+					<h:commandButton value="Cancel" action="#{employeeViewMB.cancel}" styleClass="button"></h:commandButton>
+				</td>
+			</tr>
+			<tr><td>
+			<p:dialog id="basicDialog" header="Confirmation Message" style="" visible="#{!employeeViewMB.valid}">
+			<h:panelGrid class="label_ui" columns="2"  style="font-size:14px; width:450px;height:100px" align="left" cellspacing="5px" >
+	        <p style="font-style: 'HelveticaNeueLT Pro 55 Roman';font-size:16px;color:black;font-family:'Helvetica Neue LT Pro 55';">Successfully update the Employee details.</p>
+	        <h:commandButton value="Ok"  class="button" action="#{employeeViewMB.employeeViewLoad}" ></h:commandButton>
+	        </h:panelGrid>
+</p:dialog>
+			</td></tr>
+		</table></rich:panel>
+</div></td></tr><tr><td><br /></td></tr>
+
+			
+<tr><td align="center"><h:outputText value="Copyright © PT. Neotural Era Graha" style="color:#2C238C"></h:outputText></td></tr>
+<tr><td><br /></td></tr>
+</table>
+ <p:dialog header="Translation" widgetVar="dlg3" showEffect="explode" hideEffect="shake" height="400" width="400" >
+<rich:panel>
+<h:panelGrid columns="3">
+<h:outputText value="Employee Name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value=" nama Karyawan"></h:outputText>
+<h:outputText value="Employee id"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="identitas pegawai"></h:outputText>
+
+<h:outputText value="Address"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Alamat"></h:outputText>
+
+<h:outputText value="Basic salary"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Gaji pokok"></h:outputText>
+<h:outputText value="Designation"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Penunjukan"></h:outputText>
+<h:outputText value="Date of birth"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Tanggal lahir"></h:outputText>
+<h:outputText value="Entry Date"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Tanggal masuk"></h:outputText>
+<h:outputText value="Gender"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Jenis kelamin"></h:outputText>
+
+<h:outputText value="Mail Id"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Mail Id"></h:outputText>
+
+<h:outputText value="Joining Date"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Tanggal Bergabung"></h:outputText>
+<h:outputText value="Qualification"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Kualifikasi"></h:outputText>
+<h:outputText value="Phone Number"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Nomor telepon"></h:outputText>
+<h:outputText value="Description"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Deskripsi"></h:outputText>
+
+
+</h:panelGrid>
+</rich:panel>
+</p:dialog>
+ 
+	</h:form>
+	</body>
+</ui:composition>

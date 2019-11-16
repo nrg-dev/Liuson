@@ -1,0 +1,264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	 <link rel="stylesheet" href="../../css/liusenCss.css">
+ 
+</link> 
+
+	</h:head>
+	<body bgcolor="#4C6D90" >
+	
+	<h:form id="payrollView">
+	<table align="center" bgcolor="#fff" >
+	<tr bgcolor="#fff"><td>
+	<ui:include src="../../pages/xhtml/templates/header.xhtml"></ui:include>
+	</td></tr>
+	<tr><td>
+<ui:include src="/pages/xhtml/templates/menunew.xhtml" />
+	</td></tr>
+	<tr><td>
+	<table>
+	<tr><td style="width: 300px"><strong style="color:#2C238C"> Welcome, #{loginMB.invusername}.</strong></td><td style="width: 426px" align="center"><p:clock pattern="dd-MM-yyyy HH:mm:ss" mode="server"></p:clock></td>
+	<td style="width: 308px" align="right"><h:commandButton value="Logout" action="#{loginMB.logout()}" styleClass="button"></h:commandButton>
+	</td></tr>
+	</table>
+	</td></tr>
+	<tr>
+	<td><br></br></td>
+	</tr>
+	<tr><td>
+	
+	<div align="center">
+	
+				<h:outputText styleClass="text_Header" style="font-weight:bold"
+					value="PAYROLL VIEW"/><br /><br />
+					</div>
+					<div align="center">
+					<table><tr><td>
+					<rich:panel styleClass="class2"  headerClass="head2" bodyClass="body3" style="width:400px;height:200px;overflow:hidden;">
+	 <f:facet name="header">
+            Search by Employee Name
+                <p:spacer height="10px" width="100px"></p:spacer>
+            <p:commandButton value="Help" type="button" onclick="PF('dlg4').show();"></p:commandButton>
+        </f:facet>
+        <table class="paneltable_UI" cellpadding="7px"><tr><td class="table_td">
+        <h:outputLabel for="payViewEName" value="Employee Name " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span> </td>
+        
+        <td class="table_td"><p:selectOneMenu id="payViewEName" styleClass="text_ui" value="#{payrollMB.employeeDataBean.empEmployeeName}" >
+        <f:selectItem itemValue="010" itemLabel="Please choose the EmployeeName"></f:selectItem>
+         <f:selectItems value="#{payrollViewMB.empNameList}"></f:selectItems></p:selectOneMenu>
+        
+        <br></br>
+        <h:message for="payViewEName" style="color:red;font-size:11"></h:message>
+        </td>
+        </tr>
+        
+        <tr>
+        <td class="table_td"></td><td class="table_td"><h:commandButton styleClass="button" value="Search" style="color: #CFF;" action="#{payrollViewMB.searchEmployeeName}"></h:commandButton> </td>
+        </tr>
+        </table>
+        </rich:panel></td>
+        <td>
+					<rich:panel styleClass="class2"  headerClass="head2" bodyClass="body3" style="width:400px;height:200px">
+	 <f:facet name="header">
+            Search by Employee ID
+                <p:spacer height="10px" width="100px"></p:spacer>
+            <p:commandButton value="Help" type="button" onclick="PF('dlg3').show();"></p:commandButton>
+        </f:facet>
+        
+        <table class="paneltable_UI" cellpadding="7px"><tr><td class="table_td">
+        <h:outputLabel for="payViewEId" value="Employee ID " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span> </td>
+        <td class="table_td"><p:selectOneMenu id="payViewEId" styleClass="text_ui" value="#{payrollViewMB.employeeDataBean.empEmployeeId}">
+        <f:selectItem itemValue="000" itemLabel="Please choose the EmployeeID"></f:selectItem>
+         <f:selectItems value="#{payrollViewMB.empIDList}"></f:selectItems></p:selectOneMenu><br />
+       
+        <h:message for="payViewEId" style="color:red;font-size:11"></h:message>
+        </td>
+        </tr>
+        <tr>
+        <td class="table_td"></td><td class="table_td"><h:commandButton styleClass="button" value="Search" action="#{payrollViewMB.searchEmployeeId}"></h:commandButton> </td>
+        </tr>
+        </table>
+        </rich:panel></td>
+        </tr></table>
+					</div>
+					<p:spacer height="20px"></p:spacer>
+					<div align="center" style="width: 1052px">
+					<p:dataTable id="payView" var="pay" rows="10" rendered="#{!payrollViewMB.flag}" value="#{payrollViewMB.payrollViewList}" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="5,10,15">
+					<f:facet name="header">
+						List of Payroll View
+						<h:commandLink>
+        				<p:graphicImage value="/images/Excel-icon.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="xls" fileName="payrollViewList" target="payView" ></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+     					<p:graphicImage value="/images/pdf.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="pdf" fileName="productViewList" target="payView" ></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+    					 <p:graphicImage value="/images/csv.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="csv" target="payView" fileName="productViewList"></p:dataExporter>
+        				</h:commandLink>
+						 <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
+        				<p:columnToggler datasource="payView" trigger="toggler" /> 
+        				
+					</f:facet>
+					<p:column headerText="Date" sortBy="#{pay.empPayMonth}">
+					<h:outputText value="#{pay.empPayMonth}">
+					<f:convertDateTime pattern="dd-MM-yyyy"></f:convertDateTime>
+					</h:outputText>
+					</p:column>
+					<p:column headerText="Employee ID" sortBy="#{pay.empEmployeeId}">
+					<h:outputText value="#{pay.empEmployeeId}"></h:outputText>
+					</p:column>
+					<p:column headerText="Employee Name" sortBy="#{pay.empEmployeeName}">
+					<h:outputText value="#{pay.empEmployeeName}"></h:outputText>
+					</p:column>
+					<p:column headerText="Designation" sortBy="#{pay.empDesignation}">
+					<h:outputText value="#{pay.empDesignation}"></h:outputText>
+					</p:column>
+					<p:column headerText="Total salary" sortBy="#{pay.empPayTotalSalary}">
+					<h:outputText value="#{pay.empPayTotalSalary}">
+					<f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+					</h:outputText>
+					</p:column>
+					
+					<p:column headerText="View" width="50">
+					<p:commandButton update=":payrollView:payrolltDetail" oncomplete="PF('payrolltDialog').show()" icon="ui-icon-search" action="#{payrollViewMB.payrollView}" >
+					<f:setPropertyActionListener value="#{pay.empEmployeeName}" target="#{payrollViewMB.employeeDataBean.empEmployeeName}"></f:setPropertyActionListener>
+					<f:setPropertyActionListener value="#{pay.empEmployeeId}" target="#{payrollViewMB.employeeDataBean.empEmployeeId}"></f:setPropertyActionListener>
+					<f:setPropertyActionListener value="#{pay.empPayMonth}" target="#{payrollViewMB.employeeDataBean.empPayMonth}"></f:setPropertyActionListener>
+					</p:commandButton>
+					</p:column>
+					<p:column headerText="Edit" width="50" rendered="#{PayrollViewMB.editflag}">
+					<p:commandButton icon="ui-icon-pencil" action="#{payrollViewMB.payrollEdit}" >
+					<f:setPropertyActionListener value="#{pay.empEmployeeName}" target="#{payrollViewMB.employeeDataBean.empEmployeeName}"></f:setPropertyActionListener>
+					<f:setPropertyActionListener value="#{pay.empEmployeeId}" target="#{payrollViewMB.employeeDataBean.empEmployeeId}"></f:setPropertyActionListener>
+					<f:setPropertyActionListener value="#{pay.empPayMonth}" target="#{payrollViewMB.employeeDataBean.empPayMonth}"></f:setPropertyActionListener>
+					</p:commandButton>
+					</p:column>
+					<p:column headerText="Delete" width="50" rendered="#{PayrollViewMB.deleteflag}">
+					<p:commandButton icon="ui-icon-close" action="#{payrollViewMB.delete}" ajax="false">
+					<f:setPropertyActionListener value="#{pay.empEmployeeName}" target="#{payrollViewMB.employeeDataBean.empEmployeeName}"></f:setPropertyActionListener>
+					<f:setPropertyActionListener value="#{pay.empEmployeeId}" target="#{payrollViewMB.employeeDataBean.empEmployeeId}"></f:setPropertyActionListener>
+					<f:setPropertyActionListener value="#{pay.empPayMonth}" target="#{payrollViewMB.employeeDataBean.empPayMonth}"></f:setPropertyActionListener>
+					</p:commandButton></p:column>
+					<f:facet name="footer">
+					Export Page Data Only
+					<h:commandLink>
+        				<p:graphicImage value="/images/Excel-icon.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="xls" target="payView" fileName="payViewList" pageOnly="true"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+     					<p:graphicImage value="/images/pdf.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="pdf" fileName="payViewList" target="payView" pageOnly="true"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+    					 <p:graphicImage value="/images/csv.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="csv" fileName="payViewList" target="payView"  pageOnly="true"></p:dataExporter>
+        				</h:commandLink>
+					</f:facet>
+					</p:dataTable>
+					</div>
+					<p:spacer width="1050px" height="400px" rendered="#{payrollViewMB.flag}"></p:spacer>
+					
+					</td>
+					</tr>
+					<tr><td align="center"><h:outputText value="Copyright © PT. Neotural Era Graha" style="color:#2C238C"></h:outputText>
+					<br /><br />
+					</td></tr>
+					</table>
+					
+					<p:dialog id="basicDialog1" header="Confirmation Message" style=""   widgetVar="payrollEditDialog"  visible="#{!payrollViewMB.val}">
+			<h:panelGrid class="label_ui" columns="2"  style="font-size:14px; width:450px;height:100px" align="left" cellspacing="5px" >
+	        <p style="font-style: 'HelveticaNeueLT Pro 55 Roman';font-size:16px;color:black;font-family:'Helvetica Neue LT Pro 55';">Successfully deleted the payroll</p>
+	        <h:commandButton value="Ok"  class="button" action="#{payrollViewMB.payrollViewLoad}" onclick="basicDialog1.hide();"  ></h:commandButton>
+	        </h:panelGrid>
+</p:dialog>
+					
+					
+					<p:dialog header="Translation" widgetVar="dlg4" showEffect="explode" hideEffect="shake" height="100" width="400" >
+<rich:panel>
+<h:panelGrid columns="3">
+
+  <h:outputText value="Search by Employee Name"></h:outputText>          
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Cari berdasarkan Nama Karyawan"></h:outputText>
+<h:outputText value="Employee Name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="nama karyawan"></h:outputText>
+</h:panelGrid>
+</rich:panel> 
+</p:dialog>
+					<p:dialog header="Translation" widgetVar="dlg3" showEffect="explode" hideEffect="shake" height="100" width="400" >
+<rich:panel>
+<h:panelGrid columns="3">
+<h:outputText value=" Search by Employee ID"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Pencarian dengan ID Karyawan"></h:outputText>
+<h:outputText value="Employee ID"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="identitas pegawai"></h:outputText>
+</h:panelGrid>
+</rich:panel>
+</p:dialog>
+
+ <p:dialog header="Payroll Info" widgetVar="payrolltDialog" modal="true" showEffect="drop" hideEffect="clip" resizable="false">
+        	<p:outputPanel id="payrolltDetail" style="text-align:center;">
+            <p:panelGrid  columns="6" columnClasses="label,value">
+                <f:facet name="header">
+                    <p:graphicImage value="/images/LiusenLogo.png" height="50" width="50"/> 
+                </f:facet>
+                <h:outputText value="Employee ID"></h:outputText>
+                <h:outputText value=":"></h:outputText>
+                <h:outputText value="#{payrollViewMB.employeeDataBean.empEmployeeId}"></h:outputText>
+                <h:outputText value="Employee Name"></h:outputText>
+                <h:outputText value=":"></h:outputText>
+                 <h:outputText value="#{payrollViewMB.employeeDataBean.empEmployeeName}"></h:outputText>
+                <h:outputText value="Designation"></h:outputText>
+                <h:outputText value=":"></h:outputText>
+                 <h:outputText value="#{payrollViewMB.employeeDataBean.empDesignation}"></h:outputText>
+                <h:outputText value="Basic Salary"></h:outputText>
+                <h:outputText value=":"></h:outputText>
+                 <h:outputText value="#{payrollViewMB.employeeDataBean.empBasicSalary}">
+                 <f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+                 </h:outputText>
+                <h:outputText value="Commision"></h:outputText>
+                <h:outputText value=":"></h:outputText>
+                 <h:outputText value="#{payrollViewMB.employeeDataBean.empPayCommision}">
+                 <f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+                 </h:outputText>
+                <h:outputText value="Loan Advance"></h:outputText>
+                <h:outputText value=":"></h:outputText>
+                 <h:outputText value="#{payrollViewMB.employeeDataBean.empPayLoanAdvance}">
+                 <f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+                 </h:outputText>
+                 <h:outputText value="Over Time Amount"></h:outputText>
+                <h:outputText value=":"></h:outputText>
+                 <h:outputText value="#{payrollViewMB.employeeDataBean.empPayOTAmmount}">
+                 
+                 <f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter></h:outputText>
+                <h:outputText value="Work Days"></h:outputText>
+                <h:outputText value=":"></h:outputText>
+                 <h:outputText value="#{payrollViewMB.employeeDataBean.empPayWorkDays}">
+                 </h:outputText>
+                  <h:outputText value="Date"></h:outputText>
+                <h:outputText value=":"></h:outputText>
+                 <h:outputText value="#{payrollViewMB.employeeDataBean.empPayMonth}">
+                 <f:convertDateTime pattern="dd-MM-yyyy"></f:convertDateTime>
+                 </h:outputText>
+               </p:panelGrid>
+                </p:outputPanel>
+                <center>
+               <p:commandButton  type="button" icon="ui-icon-print"> <p:printer target="payrolltDetail"></p:printer> </p:commandButton>
+                </center>
+                </p:dialog>
+					</h:form>
+					</body></ui:composition>

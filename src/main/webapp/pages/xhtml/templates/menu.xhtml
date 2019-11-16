@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition 
+xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core" 
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+    xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich">
+ 
+ 
+ <h:head>
+ <link rel="stylesheet" href="../../css/inventory.css"></link>
+
+</h:head>
+
+<h:body >
+     
+
+<h:form>
+
+   <rich:toolbar  style="height:30px;width:1000px;" >
+   
+   
+   
+    <rich:dropDownMenu mode="ajax" width="200px" itemClass="myClass">
+                <f:facet name="label">
+                    <h:panelGroup>
+                     
+                   <h:outputLabel value="Vendor" style="font-size:18px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" width="100"></h:outputLabel>
+                   
+                    </h:panelGroup>
+                </f:facet>
+				<rich:menuItem  itemClass="myClass" label="Vendor register" style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="#{vendorRegisterFormMB.vendorDirect()}" icon="/images/form1.jpg">
+                </rich:menuItem>
+                                 <rich:menuSeparator id="vendor_sep1" />
+                
+                
+                <rich:menuItem label="Vendor View" style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="#{vendorViewFormMB.success}" icon="/images/view1.jpg">
+                </rich:menuItem>
+                
+                
+            </rich:dropDownMenu>
+   
+   
+            <rich:dropDownMenu mode="ajax" width="200px">
+                <f:facet name="label">
+                    <h:panelGroup>
+                        <!-- <h:graphicImage value="/images/icons/copy.gif" styleClass="pic" alt="copy" />
+ -->                       
+                         <h:outputLabel value="Products"  style="font-size:18px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" width="100"></h:outputLabel>
+                        
+                    </h:panelGroup>
+                </f:facet>
+                <rich:menuItem label="Product register" title="Product Registration" style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="#{productRegisterFormMB.productRegisterDirect()}"  icon="/images/form1.jpg"/>
+                <rich:menuSeparator id="productsep1" />
+                <rich:menuItem label="Product View" style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="#{productViewMB.success}" icon="/images/view1.jpg">
+                </rich:menuItem>
+            </rich:dropDownMenu>
+            
+            
+            <!-- Order -->
+            
+             <rich:dropDownMenu mode="ajax" width="200px">
+                <f:facet name="label">
+                    <h:panelGroup>
+                     <h:outputLabel value="Purchase" style="font-size:18px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" width="100"></h:outputLabel>
+                        
+                    </h:panelGroup>
+                </f:facet>
+                <rich:menuItem label="Purchase order " style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="#{purchaseOrderFromMB.redirect}" icon="/images/form1.jpg">
+                </rich:menuItem>
+                <rich:menuSeparator id="purchasesep1" />  
+                <rich:menuItem label="Purchase payments status" style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="purhcaseOrderPaymentsStatus.xhtml?faces-redirect=true" icon="/images/payment_icon1.png"/>             
+                
+                            <rich:menuSeparator id="purchasesep3" />
+                            <rich:menuItem label="Purchase View" style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="#{purchaseViewMB.redirect1}" icon="/images/view1.jpg"/>
+    				
+                                        <rich:menuSeparator id="purchasesep4" />
+                                        <rich:menuItem label="Make delivery" style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="#{purchaseDeliveryStatusMB.redirect}"  icon="/images/deliveryicon.png"/>
+               
+                <rich:menuSeparator id="purchasesep5" />
+ <rich:menuItem label="Purchase order close" style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="purhcaseOrderClose.xhtml?faces-redirect=true"  icon="/images/closed.jpg"/>
+ 				
+            </rich:dropDownMenu>
+
+            <!-- Sales  -->
+             <rich:dropDownMenu mode="ajax" width="200px">
+                <f:facet name="label">
+                    <h:panelGroup>
+                    <h:outputLabel value="Sales" style="font-size:18px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" width="100"></h:outputLabel>
+                       
+                    </h:panelGroup>
+                </f:facet>
+                
+                <rich:menuItem label="Sales order" style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="#{salesOrderFormMB.saledirect()}" icon="/images/form1.jpg"/>
+              
+               
+                <rich:menuSeparator id="sale_sep1" />
+                  <rich:menuItem label="Sales View" style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="#{salesViewMB.direct3()}" icon="/images/view1.jpg"> </rich:menuItem>
+                <rich:menuSeparator id="sale_sep2" />
+               
+                            <rich:menuItem label="Make Delivery" style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="#{salesdeliveryMB.saleDirect()}" icon="/images/deliveryicon.png"/>
+              
+                                       <rich:menuSeparator id="sale_sep4" />
+                                        <rich:menuItem label="Sales Return" style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="#{salesReturnFormMB.salesReturn1()}" icon="/images/return.png"/>
+            
+                                                   <rich:menuSeparator id="sale_sep5" />
+                            <rich:menuItem label="Sales payment status" style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="#{salesPaymentMB.salepayDirect()}" icon="/images/payment_icon1.png"/>
+            
+            </rich:dropDownMenu>
+
+
+
+ <!-- Invoice -->
+             <rich:dropDownMenu mode="ajax" width="200px">
+                <f:facet name="label">
+                    <h:panelGroup>
+                    <h:outputLabel value="Invoice" style="font-size:18px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" width="100"></h:outputLabel>
+                        
+                    </h:panelGroup>
+                </f:facet>
+                <rich:menuItem label="Purchase Invoice" style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="#{invoicePurhcaseMB.purchaseInvoice}" icon="/images/invoice1.jpg">
+                </rich:menuItem>
+                                <rich:menuSeparator id="invoice_sep1" />
+                
+                <rich:menuItem label="Sales Invoice" style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="#{invoiceSalesMB.invoiceSalesDirect()}" icon="/images/sales-invoice.jpg"/>
+               
+              
+            </rich:dropDownMenu>
+            
+            
+            <!-- Payments -->
+             <rich:dropDownMenu mode="ajax" width="200px">
+                <f:facet name="label">
+                    <h:panelGroup>
+                    <h:outputLabel value="Payments"  style="font-size:18px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" width="100"></h:outputLabel>
+                      
+                    </h:panelGroup>
+                </f:facet>
+                <rich:menuItem label="Receivable" style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="#{accountinReMB.direct()}" icon="/images/recivable.jpg">
+                </rich:menuItem>
+                 <rich:menuSeparator id="payment_sep1" />
+                <rich:menuItem label="Payable" style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="#{accountOutMB.direct1()}" icon="/images/payment_icon1.png"/>
+                
+            </rich:dropDownMenu>
+<!-- Invoice -->
+             <!-- Stock -->
+         
+                <rich:dropDownMenu mode="ajax" width="200px">
+                <f:facet name="label">
+                    <h:panelGroup>
+                     <h:outputLabel value="Stocks" style="font-size:18px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" width="100"></h:outputLabel>
+                       
+                    </h:panelGroup>
+                </f:facet>
+                <rich:menuItem label="Stock view" style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="#{stockViewMB.StockViewdirect()}" icon="/images/view1.jpg">
+                </rich:menuItem>
+                                <rich:menuSeparator id="stocksep1" />
+                
+                <rich:menuItem label="Stock in" style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="#{stockInFormMB.stockInFormdirect()}" icon="/images/Stock-in.png"/>
+                                                <rich:menuSeparator id="stocksep2" />
+                
+                    <rich:menuItem label="Stock out" style="font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="#{stockOutFormMB.stockoutDirect()}" icon="/images/Stock-out.png"/>
+                                                <rich:menuSeparator id="stocksep3" />
+                
+                <rich:menuItem label="Stock FIFO" style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="stockFifoForm.xhtml?faces-redirect=true" icon="/images/stockfifo-icon.png"/>
+                                                <rich:menuSeparator id="stocksep4" />
+                
+                <rich:menuItem label="Stock LIFO" style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="stockLifoForm.xhtml?faces-redirect=true" icon="/images/lifo-icon.png"/>
+ 
+                                 <rich:menuSeparator id="stocksep5" />
+                                 <rich:menuItem label="Stock Damage" style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="#{stockDamageMB.stockDamagedirect()}" icon="/images/damage.png"/>
+ 
+                                 
+ 
+            </rich:dropDownMenu>
+            
+          
+          <!-- Reports -->
+             <rich:dropDownMenu mode="ajax" width="200px">
+                <f:facet name="label">
+                    <h:panelGroup>
+                    <h:outputLabel value="Reports" style="font-size:18px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" width="100"></h:outputLabel>
+                     
+                    </h:panelGroup>
+                </f:facet>
+				<rich:menuItem label="Report Invoice" style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="#{reportMB.reportinvoiceDirect()}" icon="/images/form1.jpg">
+                </rich:menuItem>
+                                 <rich:menuSeparator id="report1" />
+                
+                
+                
+                <rich:menuItem label="Report Purchase" style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="#{reportMB.reportpurchaseDirect()}" icon="/images/form1.jpg">
+                </rich:menuItem>
+                <rich:menuSeparator id="report3" />
+                
+                <rich:menuItem label="Report Sale" style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="#{reportMB.reportsalesDirect()}" icon="/images/form1.jpg">
+                </rich:menuItem>
+                
+                
+                
+            </rich:dropDownMenu>
+          
+          <rich:dropDownMenu mode="ajax" width="200px">
+                <f:facet name="label">
+                    <h:panelGroup>
+                    <h:outputLabel value="Buyers" style="font-size:18px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" width="100"></h:outputLabel>
+                     
+                    </h:panelGroup>
+                </f:facet>
+				<rich:menuItem label="Buyers" style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="buyerRegistration.xhtml?faces-redirect=true" icon="/images/form1.jpg">
+                </rich:menuItem>
+                                 <rich:menuSeparator id="buyer1" />
+                
+                
+                
+                <rich:menuItem label="Buyers View" style="font-size:13px;font-family:'Helvetica Neue LT Pro 55'; font-style: 'Roman Bold'';" action="buyersView.xhtml?faces-redirect=true" icon="/images/form1.jpg">
+                </rich:menuItem>
+               
+                
+               
+                
+                
+                
+            </rich:dropDownMenu>
+          
+          
+            
+ 
+        </rich:toolbar>
+    </h:form>
+ 
+    <br />
+     
+</h:body>
+
+</ui:composition>

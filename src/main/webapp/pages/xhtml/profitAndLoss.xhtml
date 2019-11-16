@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui"
+	>
+	<h:head>
+	 <link rel="stylesheet" href="../../css/liusenCss.css">
+ 
+</link> 
+
+	</h:head>
+	<body bgcolor="#4C6D90" >
+	
+	<h:form id="profitLoss">
+	<table align="center" bgcolor="#fff" >
+	<tr bgcolor="#fff"><td>
+	<ui:include src="../../pages/xhtml/templates/header.xhtml"></ui:include>
+	</td></tr>
+	<tr><td>
+<ui:include src="/pages/xhtml/templates/menunew.xhtml" />
+	</td></tr>
+	<tr><td>
+	<table>
+	<tr><td style="width: 300px"><strong style="color:#2C238C"> Welcome, #{loginMB.invusername}.</strong></td><td style="width: 426px" align="center"><p:clock pattern="dd-MM-yyyy HH:mm:ss" mode="server"></p:clock></td>
+	<td style="width: 308px" align="right"><h:commandButton value="Logout" action="#{loginMB.logout()}" styleClass="button"></h:commandButton>
+	</td></tr>
+	</table>
+	</td></tr>
+	<tr>
+	<td><br></br></td>
+	</tr>
+	<tr><td>
+	
+	<div align="center">
+	
+				<h:outputText styleClass="text_Header" style="font-weight:bold"
+					value="Profit &amp; Loss"/><br /><br />
+					</div>
+					<div align="center">
+					<table><tr><td>
+					<rich:panel styleClass="class2"  headerClass="head2" bodyClass="body3" style="width:400px;height:220px">
+	 <f:facet name="header">
+            Search by Date<p:spacer height="10px" width="50px"></p:spacer>
+            <p:commandButton value="Help" type="button" onclick="PF('dlg3').show();"></p:commandButton>
+        </f:facet>
+        <table class="paneltable_UI" cellpadding="7px"><tr><td class="table_td">
+        <h:outputLabel for="profitFrom" value="From Date " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span> </td>
+        <td class="table_td"><p:calendar id="profitFrom" effect="fold" pattern="dd-MM-yyyy" value="#{profitLossMB.profitLossDataBean.fromDate}"></p:calendar>
+        <br></br>
+        <h:message for="profitFrom" style="color:red;font-size:11"></h:message>
+        </td>
+        </tr>
+        <tr>
+        <td>
+        <h:outputLabel for="profitTo" value="To Date " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+        </td>
+       <td><p:calendar effect="fold" id="profitTo" pattern="dd-MM-yyyy" value="#{profitLossMB.profitLossDataBean.toDate}"></p:calendar> 
+       <br></br>
+        <h:message for="profitTo" style="color:red;font-size:11"></h:message>
+        </td>
+        </tr>
+        <tr>
+        <td class="table_td"></td><td class="table_td"><h:commandButton styleClass="button" value="Search" style="color: #CFF;" action="#{profitLossMB.searchDate}"></h:commandButton>
+        <h:commandButton styleClass="button" value="Print" style="color: #CFF;" >
+        <p:printer target="profitLossdata"></p:printer>
+        </h:commandButton>
+         </td>
+        </tr>
+        </table>
+        </rich:panel>
+					</td>
+        </tr></table>
+					</div>
+					<p:spacer height="20px"></p:spacer>
+					<div align="center" style="width: 1052px">
+					
+					<p:dataTable id="profitLossdata" var="pro" rows="10" rendered="#{!profitLossMB.flag}" value="#{profitLossMB.profitLossList}" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="5,10,15">
+					<f:facet name="header">
+						List of Profit &amp; Loss Details
+						<h:commandLink>
+        				<p:graphicImage value="/images/Excel-icon.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="xls" fileName="profitLossList" target="profitLossdata" ></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+     					<p:graphicImage value="/images/pdf.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="pdf" fileName="profitLossList" target="profitLossdata" ></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+    					 <p:graphicImage value="/images/csv.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="csv" target="prodView" fileName="profitLossdata"></p:dataExporter>
+        				</h:commandLink>
+					
+        				
+					</f:facet>
+					
+					  <p:columnGroup type="header">
+					   
+					   <p:row>
+                <p:column colspan="4" headerText="INCOME" />
+                <p:column colspan="4" headerText="EXPENSE" />
+            </p:row>
+             <p:row>
+                <p:column headerText="Date" />
+                <p:column headerText="Order Number" />
+                <p:column headerText="Reason" />
+                <p:column headerText="Amount" />
+                 <p:column headerText="Date" />
+                <p:column headerText="Order Number" />
+                <p:column headerText="Reason" />
+                <p:column headerText="Amount" />
+            </p:row>
+					  </p:columnGroup>
+					
+					<p:column>
+					<h:outputText value="#{pro.profitDate}">
+					<f:convertDateTime pattern="dd-MM-yyyy"></f:convertDateTime></h:outputText>
+					</p:column>
+					<p:column>
+					<h:outputText value="#{pro.profitClientName}"></h:outputText>
+					</p:column>
+					<p:column>
+					<h:outputText value="#{pro.profitReason}"></h:outputText>
+					</p:column>
+					<p:column>
+					<h:outputText value="#{pro.profitAmount}" style="color:green">
+					 <f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+					</h:outputText>
+					</p:column>
+					<p:column>
+					<h:outputText value="#{pro.lossDate}">
+					<f:convertDateTime pattern="dd-MM-yyyy"></f:convertDateTime>
+					</h:outputText>
+					</p:column>
+					<p:column>
+					<h:outputText value="#{pro.lossClientName}"></h:outputText>
+					</p:column>
+					<p:column>
+					<h:outputText value="#{pro.lossReason}"></h:outputText>
+					</p:column>
+					<p:column>
+					<h:outputText value="#{pro.lossAmount}" style="color:red">
+					 <f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+					</h:outputText>
+					</p:column>
+				 <p:columnGroup type="footer">
+				    <p:row>
+                <p:column colspan="2" footerText="Profit Total Amount" ></p:column>
+                 <p:column colspan="2" footerText="#{profitLossMB.profitLossDataBean.tptalProfit}" >
+                </p:column>
+                <p:column colspan="2" footerText="Loss Total Amount" ></p:column>
+                <p:column colspan="2" footerText="#{profitLossMB.profitLossDataBean.totalLoss}" >
+                
+                </p:column>
+            </p:row>
+            <p:row>
+                <p:column colspan="4" footerText="Total Amount" >
+                </p:column>
+                 <p:column colspan="4" footerText="#{profitLossMB.totalAmount}" >
+                </p:column>
+                 </p:row>
+				 </p:columnGroup>
+					<f:facet name="footer">
+					Export Page Data Only
+					<h:commandLink>
+        				<p:graphicImage value="/images/Excel-icon.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="xls" target="profitLossdata" fileName="profitLossList" pageOnly="true"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+     					<p:graphicImage value="/images/pdf.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="pdf" fileName="profitLossList" target="profitLossdata" pageOnly="true"></p:dataExporter>
+        				</h:commandLink>
+        				<h:commandLink>
+    					 <p:graphicImage value="/images/csv.png" height="20" width="20"></p:graphicImage>
+        				<p:dataExporter type="csv" fileName="profitLossList" target="profitLossdata"  pageOnly="true"></p:dataExporter>
+        				</h:commandLink>
+					</f:facet>
+				
+					</p:dataTable>
+					</div>
+					<p:spacer width="1050px" height="400px" rendered="#{profitLossMB.flag}"></p:spacer>
+					
+					</td>
+					</tr>
+					<tr><td align="center"><h:outputText value="Copyright © PT. Neotural Era Graha" style="color:#2C238C"></h:outputText>
+					<br /><br />
+					</td></tr>
+
+					</table>
+					<p:dialog header="Translation" widgetVar="dlg3" showEffect="explode" hideEffect="shake" height="100" width="400" >
+				<rich:panel>
+<h:panelGrid columns="3">
+<h:outputText value="Search by Date"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Cari berdasarkan Tanggal"></h:outputText>
+<h:outputText value="From Date"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Dari tanggal"></h:outputText>
+<h:outputText value="To Date"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Saat ini"></h:outputText>
+
+</h:panelGrid>
+</rich:panel>
+				</p:dialog>
+					
+
+
+
+					</h:form>
+					</body>
+					</ui:composition>

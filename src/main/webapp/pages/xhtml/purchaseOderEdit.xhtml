@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	 <link rel="stylesheet" href="../../css/liusenCss.css"></link>
+	</h:head>
+	<body bgcolor="#4C6D90" >
+	
+	<h:form id="limit1">
+	<table align="center" bgcolor="#fff">
+	<tr bgcolor="#fff"><td>
+	<ui:include src="../../pages/xhtml/templates/header.xhtml"></ui:include>
+	</td></tr>
+	<tr><td>
+<ui:include src="/pages/xhtml/templates/menunew.xhtml" />
+	</td></tr>
+	<tr><td>
+	<table>
+	<tr><td style="width: 300px"><strong style="color:#2C238C"> Welcome, #{loginMB.invusername}.</strong></td><td style="width: 426px" align="center"><p:clock pattern="dd-MM-yyyy HH:mm:ss" mode="server"></p:clock></td>
+	<td style="width: 308px" align="right"><h:commandButton value="Logout" action="#{loginMB.logout()}" styleClass="button"></h:commandButton>
+	</td></tr>
+	</table>
+	</td></tr>
+	<tr>
+	<td><br></br></td>
+	</tr>
+	<tr><td>
+
+
+
+<br /></td></tr>
+	
+	<tr><td>
+	
+	<div align="center">
+	
+				<h:outputText styleClass="text_Header" style="font-weight:bold"
+					value="PURCHASE ORDER EDIT"/><br /><br />
+			
+	<!-- <h:messages showSummary="false" showDetail="true"   globalOnly="false" style="color:red"  layout="table"></h:messages> -->
+	</div>
+	<br></br><br></br>
+	<div align="left" style="padding-left: 15pt;">
+	<rich:panel styleClass="class2" style="width:1000px;" headerClass="head2" bodyClass="body3">
+	 <f:facet name="header">
+            Purchase Order Edit
+         <p:spacer height="10px" width="100px"></p:spacer>
+            <p:commandButton value="Help" type="button" onclick="PF('dlg3').show();"></p:commandButton>
+        </f:facet>
+       
+		<table align="left" class="table_UI" cellpadding="10px" style="width: 300px">
+			
+			<tr>
+			<td class="table_td">
+			<h:outputLabel styleClass="label_ui" value="Order Number "></h:outputLabel>
+			</td>
+			<td class="table_td">
+			<h:outputLabel styleClass="label_ui" value=": "/>
+			<h:outputLabel styleClass="label_ui" value="#{purchaseOrderMB.purchaseOrederDataBean.purOrderNo}"/>
+			
+			 </td>
+			
+			
+			</tr>
+			
+			<tr>
+				<td class="table_td">
+			<h:outputLabel styleClass="label_ui" value="Category "></h:outputLabel> 
+			</td>
+			<td class="table_td">
+			<h:outputLabel styleClass="label_ui" value=": "/>
+			<h:outputLabel styleClass="label_ui" value="#{purchaseOrderMB.purchaseOrederDataBean.purCategory}"/>
+			
+			
+			</td>
+			
+			</tr>
+			<tr>
+			<td class="table_td">
+			<h:outputLabel styleClass="label_ui" value="Vendor Name "></h:outputLabel> 
+			</td>
+			<td class="table_td">
+			<h:outputLabel styleClass="label_ui" value=": "/>
+			<h:outputLabel styleClass="label_ui" value="#{purchaseOrderMB.purchaseOrederDataBean.purVendor}"/>
+			
+			
+			</td>
+			
+			
+			
+			</tr>
+			
+		</table>
+			
+		
+		<table align="center" class="table_UI" cellpadding="10px" >
+			<tr>
+			<td>
+			
+			<div align="center" style="width: 950px">
+			<rich:panel>
+		
+		<rich:dataTable  var="info" value="#{purchaseOrderMB.purchaseOrederDataBean.purchaseList}" id="dataMeassage" columnsWidth="50px,300px,150px,150px,200px,100px">
+		<h:column headerText="No">
+		<f:facet name="header"> <span style="font-style: normal;font-size:16px;padding-top:10px;font-family:'Helvetica Neue LT Pro 55';"> No  </span>      </f:facet>
+		<div>
+		<h:outputText  value="#{info.purserialno}" class="label_ui"/>
+		</div></h:column>
+		<h:column headerText="No">
+		<f:facet name="header"> <span style="font-style: normal;font-size:16px;padding-top:10px;font-family:'Helvetica Neue LT Pro 55';"> Product Name  </span>      </f:facet>
+		<div>
+		<h:outputText  value="#{info.purProductName}" class="label_ui"/>
+		</div></h:column>
+		<h:column headerText="No">
+		<f:facet name="header"> <span style="font-style: normal;font-size:16px;padding-top:10px;font-family:'Helvetica Neue LT Pro 55';"> Quantity  </span>      </f:facet>
+		<div>
+		<h:outputText  value="#{info.purQuantity}" class="label_ui"/>
+		<h:outputText  value=" #{info.unit}" class="label_ui"/>
+		</div></h:column>
+		<h:column headerText="No">
+		<f:facet name="header"> <span style="font-style: normal;font-size:16px;padding-top:10px;font-family:'Helvetica Neue LT Pro 55';"> Unit Price  </span>      </f:facet>
+		<div>
+		<h:outputText  value="#{info.unitPrice}" class="label_ui">
+		 <f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+		</h:outputText>
+		</div></h:column>
+		<h:column headerText="No">
+		<f:facet name="header"> <span style="font-style: normal;font-size:16px;padding-top:10px;font-family:'Helvetica Neue LT Pro 55';"> Net Amount  </span>      </f:facet>
+		<div>
+		<h:outputText  value="#{info.purNetAmount}" class="label_ui">
+		 <f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+		</h:outputText>
+		</div></h:column>
+		<h:column headerText="No">
+		<f:facet name="header"> <span style="font-style: normal;font-size:16px;padding-top:10px;font-family:'Helvetica Neue LT Pro 55';"> Edit  </span>      </f:facet>
+		<div align="center">
+		<h:commandButton image="/images/edit_new.png"  action="#{purchaseViewMB.poEdit}">
+		<f:setPropertyActionListener value="#{info.purProductName}" target="#{purchaseViewMB.purchaseOrederDataBean.purProductName}"></f:setPropertyActionListener>
+		<f:setPropertyActionListener value="#{info.purQuantity}" target="#{purchaseViewMB.purchaseOrederDataBean.purQuantity}"></f:setPropertyActionListener>
+		</h:commandButton> 
+		</div></h:column>
+		</rich:dataTable></rich:panel>
+			
+			
+			
+					
+					</div>
+			
+			
+			
+			
+			</td>
+			
+			</tr>
+			<tr><td align="center"> 
+			<h:commandButton value="Back" action="#{purchaseViewMB.back}" styleClass="button"  >
+					</h:commandButton>
+					
+					<h:commandButton value="Cancel" action="home.xhtml?faces-redirect=true" styleClass="button"></h:commandButton>
+			</td></tr>
+			</table>
+			
+			
+	
+			
+				<br></br><br></br>
+		</rich:panel>
+		
+</div></td></tr>
+<tr><td align="center"><h:outputText value="Copyright © PT. Neotural Era Graha" style="color:#2C238C"></h:outputText></td></tr>
+<tr><td><br /></td></tr>
+</table>
+ <p:dialog header="Translation" widgetVar="dlg3" showEffect="explode" hideEffect="shake" height="300" width="500" >
+		
+<rich:panel>
+<h:panelGrid columns="3">
+<h:outputText value="Date"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="tanggal"></h:outputText>
+<h:outputText value="Estimated Delivery Date"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Perkiraan Pengiriman Tanggal"></h:outputText>
+<h:outputText value="Category"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="kategori"></h:outputText>
+<h:outputText value="Vendor Name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Nama pedagang"></h:outputText>
+<h:outputText value="Employee Name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="nama karyawan"></h:outputText>
+<h:outputText value="Product Name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="nama Produk"></h:outputText>
+<h:outputText value="Price"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="harga"></h:outputText>
+<h:outputText value="Quantity"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="kuantitas"></h:outputText>
+<h:outputText value="Net Amount"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Jumlah bersih"></h:outputText>
+<h:outputText value="Cross Total"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Jumlah lintas"></h:outputText>
+<h:outputText value="Discount Type"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="diskon Jenis"></h:outputText>
+<h:outputText value="Discount Amount"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Jumlah diskon"></h:outputText>
+<h:outputText value="Total Amount"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Jumlah total"></h:outputText>
+</h:panelGrid>
+</rich:panel>
+</p:dialog>
+	</h:form>
+	</body>
+</ui:composition>

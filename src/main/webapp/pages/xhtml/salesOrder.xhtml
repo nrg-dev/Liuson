@@ -1,0 +1,365 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	 <link rel="stylesheet" href="../../css/liusenCss.css">
+ 
+</link> 
+
+	</h:head>
+	<body bgcolor="#4C6D90" >
+	
+	<h:form id="limit1">
+	<table align="center" bgcolor="#fff">
+	<tr bgcolor="#fff"><td>
+	<ui:include src="../../pages/xhtml/templates/header.xhtml"></ui:include>
+	</td></tr>
+	<tr><td>
+<ui:include src="/pages/xhtml/templates/menunew.xhtml" />
+	</td></tr>
+	<tr><td>
+	<table>
+	<tr><td style="width: 300px"><strong style="color:#2C238C"> Welcome, #{loginMB.invusername} - #{loginMB.rollname}.</strong></td><td style="width: 426px" align="center"><p:clock pattern="dd-MM-yyyy HH:mm:ss" mode="server"></p:clock></td>
+	<td style="width: 308px" align="right"><h:commandButton value="Logout" action="#{loginMB.logout()}" styleClass="button"></h:commandButton>
+	</td></tr>
+	</table>
+	</td></tr>
+	<tr >
+	<td>
+	  <p:dialog id="dlg" header="Confirmation Message" visible="#{salesMB.dialog}" widgetVar="dlg" modal="true" dynamic="true" style="height:150px;">
+    <tr> <td align="center"> <p:outputLabel styleClass="label_ui"> Sales Order is Successfully Completed</p:outputLabel> </td></tr>
+    <tr> <td align="center"> <p:commandButton value="OK" action="#{salesMB.salesPageLoad()}" oncomplete="dlg.hide();" /> </td></tr>
+       </p:dialog>
+	</td>
+	</tr>
+	<tr><td>
+	
+	<div align="center">
+	
+				<h:outputText styleClass="text_Header" style="font-weight:bold"
+					value="SALES ORDER "/><br /><br />
+			
+	<!-- <h:messages showSummary="false" showDetail="true"   globalOnly="false" style="color:red"  layout="table"></h:messages> -->
+	</div>
+	<br></br><br></br>
+	<div align="center">
+	<rich:panel styleClass="class2" style="width:1000px;" headerClass="head2" bodyClass="body3">
+	 <f:facet name="header">
+            Sales Order Form
+         <p:spacer height="10px" width="100px" style="color:white;"></p:spacer>
+            <p:commandButton value="Help" type="button" onclick="PF('dlg3').show();"></p:commandButton>
+        </f:facet>
+        <p:dialog header="Translation" widgetVar="dlg3" showEffect="explode" hideEffect="shake" height="300" width="500" >
+		  <h:outputText value="This dialog has nice effects." />
+</p:dialog>
+		<table align="center" class="table_UI" cellpadding="10px">
+			<tr>
+			<td class="table_td">
+			
+			<h:outputLabel for="SalDate" value="Date " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+			</td>
+			<td class="table_td"><p:calendar effect="fold" id="SalDate"  pattern="dd-MM-yyyy" value="#{salesMB.salesOrderDataBean.saleDate}" >
+			<p:ajax update="SalDate"></p:ajax>
+			</p:calendar><br />
+			<h:message for="SalDate" style="color:red;font-size:11px"></h:message>
+			 </td>
+			
+			<td class="table_td">
+			<h:outputLabel for="salEstDate" value="Estimated Delivery Date " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+			</td>
+			<td class="table_td"><p:calendar effect="fold" id="salEstDate"  pattern="dd-MM-yyyy" value="#{salesMB.salesOrderDataBean.saleEstDate}" styleClass="text_ui">
+			<p:ajax update="salEstDate"></p:ajax>
+			</p:calendar><br />
+			<h:message for="salEstDate" style="color:red;font-size:11px"></h:message>
+			 </td>
+			</tr>
+			</table>
+			<h:form>
+					<table align="center" class="table_UI" cellpadding="10px">
+			
+			<tr>
+			<td class="table_td">
+			<h:outputLabel for="salCategory" value="Category " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+			</td>
+			<td class="table_td">
+			<p:selectOneMenu id="salCategory" value="#{salesMB.salesOrderDataBean.saleCategory}" styleClass="selecttext_ui" valueChangeListener="#{salesMB.categoryChange}">
+			<f:selectItem itemLabel="Please Choose Category" noSelectionOption="true"></f:selectItem>
+			<f:selectItem itemLabel="Product Trading" itemValue="SALC001"></f:selectItem>
+			<f:selectItem itemLabel="Project" itemValue="SALC002"></f:selectItem>
+			<p:ajax process="@this" update="@form" event="valueChange" immediate="true"></p:ajax>
+			</p:selectOneMenu><br />
+			<h:message for="salCategory" style="color:red;font-size:11px"></h:message>
+			</td>
+			<td class="table_td">
+			<h:outputLabel for="salCust" value="Project Name" styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+			</td>
+			<td class="table_td">
+			<p:selectOneMenu id="salCust" value="#{salesMB.salesOrderDataBean.saleCustomerName}" styleClass="selecttext_ui">
+			<f:selectItem itemLabel="Please Choose Project " noSelectionOption="true"></f:selectItem>
+			<f:selectItems value="#{salesMB.salesOrderDataBean.projetnames}"></f:selectItems>
+			<p:ajax process="@this" update="@form" event="valueChange" immediate="true"></p:ajax>
+			
+			</p:selectOneMenu><br/>
+			<h:message for="salCust" style="color:red;font-size:11px"></h:message>
+			</td>
+			</tr>
+			<tr>
+			<td class="table_td">
+			<h:outputLabel for="salemp" value="Staff ID " styleClass="label_ui"></h:outputLabel><span style="color:red">*</span>
+			</td>
+			<td class="table_td">
+			<p:selectOneMenu id="salemp" value="#{salesMB.salesOrderDataBean.saleStaffId}" styleClass="selecttext_ui">
+			<f:selectItem itemLabel="Please Choose Employee " noSelectionOption="true"></f:selectItem>
+			<f:selectItems value="#{salesMB.salesOrderDataBean.employeeId}"></f:selectItems>
+			<p:ajax process="@this" update="@form" event="valueChange" immediate="true"></p:ajax>
+			
+			</p:selectOneMenu>
+			<br />
+			<h:message for="salemp" style="color:red;font-size:11px"></h:message>
+			</td>
+			
+			</tr>
+		</table>
+			
+		
+		<table align="center" class="table_UI" cellpadding="10px" >
+			<tr>
+			<td> 
+				<h:message for="dataMeassage" style="color:red;font-size:11px"></h:message>
+				<h:outputText  value="#{salesMB.salesOrderDataBean.message}" style="color:red;font-size:11px"/>
+				<br></br>
+			<rich:panel>
+		
+		<rich:dataTable  var="info" value="#{salesMB.salesOrderDataBean.salesList}" id="dataMeassage" columnsWidth="50px,300px,150px,150px,200px,100px">
+				
+					<h:column headerText="No">
+					
+					<f:facet name="header"> <span style="font-style: normal;font-size:16px;padding-top:10px;font-family:'Helvetica Neue LT Pro 55';"> No  </span>      </f:facet>
+				
+					
+					<div>
+						 <h:outputText  value="#{info.saleSerialNo}" class="label_ui"/>
+						 </div>
+					</h:column>
+					
+					<h:column headerText="PName">
+					<f:facet name="header"> <span style="font-style: normal;font-size:16px;padding-top:10px;font-family:'Helvetica Neue LT Pro 55';"> Product Name </span>      </f:facet>
+					
+					<div>
+						 <p:selectOneMenu id="salPname" value="#{info.saleProductName}"  styleClass="selectdrop_ui"   style="width:290px;height:30px;display:#{info.pflag};" valueChangeListener="#{salesMB.productChange}" >
+				  	<f:selectItem itemLabel="Please Choose the Product Name" itemValue=""></f:selectItem>
+				  	<f:selectItems value="#{salesMB.salesOrderDataBean.product}"></f:selectItems>
+				  	<f:attribute name="sno" value="#{info.saleSerialNo}"></f:attribute>
+			<p:ajax process="@this" update="@form" event="valueChange" immediate="true"></p:ajax>
+				 </p:selectOneMenu><br></br>
+				 <h:outputText  value="#{info.saleProductName}" class="label_ui" style="display:#{info.pflag1};"/>
+				 <!-- <h:message for="salPname"></h:message>
+						 --></div>
+					</h:column>
+					<h:column headerText="Price">
+					<f:facet name="header"> <span style="font-style: normal;font-size:16px;padding-top:10px;font-family:'Helvetica Neue LT Pro 55';"> Price  </span>      </f:facet>
+					<div>
+					<h:panelGroup>
+					
+						<h:outputText  value="#{info.salePrice}" styleClass="label_ui">						
+						<f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter></h:outputText>
+					</h:panelGroup>
+						 
+						 </div>
+					</h:column>
+						<h:column headerText="Quantity">
+						<f:facet name="header"> <span style="font-style: normal;font-size:16px;padding-top:10px;font-family:'Helvetica Neue LT Pro 55';"> Quantity  </span>      </f:facet>
+					<div>
+						 <p:inputText id="salQty" value="#{info.saleQuantity}" style="width:140px;height:30px;display:#{info.qflag};" valueChangeListener="#{salesMB.quantityChange}">
+	          		 <p:ajax process="@this" update="@form" event="valueChange" immediate="true"></p:ajax>
+	          		 	<f:attribute value="#{info.saleProductName}" name="name"></f:attribute>
+	          		 	<f:attribute value="#{info.salePrice}" name="price"></f:attribute>
+	          		 	<f:attribute value="#{info.saleSerialNo}" name="sno"></f:attribute>
+	           			</p:inputText>
+	           			 <p:outputLabel value="#{info.saleQuantity}" style="width:140px;height:30px;display:#{info.qflag1};">
+	           			 </p:outputLabel>
+						</div>
+					</h:column>
+					
+					<h:column headerText="Net Amount">
+					<f:facet name="header"> <span style="font-style: normal;font-size:16px;padding-top:10px;font-family:'Helvetica Neue LT Pro 55';"> Net Amount  </span>      </f:facet>
+					<div>
+					<h:panelGroup>
+					
+						 <h:outputText value="#{info.saleNetAmount}" styleClass="label_ui">
+						 <f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+						 </h:outputText>
+						 </h:panelGroup>
+						 </div>
+					</h:column>
+					
+					
+					<h:column width="180" headerText="edit">
+					<f:facet name="header"> <span style="font-style: normal;font-size:16px;padding-top:10px;font-family:'Helvetica Neue LT Pro 55';"> Edit  </span>      </f:facet>
+					<div align="center"> 
+					<h:commandButton id="saledit" image="/images/edit_new.png" action="#{salesMB.edit}">
+	            	<f:setPropertyActionListener value="#{info.saleSerialNo}" target="#{salesMB.salesOrderDataBean.saleSerialNo}"></f:setPropertyActionListener>
+	            	<f:setPropertyActionListener value="#{info.saleNetAmount}" target="#{salesMB.salesOrderDataBean.saleNetAmount}"></f:setPropertyActionListener>
+	            	<f:ajax render="@form" execute="saledit"></f:ajax>
+	         		  </h:commandButton></div> 
+					</h:column>
+				</rich:dataTable></rich:panel>
+			
+			<table align="center" class="table_UI" cellpadding="10px"><tr><td>
+				<h:commandButton id="saladd"  value="Add"  action="#{salesMB.Add}" image="/images/add.png">
+				<f:ajax render="@form" execute="saladd"></f:ajax>
+				
+				</h:commandButton>
+			<p:spacer width="300px" height="30px"></p:spacer>
+			</td>
+			<td align="right">
+				<h:outputLabel for="salCross" value="Cross Total:" styleClass="label_ui"></h:outputLabel>
+			</td><td>
+			
+				 <h:outputText id="salCross" value="#{salesMB.salesOrderDataBean.saleCrossTotal}" styleClass="label_ui">
+				 
+				 <f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter></h:outputText> </td>
+				</tr>
+				<tr>
+				<td></td>
+				<td align="right"><h:outputLabel for="salTaxType" value="Tax Type " styleClass="label_ui"></h:outputLabel>
+				<h:outputText value="*" style="color:red"></h:outputText>
+				</td><td>
+				<p:selectOneRadio id="salTaxType" value="#{salesMB.salesOrderDataBean.saleTaxType}" valueChangeListener="#{salesMB.taxTypeChange}" >
+				<f:selectItem itemLabel="NO Tax" itemValue="PurDisco01"></f:selectItem>
+				<f:selectItem itemLabel="10% Tax" itemValue="PurDisco02"></f:selectItem>
+				<p:ajax process="@this" update="@form" event="valueChange" immediate="true"></p:ajax>
+				
+				</p:selectOneRadio>
+				
+				<h:message for="salTaxType" style="color:red;font-size:11px"></h:message>
+				
+				</td>
+			
+				
+				
+				</tr>
+				<tr>
+				<td></td>
+				<td align="right"><h:outputLabel for="distype" value="Discount Type " styleClass="label_ui"></h:outputLabel>
+				
+				</td><td>
+				<p:selectOneRadio id="distype" value="#{salesMB.salesOrderDataBean.disType}" >
+				<f:selectItem itemLabel="IDR" itemValue="IDR"></f:selectItem><br/>
+				<f:selectItem itemLabel="%" itemValue="%"></f:selectItem>
+				<p:ajax process="@this" update="@form" event="valueChange" immediate="true"></p:ajax>
+				
+				</p:selectOneRadio>
+				
+				<h:message for="distype" style="color:red;font-size:11px"></h:message>				
+				</td>
+				</tr>
+				<tr>
+				<td></td>
+				<td align="right"><h:outputLabel for="disamnt" value="Discount Amount " styleClass="label_ui"></h:outputLabel>
+				
+				</td><td>
+				<p:inputText id="disamnt" value="#{salesMB.salesOrderDataBean.disamnt}" valueChangeListener="#{salesMB.discountChange}">
+				<p:ajax process="@this" update="@form" event="valueChange" immediate="true"></p:ajax>
+				</p:inputText>
+				<br/>
+				<h:message for="disamnt" style="color:red;font-size:11px"></h:message>				
+				</td>
+				</tr>
+				<tr>
+				<td></td>
+				<td></td>
+				<td>
+				<p:separator></p:separator>
+				</td>
+				</tr>
+				<tr>
+				<td>
+				</td>
+				<td align="right">
+				<strong><h:outputText value="Total Amount :" styleClass="label_ui"></h:outputText></strong>
+				</td>
+				<td>
+				<strong></strong>
+				<strong><h:outputText value="#{salesMB.salesOrderDataBean.saleTotalAmount}" styleClass="label_ui">
+				<f:converter converterId="com.nrg.liusen.util.UrlConverter"></f:converter>
+				</h:outputText></strong>
+				</td>
+				</tr>
+				<tr>
+				<td></td>
+				<td></td>
+				<td>
+				<p:separator></p:separator>
+				</td>
+				</tr>
+				</table>
+			</td>
+			
+			</tr>
+			
+			</table>
+	</h:form>
+			<h:commandButton value="Submit"	action="#{salesMB.submit}" styleClass="button" >
+					</h:commandButton>
+					<h:commandButton value="Reset" action="#{salesMB.reset}" styleClass="button">
+					</h:commandButton>
+					<h:commandButton value="Cancel" action="#{salesMB.cancel}" styleClass="button"></h:commandButton>
+				<br></br><br></br>
+		</rich:panel>
+		
+</div></td></tr><tr><td><br /></td></tr>
+<tr><td align="center"><h:outputText value="Copyright © PT. Neotural Era Graha" style="color:#2C238C"></h:outputText></td></tr>
+<tr><td><br /></td></tr>
+</table>
+<p:dialog header="Translation" widgetVar="dlg3" showEffect="explode" hideEffect="shake" height="300" width="500" >
+		
+<rich:panel>
+<h:panelGrid columns="3">
+<h:outputText value="Date"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="tanggal"></h:outputText>
+<h:outputText value="Estimated Delivery Date"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Perkiraan Pengiriman Tanggal"></h:outputText>
+<h:outputText value="Category"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="kategori"></h:outputText>
+<h:outputText value="Project Name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Nama Projet"></h:outputText>
+<h:outputText value="Employee ID"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Karyawan ID"></h:outputText>
+<h:outputText value="Product Name"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Nama Produk"></h:outputText>
+<h:outputText value="Price"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="harga"></h:outputText>
+<h:outputText value="Quantity"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="kuantitas"></h:outputText>
+<h:outputText value="Net Amount"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Jumlah bersih"></h:outputText>
+<h:outputText value="Cross Total"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Jumlah lintas"></h:outputText>
+<h:outputText value="Tax Type"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Jenis Pajak"></h:outputText>
+<h:outputText value="Total Amount"></h:outputText>
+<h:outputText value=":"></h:outputText>
+<h:outputText value="Jumlah total"></h:outputText>
+</h:panelGrid>
+</rich:panel>
+</p:dialog>
+	</h:form>
+	</body>
+</ui:composition>
